@@ -17,6 +17,7 @@
 
 ## Agile
 [x] Scrum: Backlog, Items, Scrum team, Scrum master, Product Owner
+
 [ ] XP
 
 ## Scrum
