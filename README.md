@@ -14,6 +14,7 @@
 - Mỗi người tạo lấy 1 branch từ "master" sau đó code và push branch của mình lên rồi lên Github tạo một "Pull request", tạo xong thì ping anh để merge.
 - Nhớ pull master về trước tiến hành "Pull request"
 - List công việc cần làm (core value)
+- Họp hàng ngày
 
 ## Agile
 [x] Scrum: Backlog, Items, Scrum team, Scrum master, Product Owner
@@ -38,3 +39,13 @@
 - Usercase
 - State Diagram
 - Class Diagram
+
+## Docs
+- Product Backlog
+- Estimate time
+- Số giờ làm việc
+- DoD
+- Policy
+- Working Agreement
+- Rules
+- Standup, daily meeting
