@@ -49,3 +49,5 @@
 - Working Agreement
 - Rules
 - Standup, daily meeting
+
+## Brain Storming
