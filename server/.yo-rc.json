@@ -1,0 +1,30 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.donghd.notend"
+    },
+    "jhipsterVersion": "5.1.0",
+    "applicationType": "monolith",
+    "baseName": "NotEnd",
+    "packageName": "com.donghd.notend",
+    "packageFolder": "com/donghd/notend",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "no",
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "3f7086195dca4ba4b960bf7a5d568321cd09195e",
+    "enableTranslation": false,
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "clientPackageManager": "npm",
+    "skipClient": true
+  }
+}
