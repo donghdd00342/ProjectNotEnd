@@ -46,10 +46,16 @@ spring:
     liquibase:
         contexts: dev
     mail:
-        host: localhost
-        port: 25
-        username:
-        password:
+        host: smtp.gmail.com
+        port: 587
+        username: notend2018@gmail.com
+        password: 123@play
+        properties:
+            mail:
+                smtp:
+                    auth: true
+                    starttls:
+                        enable: true
     messages:
         cache-duration: PT1S # 1 second, see the ISO 8601 standard
     thymeleaf:
@@ -98,7 +104,7 @@ jhipster:
                 token-validity-in-seconds: 86400
                 token-validity-in-seconds-for-remember-me: 2592000
     mail:
-        from: NotEnd@localhost
+        from: notend2018@gmail.com
         base-url: http://127.0.0.1:80
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
         jmx:
