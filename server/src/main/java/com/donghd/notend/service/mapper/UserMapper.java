@@ -42,6 +42,26 @@ public class UserMapper {
             user.setImageUrl(userDTO.getImageUrl());
             user.setActivated(userDTO.isActivated());
             user.setLangKey(userDTO.getLangKey());
+            user.setMiddleName(userDTO.getMiddleName());
+            user.setDateOfBirth(userDTO.getDateOfBirth());
+            user.setGender(userDTO.getGender());
+            user.setMarriedStatus(userDTO.getMarriedStatus());
+            user.setHeightCm(userDTO.getHeightCm());
+            user.setCountryLiving(userDTO.getCountryLiving());
+            user.setCity(userDTO.getCity());
+            user.setContactNumber(userDTO.getContactNumber());
+            user.setMotherTongue(userDTO.getMotherTongue());
+            user.setReligion(userDTO.getReligion());
+            user.setAboutSelf(userDTO.getAboutSelf());
+            user.setFamilyDetails(userDTO.getFamilyDetails());
+            user.setQualification(userDTO.getQualification());
+            user.setWorkingAt(userDTO.getWorkingAt());
+            user.setHobbies(userDTO.getHobbies());
+
+            user.setPaidUser(userDTO.getPaidUser());
+            user.setExpirationDate(userDTO.getExpirationDate());
+            user.setPaymentPeriod(userDTO.getPaymentPeriod());
+            
             Set<Authority> authorities = this.authoritiesFromStrings(userDTO.getAuthorities());
             if (authorities != null) {
                 user.setAuthorities(authorities);

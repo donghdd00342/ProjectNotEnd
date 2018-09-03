@@ -95,6 +95,8 @@ public class UserService {
         newUser.setLangKey(userDTO.getLangKey());
         // new user is not active
         newUser.setActivated(false);
+        // new user is not paid
+        newUser.setPaidUser(false);
         // new user gets registration key
         newUser.setActivationKey(RandomUtil.generateActivationKey());
         Set<Authority> authorities = new HashSet<>();
@@ -241,6 +243,19 @@ public class UserService {
         for (User user : users) {
             log.debug("Deleting not activated user {}", user.getLogin());
             userRepository.delete(user);
+        }
+    }
+
+    /**
+     * This is scheduled to get fired everyday, at 01:00 (am).
+     */
+    @Scheduled(cron = "0 0 1 * * ?")
+    public void checkPaidUsers() {
+        List<User> users = userRepository.findAllByPaidUserIsTrueAndExpirationDateBefore(Instant.now());
+        for (User user : users) {
+            log.debug("Paid User is Expiration {}", user.getLogin());
+            user.setPaidUser(false);
+            userRepository.save(user);
         }
     }
 
