@@ -4,6 +4,7 @@ import com.donghd.notend.domain.User;
 import com.donghd.notend.repository.UserRepository;
 import com.donghd.notend.security.SecurityUtils;
 import com.donghd.notend.service.MailService;
+import com.donghd.notend.service.TransactionHistoryService;
 import com.donghd.notend.service.UserService;
 import com.donghd.notend.service.dto.UserDTO;
 import com.donghd.notend.web.rest.errors.*;
@@ -19,6 +20,11 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import com.donghd.notend.service.dto.PasswordChangeDTO;
+import com.donghd.notend.service.dto.TransactionHistoryDTO;
+
+import java.math.BigDecimal;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 /**
@@ -35,9 +41,11 @@ public class AccountResource {
     private final UserService userService;
 
     private final MailService mailService;
+    
+    private final TransactionHistoryService transactionHistoryService;
 
-    public AccountResource(UserRepository userRepository, UserService userService, MailService mailService) {
-
+    public AccountResource(UserRepository userRepository, UserService userService, MailService mailService, TransactionHistoryService transactionHistoryService) {
+        this.transactionHistoryService = transactionHistoryService;
         this.userRepository = userRepository;
         this.userService = userService;
         this.mailService = mailService;
@@ -100,6 +108,37 @@ public class AccountResource {
         return userService.getUserWithAuthorities()
             .map(UserDTO::new)
             .orElseThrow(() -> new InternalServerErrorException("User could not be found"));
+    }
+
+    /**
+     * For testing, upgrade user to paid
+     * @return
+     */
+    @GetMapping("/account/upgrade")
+    public UserDTO upgradeUserToPaid() {
+        UserDTO userDTO =  userService.getUserWithAuthorities()
+            .map(UserDTO::new)
+            .orElseThrow(() -> new InternalServerErrorException("User could not be found"));
+        userDTO.setPaidUser(true);
+        Instant expirationDate = userDTO.getExpirationDate();
+        if (expirationDate != null) {
+            userDTO.setExpirationDate(expirationDate.minus(3, ChronoUnit.MONTHS));
+        } else {
+            userDTO.setExpirationDate(Instant.now().minus(3, ChronoUnit.MONTHS));
+        }
+        try {
+            userService.updateUser(userDTO);
+
+            TransactionHistoryDTO transactionHistoryDTO = new TransactionHistoryDTO();
+            transactionHistoryDTO.setAmout(BigDecimal.valueOf(3*100));
+            transactionHistoryDTO.setPayDate(Instant.now());
+            transactionHistoryDTO.setUserId(userDTO.getId());
+            transactionHistoryService.save(transactionHistoryDTO);
+        } catch (Exception e) {
+            log.debug("Exception!", e.getMessage());
+            new InternalServerErrorException("Upgrade fail!");
+        }
+        return userDTO;
     }
 
     /**
