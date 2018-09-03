@@ -15,14 +15,13 @@ public class MessageDTO implements Serializable {
     @NotNull
     private String msg;
 
-    @NotNull
     private Integer status;
 
-    @NotNull
     private Instant sendingDateTime;
 
     private Long fromUserId;
 
+    @NotNull
     private Long toUserId;
 
     public Long getId() {

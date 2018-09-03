@@ -28,6 +28,8 @@ public interface MessageService {
      */
     Page<MessageDTO> findAll(Pageable pageable);
 
+    Page<MessageDTO> findAllMsgUnread(Pageable pageable);
+
 
     /**
      * Get the "id" message.

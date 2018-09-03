@@ -1,5 +1,6 @@
 package com.donghd.notend.web.rest;
 
+import com.donghd.notend.config.Constants;
 import com.donghd.notend.service.MessageService;
 import com.donghd.notend.web.rest.errors.BadRequestAlertException;
 import com.donghd.notend.web.rest.util.HeaderUtil;
@@ -18,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
-
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
@@ -52,6 +53,9 @@ public class MessageResource {
         if (messageDTO.getId() != null) {
             throw new BadRequestAlertException("A new message cannot already have an ID", ENTITY_NAME, "idexists");
         }
+        messageDTO.setStatus(Constants.SENT);
+        messageDTO.setSendingDateTime(Instant.now());
+
         MessageDTO result = messageService.save(messageDTO);
         return ResponseEntity.created(new URI("/api/messages/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
@@ -67,16 +71,22 @@ public class MessageResource {
      * or with status 500 (Internal Server Error) if the messageDTO couldn't be updated
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
-    @PutMapping("/messages")
-    public ResponseEntity<MessageDTO> updateMessage(@Valid @RequestBody MessageDTO messageDTO) throws URISyntaxException {
-        log.debug("REST request to update Message : {}", messageDTO);
-        if (messageDTO.getId() == null) {
-            throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
+    @PutMapping("/messages/{id}")
+    public ResponseEntity<MessageDTO> receivedMessage(@PathVariable Long id) throws URISyntaxException {
+        log.debug("REST request to update Message : {}", id);
+
+        Optional<MessageDTO> result = messageService.findOne(id);
+        if (result.isPresent()) {
+            MessageDTO messageDTO = result.get();
+            messageDTO.setStatus(Constants.RECEIVED);
+            
+            messageService.save(messageDTO);
+        } else {
+            throw new BadRequestAlertException("Message not found", ENTITY_NAME, "msgNotFound");
         }
-        MessageDTO result = messageService.save(messageDTO);
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, messageDTO.getId().toString()))
-            .body(result);
+            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, id.toString()))
+            .body(result.get());
     }
 
     /**
@@ -89,8 +99,24 @@ public class MessageResource {
     public ResponseEntity<List<MessageDTO>> getAllMessages(Pageable pageable) {
         log.debug("REST request to get a page of Messages");
         Page<MessageDTO> page = messageService.findAll(pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/messages");
-        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+        if (page != null) {
+            HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/messages");
+            return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+        } else {
+            throw new BadRequestAlertException("Authentication fail", ENTITY_NAME, "authFail");
+        }
+    }
+
+    @GetMapping("/messages/unread")
+    public ResponseEntity<List<MessageDTO>> getAllMessagesUnread(Pageable pageable) {
+        log.debug("REST request to get a page of Messages Unread");
+        Page<MessageDTO> page = messageService.findAllMsgUnread(pageable);
+        if (page != null) {
+            HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/messages/unread");
+            return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+        } else {
+            throw new BadRequestAlertException("Authentication fail", ENTITY_NAME, "authFail");
+        }
     }
 
     /**

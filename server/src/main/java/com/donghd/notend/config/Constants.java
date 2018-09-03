@@ -20,6 +20,10 @@ public final class Constants {
     public static final Integer ACCEPT = 1;
     public static final Integer BLOCK = -1;
 
+    // Message status
+    public static final Integer SENT = 0;
+    public static final Integer RECEIVED = 1;
+
     // Util resource
     public static final List<String> LIST_OF_COUNTRIES = createCountries();
     public static final List<String> LIST_OF_LANGUAGES = createLanguage();

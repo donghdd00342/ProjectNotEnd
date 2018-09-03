@@ -1,7 +1,10 @@
 package com.donghd.notend.service.impl;
 
 import com.donghd.notend.service.MessageService;
+import com.donghd.notend.service.UserService;
+import com.donghd.notend.config.Constants;
 import com.donghd.notend.domain.Message;
+import com.donghd.notend.domain.User;
 import com.donghd.notend.repository.MessageRepository;
 import com.donghd.notend.service.dto.MessageDTO;
 import com.donghd.notend.service.mapper.MessageMapper;
@@ -28,9 +31,12 @@ public class MessageServiceImpl implements MessageService {
 
     private final MessageMapper messageMapper;
 
-    public MessageServiceImpl(MessageRepository messageRepository, MessageMapper messageMapper) {
+    private final UserService userService;
+
+    public MessageServiceImpl(MessageRepository messageRepository, MessageMapper messageMapper, UserService userService) {
         this.messageRepository = messageRepository;
         this.messageMapper = messageMapper;
+        this.userService = userService;
     }
 
     /**
@@ -57,8 +63,23 @@ public class MessageServiceImpl implements MessageService {
     @Transactional(readOnly = true)
     public Page<MessageDTO> findAll(Pageable pageable) {
         log.debug("Request to get all Messages");
-        return messageRepository.findAll(pageable)
+        Optional<User> userOpt = userService.getUserWithAuthorities();
+        if (userOpt.isPresent()) {
+            return messageRepository.findByToUser_Id(userOpt.get().getId(), pageable)
             .map(messageMapper::toDto);
+        }
+        return null;
+    }
+
+    @Override
+    public Page<MessageDTO> findAllMsgUnread(Pageable pageable) {
+        log.debug("Request to get all Messages Unread");
+        Optional<User> userOpt = userService.getUserWithAuthorities();
+        if (userOpt.isPresent()) {
+            return messageRepository.findByToUser_IdAndStatus(userOpt.get().getId(), Constants.SENT, pageable)
+            .map(messageMapper::toDto);
+        }
+        return null;
     }
 
 
