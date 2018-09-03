@@ -1,6 +1,9 @@
 package com.donghd.notend.repository;
 
 import com.donghd.notend.domain.TransactionHistory;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;
 
@@ -15,5 +18,8 @@ public interface TransactionHistoryRepository extends JpaRepository<TransactionH
 
     @Query("select transaction_history from TransactionHistory transaction_history where transaction_history.user.login = ?#{principal.username}")
     List<TransactionHistory> findByUserIsCurrentUser();
+
+    @Query("select transaction_history from TransactionHistory transaction_history where transaction_history.user.login = ?#{principal.username}")
+    Page<TransactionHistory> findAllByUserIsCurrentUser(Pageable pageable);
 
 }

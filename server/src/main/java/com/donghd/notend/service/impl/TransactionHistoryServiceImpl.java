@@ -86,4 +86,10 @@ public class TransactionHistoryServiceImpl implements TransactionHistoryService 
         log.debug("Request to delete TransactionHistory : {}", id);
         transactionHistoryRepository.deleteById(id);
     }
+
+    @Override
+    public Page<TransactionHistoryDTO> findAllByUserIsCurrentUser(Pageable pageable) {
+        return transactionHistoryRepository.findAllByUserIsCurrentUser(pageable)
+            .map(transactionHistoryMapper::toDto);
+    }
 }

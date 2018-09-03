@@ -40,46 +40,6 @@ public class TransactionHistoryResource {
     }
 
     /**
-     * POST  /transaction-histories : Create a new transactionHistory.
-     *
-     * @param transactionHistoryDTO the transactionHistoryDTO to create
-     * @return the ResponseEntity with status 201 (Created) and with body the new transactionHistoryDTO, or with status 400 (Bad Request) if the transactionHistory has already an ID
-     * @throws URISyntaxException if the Location URI syntax is incorrect
-     */
-    @PostMapping("/transaction-histories")
-    public ResponseEntity<TransactionHistoryDTO> createTransactionHistory(@Valid @RequestBody TransactionHistoryDTO transactionHistoryDTO) throws URISyntaxException {
-        log.debug("REST request to save TransactionHistory : {}", transactionHistoryDTO);
-        if (transactionHistoryDTO.getId() != null) {
-            throw new BadRequestAlertException("A new transactionHistory cannot already have an ID", ENTITY_NAME, "idexists");
-        }
-        TransactionHistoryDTO result = transactionHistoryService.save(transactionHistoryDTO);
-        return ResponseEntity.created(new URI("/api/transaction-histories/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
-            .body(result);
-    }
-
-    /**
-     * PUT  /transaction-histories : Updates an existing transactionHistory.
-     *
-     * @param transactionHistoryDTO the transactionHistoryDTO to update
-     * @return the ResponseEntity with status 200 (OK) and with body the updated transactionHistoryDTO,
-     * or with status 400 (Bad Request) if the transactionHistoryDTO is not valid,
-     * or with status 500 (Internal Server Error) if the transactionHistoryDTO couldn't be updated
-     * @throws URISyntaxException if the Location URI syntax is incorrect
-     */
-    @PutMapping("/transaction-histories")
-    public ResponseEntity<TransactionHistoryDTO> updateTransactionHistory(@Valid @RequestBody TransactionHistoryDTO transactionHistoryDTO) throws URISyntaxException {
-        log.debug("REST request to update TransactionHistory : {}", transactionHistoryDTO);
-        if (transactionHistoryDTO.getId() == null) {
-            throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
-        }
-        TransactionHistoryDTO result = transactionHistoryService.save(transactionHistoryDTO);
-        return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, transactionHistoryDTO.getId().toString()))
-            .body(result);
-    }
-
-    /**
      * GET  /transaction-histories : get all the transactionHistories.
      *
      * @param pageable the pagination information
@@ -88,34 +48,8 @@ public class TransactionHistoryResource {
     @GetMapping("/transaction-histories")
     public ResponseEntity<List<TransactionHistoryDTO>> getAllTransactionHistories(Pageable pageable) {
         log.debug("REST request to get a page of TransactionHistories");
-        Page<TransactionHistoryDTO> page = transactionHistoryService.findAll(pageable);
+        Page<TransactionHistoryDTO> page = transactionHistoryService.findAllByUserIsCurrentUser(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/transaction-histories");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
-    }
-
-    /**
-     * GET  /transaction-histories/:id : get the "id" transactionHistory.
-     *
-     * @param id the id of the transactionHistoryDTO to retrieve
-     * @return the ResponseEntity with status 200 (OK) and with body the transactionHistoryDTO, or with status 404 (Not Found)
-     */
-    @GetMapping("/transaction-histories/{id}")
-    public ResponseEntity<TransactionHistoryDTO> getTransactionHistory(@PathVariable Long id) {
-        log.debug("REST request to get TransactionHistory : {}", id);
-        Optional<TransactionHistoryDTO> transactionHistoryDTO = transactionHistoryService.findOne(id);
-        return ResponseUtil.wrapOrNotFound(transactionHistoryDTO);
-    }
-
-    /**
-     * DELETE  /transaction-histories/:id : delete the "id" transactionHistory.
-     *
-     * @param id the id of the transactionHistoryDTO to delete
-     * @return the ResponseEntity with status 200 (OK)
-     */
-    @DeleteMapping("/transaction-histories/{id}")
-    public ResponseEntity<Void> deleteTransactionHistory(@PathVariable Long id) {
-        log.debug("REST request to delete TransactionHistory : {}", id);
-        transactionHistoryService.delete(id);
-        return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 }

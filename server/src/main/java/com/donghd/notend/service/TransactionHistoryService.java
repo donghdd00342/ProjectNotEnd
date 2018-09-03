@@ -28,6 +28,8 @@ public interface TransactionHistoryService {
      */
     Page<TransactionHistoryDTO> findAll(Pageable pageable);
 
+    Page<TransactionHistoryDTO> findAllByUserIsCurrentUser(Pageable pageable);
+
 
     /**
      * Get the "id" transactionHistory.
