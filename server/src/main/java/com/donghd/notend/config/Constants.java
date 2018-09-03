@@ -1,5 +1,8 @@
 package com.donghd.notend.config;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Application constants.
  */
@@ -16,6 +19,51 @@ public final class Constants {
     public static final Integer PENDING = 0;
     public static final Integer ACCEPT = 1;
     public static final Integer BLOCK = -1;
+
+    // Util resource
+    public static final List<String> LIST_OF_COUNTRIES = createCountries();
+    public static final List<String> LIST_OF_LANGUAGES = createLanguage();
+
+    private static List<String> createCountries() {
+        List<String> list = new ArrayList();
+
+        list.add("United States");
+        list.add("United Kingdom");
+        list.add("Finland");
+        list.add("France");
+        list.add("Germany");
+        list.add("Hong Kong");
+        list.add("Hungary");
+        list.add("India");
+        list.add("Indonesia");
+        list.add("Italy");
+        list.add("Japan");
+        list.add("Mexico");
+        list.add("New Zealand");
+        list.add("Thailand");
+        list.add("Turkey");
+        list.add("Turkey");
+        list.add("Viet Nam");
+        list.add("Korea");
+
+        return list;
+    }
+
+    private static List<String> createLanguage() {
+        List<String> list = new ArrayList();
+
+        list.add("Chinese");
+        list.add("English");
+        list.add("French");
+        list.add("German");
+        list.add("Indonesian");
+        list.add("Italian");
+        list.add("Japanese");
+        list.add("Russian");
+        list.add("Vietnamese");
+
+        return list;
+    }
     
     private Constants() {
     }
