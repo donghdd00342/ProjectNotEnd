@@ -31,6 +31,38 @@ public class UserDTO {
     @Size(max = 50)
     private String lastName;
 
+    @Size(max = 50)
+    private String middleName;
+    @Size(max = 50)
+    private String dateOfBirth;
+    private Integer gender;
+    private Integer marriedStatus;
+    private Integer heightCm;
+    @Size(max = 100)
+    private String countryLiving;
+    @Size(max = 100)
+    private String city;
+    @Size(max = 15)
+    private String contactNumber;
+    @Size(max = 100)
+    private String motherTongue;
+    @Size(max = 100)
+    private String religion;
+    @Size(max = 256)
+    private String aboutSelf;
+    @Size(max = 256)
+    private String familyDetails;
+    @Size(max = 256)
+    private String qualification;
+    @Size(max = 100)
+    private String workingAt;
+    @Size(max = 256)
+    private String hobbies;
+
+    private boolean paidUser = false;
+    private Instant expirationDate;
+    private Integer paymentPeriod;
+
     @Email
     @Size(min = 5, max = 254)
     private String email;
@@ -62,6 +94,27 @@ public class UserDTO {
         this.login = user.getLogin();
         this.firstName = user.getFirstName();
         this.lastName = user.getLastName();
+        
+        this.middleName = user.getMiddleName();
+        this.dateOfBirth = user.getDateOfBirth();
+        this.gender = user.getGender();
+        this.marriedStatus = user.getMarriedStatus();
+        this.heightCm = user.getHeightCm();
+        this.countryLiving = user.getCountryLiving();
+        this.city = user.getCity();
+        this.contactNumber = user.getContactNumber();
+        this.motherTongue = user.getMotherTongue();
+        this.religion = user.getReligion();
+        this.aboutSelf = user.getAboutSelf();
+        this.familyDetails = user.getFamilyDetails();
+        this.qualification = user.getQualification();
+        this.workingAt = user.getWorkingAt();
+        this.hobbies = user.getHobbies();
+        
+        this.paidUser = user.getPaidUser();
+        this.expirationDate = user.getExpirationDate();
+        this.paymentPeriod = user.getPaymentPeriod();
+
         this.email = user.getEmail();
         this.activated = user.getActivated();
         this.imageUrl = user.getImageUrl();
@@ -177,6 +230,150 @@ public class UserDTO {
 
     public void setAuthorities(Set<String> authorities) {
         this.authorities = authorities;
+    }
+
+    public String getMiddleName() {
+    	return this.middleName;
+    }
+
+    public void setMiddleName(String middleName) {
+    	this.middleName = middleName;
+    }
+
+    public String getDateOfBirth() {
+    	return this.dateOfBirth;
+    }
+
+    public void setDateOfBirth(String dateOfBirth) {
+    	this.dateOfBirth = dateOfBirth;
+    }
+
+    public Integer getGender() {
+    	return this.gender;
+    }
+
+    public void setGender(Integer gender) {
+    	this.gender = gender;
+    }
+
+    public Integer getMarriedStatus() {
+    	return this.marriedStatus;
+    }
+
+    public void setMarriedStatus(Integer marriedStatus) {
+    	this.marriedStatus = marriedStatus;
+    }
+
+    public Integer getHeightCm() {
+    	return this.heightCm;
+    }
+
+    public void setHeightCm(Integer heightCm) {
+    	this.heightCm = heightCm;
+    }
+
+    public String getCountryLiving() {
+    	return this.countryLiving;
+    }
+
+    public void setCountryLiving(String countryLiving) {
+    	this.countryLiving = countryLiving;
+    }
+
+    public String getCity() {
+    	return this.city;
+    }
+
+    public void setCity(String city) {
+    	this.city = city;
+    }
+
+    public String getContactNumber() {
+    	return this.contactNumber;
+    }
+
+    public void setContactNumber(String contectNumber) {
+    	this.contactNumber = contectNumber;
+    }
+
+    public String getMotherTongue() {
+    	return this.motherTongue;
+    }
+
+    public void setMotherTongue(String motherTongue) {
+    	this.motherTongue = motherTongue;
+    }
+
+    public String getReligion() {
+    	return this.religion;
+    }
+
+    public void setReligion(String religion) {
+    	this.religion = religion;
+    }
+
+    public String getAboutSelf() {
+    	return this.aboutSelf;
+    }
+
+    public void setAboutSelf(String aboutSelf) {
+    	this.aboutSelf = aboutSelf;
+    }
+
+    public String getFamilyDetails() {
+    	return this.familyDetails;
+    }
+
+    public void setFamilyDetails(String familyDetails) {
+    	this.familyDetails = familyDetails;
+    }
+
+    public String getQualification() {
+    	return this.qualification;
+    }
+
+    public void setQualification(String qualification) {
+    	this.qualification = qualification;
+    }
+
+    public String getWorkingAt() {
+    	return this.workingAt;
+    }
+
+    public void setWorkingAt(String workingAt) {
+    	this.workingAt = workingAt;
+    }
+
+    public String getHobbies() {
+    	return this.hobbies;
+    }
+
+    public void setHobbies(String hobbies) {
+    	this.hobbies = hobbies;
+    }
+
+    public boolean getPaidUser() {
+    	return this.paidUser;
+    }
+
+    public void setPaidUser(boolean paidUser) {
+    	this.paidUser = paidUser;
+    }
+
+    public Instant getExpirationDate() {
+    	return this.expirationDate;
+    }
+
+    public void setExpirationDate(Instant expirationDate) {
+    	this.expirationDate = expirationDate;
+    }
+
+    public Integer getPaymentPeriod() {
+    	return this.paymentPeriod;
+    }
+
+    public void setPaymentPeriod(Integer paymentPeriod) {
+    	this.paymentPeriod = paymentPeriod;
     }
 
     @Override
