@@ -61,6 +61,20 @@ public class FriendServiceImpl implements FriendService {
             .map(friendMapper::toDto);
     }
 
+    @Override
+    public Page<FriendDTO> findAllByOwner(Pageable pageable) {
+        log.debug("Request to get all Friends By Owner");
+        return friendRepository.findAllByOwnerIsCurrentUser(pageable)
+            .map(friendMapper::toDto);
+    }
+
+    @Override
+    public Page<FriendDTO> findAllAskFriend(Pageable pageable) {
+        log.debug("Request to get all By Friend (Ask Friends)");
+        return friendRepository.findAllByFriendIsCurrentUser(pageable)
+            .map(friendMapper::toDto);
+    }
+
 
     /**
      * Get one friend by id.
@@ -73,6 +87,20 @@ public class FriendServiceImpl implements FriendService {
     public Optional<FriendDTO> findOne(Long id) {
         log.debug("Request to get Friend : {}", id);
         return friendRepository.findById(id)
+            .map(friendMapper::toDto);
+    }
+
+    @Override
+    public Optional<FriendDTO> findByFriendId(Long friendId) {
+        log.debug("Request to find By Friend Id : {}", friendId);
+        return friendRepository.findByFriend_Id(friendId)
+            .map(friendMapper::toDto);
+    }
+
+    @Override
+    public Optional<FriendDTO> findByIdsMacth(Long friendId, Long ownerId) {
+        log.debug("Request to find By Ids Macth : friendId = {}, ownerId = {}", friendId, ownerId);
+        return friendRepository.findByFriend_IdAndOwner_Id(friendId, ownerId)
             .map(friendMapper::toDto);
     }
 

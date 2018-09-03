@@ -1,7 +1,6 @@
 package com.donghd.notend.service.dto;
 
 import java.time.Instant;
-import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -12,10 +11,8 @@ public class FriendDTO implements Serializable {
 
     private Long id;
 
-    @NotNull
     private Instant relationshipDate;
 
-    @NotNull
     private Integer status;
 
     private Long ownerId;

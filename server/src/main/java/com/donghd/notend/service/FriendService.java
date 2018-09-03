@@ -28,6 +28,9 @@ public interface FriendService {
      */
     Page<FriendDTO> findAll(Pageable pageable);
 
+    Page<FriendDTO> findAllByOwner(Pageable pageable);
+
+    Page<FriendDTO> findAllAskFriend(Pageable pageable);
 
     /**
      * Get the "id" friend.
@@ -36,6 +39,10 @@ public interface FriendService {
      * @return the entity
      */
     Optional<FriendDTO> findOne(Long id);
+
+    Optional<FriendDTO> findByFriendId(Long friendId);
+
+    Optional<FriendDTO> findByIdsMacth(Long friendId, Long ownerId);
 
     /**
      * Delete the "id" friend.

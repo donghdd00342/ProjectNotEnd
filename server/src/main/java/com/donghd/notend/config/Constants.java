@@ -11,6 +11,11 @@ public final class Constants {
     public static final String SYSTEM_ACCOUNT = "system";
     public static final String ANONYMOUS_USER = "anonymoususer";
     public static final String DEFAULT_LANGUAGE = "en";
+
+    // Friend status
+    public static final Integer PENDING = 0;
+    public static final Integer ACCEPT = 1;
+    public static final Integer BLOCK = -1;
     
     private Constants() {
     }
