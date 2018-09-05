@@ -4,12 +4,14 @@
     android:layout_height="match_parent">
 
     <Button
+        android:id="@+id/btLogin"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="Login"/>
 
     <Button
+        android:id="@+id/btRegister"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
