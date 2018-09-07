@@ -92,7 +92,11 @@ public class UserService {
         newUser.setLastName(userDTO.getLastName());
         newUser.setEmail(userDTO.getEmail());
         newUser.setImageUrl(userDTO.getImageUrl());
-        newUser.setLangKey(userDTO.getLangKey());
+        if (userDTO.getLangKey() != null) {
+            newUser.setLangKey(userDTO.getLangKey());
+        } else {
+            newUser.setLangKey(Constants.DEFAULT_LANGUAGE);
+        }
         // new user is not active
         newUser.setActivated(false);
         // new user is not paid

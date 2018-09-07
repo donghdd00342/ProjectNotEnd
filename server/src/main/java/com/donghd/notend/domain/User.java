@@ -129,7 +129,7 @@ public class User extends AbstractAuditingEntity implements Serializable {
 
     @Size(min = 2, max = 6)
     @Column(name = "lang_key", length = 6)
-    private String langKey;
+    private String langKey = Constants.DEFAULT_LANGUAGE;
 
     @Size(max = 256)
     @Column(name = "image_url", length = 256)
