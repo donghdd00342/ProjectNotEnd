@@ -1,7 +1,9 @@
-package com.example.deltadivine.projectnotend;
+package com.project.notend.notend.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.project.notend.notend.R;
 
 public class DetailActivity extends AppCompatActivity {
 

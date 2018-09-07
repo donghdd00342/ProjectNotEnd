@@ -7,27 +7,26 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 
 import com.project.notend.notend.R;
+import com.project.notend.notend.adapter.SimpleFragmentPagerAdapter;
 
 public class Content extends AppCompatActivity {
-    Toolbar toolbar;
     TabLayout tabLayout;
     ViewPager viewPager;
-
-    private int[] tabIcons = {
-            R.drawable.human,
-            R.drawable.human,
-            R.drawable.human
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_content);
         tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
-        viewPager= (ViewPager) findViewById(R.id.viewpager);
-        set(viewPager);
+        viewPager = (ViewPager) findViewById(R.id.viewpager);
+        SimpleFragmentPagerAdapter adapter = new SimpleFragmentPagerAdapter(this, getSupportFragmentManager());
+        viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
-        setupTabIcons();
+        for (int i = 0; i < tabLayout.getTabCount(); i++) {
+            TabLayout.Tab tab = tabLayout.getTabAt(i);
+            //tab.setCustomView(adapter.getTabView(i));
+            tab.setIcon(adapter.getTabIcon(i));
+        }
 
     }
 }

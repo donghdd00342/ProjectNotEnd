@@ -17,12 +17,12 @@ import java.util.List;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 
-public class UserAdapter extends RecyclerView.Adapter {
+public class demo extends RecyclerView.Adapter {
 
     private Activity activity;
     private List<User> listNews;
 
-    public UserAdapter(Activity activity, List<User> listNews) {
+    public demo(Activity activity, List<User> listNews) {
         this.activity = activity;
         this.listNews = listNews;
     }
