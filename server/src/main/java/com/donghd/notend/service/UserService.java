@@ -173,6 +173,52 @@ public class UserService {
             });
     }
 
+    public void updateUserWithDTO(UserDTO userDTO) {
+        SecurityUtils.getCurrentUserLogin()
+            .flatMap(userRepository::findOneByLogin)
+            .ifPresent(user -> {
+                // "firstName": "string",
+                user.setFirstName(userDTO.getFirstName());
+                // "lastName": "string",
+                user.setLastName(userDTO.getLastName());
+                // "middleName": "string",
+                user.setMiddleName(userDTO.getMiddleName());
+                // "gender": 0,
+                user.setGender(userDTO.getGender());
+                // "imageUrl": "string",
+                user.setImageUrl(userDTO.getImageUrl());
+                // "heightCm": 0,
+                user.setHeightCm(userDTO.getHeightCm());
+                // "marriedStatus": 0,
+                user.setMarriedStatus(userDTO.getMarriedStatus());
+                // "aboutSelf": "string",
+                user.setAboutSelf(userDTO.getAboutSelf());
+                // "familyDetails": "string",
+                user.setFamilyDetails(userDTO.getFamilyDetails());
+                // "city": "string",
+                user.setCity(userDTO.getCity());
+                // "contactNumber": "string",
+                user.setContactNumber(userDTO.getContactNumber());
+                // "countryLiving": "string",
+                user.setCountryLiving(userDTO.getCountryLiving());
+                // "dateOfBirth": "string",
+                user.setDateOfBirth(userDTO.getDateOfBirth());
+                // "hobbies": "string",
+                user.setHobbies(userDTO.getHobbies());
+                // "motherTongue": "string",
+                user.setMotherTongue(userDTO.getMotherTongue());
+                // "qualification": "string",
+                user.setQualification(userDTO.getQualification());
+                // "religion": "string",
+                user.setReligion(userDTO.getReligion());
+                // "workingAt": "string"
+                user.setWorkingAt(userDTO.getWorkingAt());
+                
+                this.clearUserCaches(user);
+                log.debug("Changed Information for User: {}", user);
+            });
+    }
+
     /**
      * Update all information for a specific user, and return the modified user.
      *

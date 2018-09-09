@@ -166,6 +166,9 @@ public class AccountResource {
         if (!user.isPresent()) {
             throw new InternalServerErrorException("User could not be found");
         }
+        if (!user.get().getPaidUser()) {
+            throw new InternalServerErrorException("Only paid users can use this function");
+        }
         userService.updateUser(userDTO.getFirstName(), userDTO.getLastName(), userDTO.getEmail(),
             userDTO.getLangKey(), userDTO.getImageUrl());
    }

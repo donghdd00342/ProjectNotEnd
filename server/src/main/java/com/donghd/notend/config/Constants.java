@@ -15,6 +15,17 @@ public final class Constants {
     public static final String ANONYMOUS_USER = "anonymoususer";
     public static final String DEFAULT_LANGUAGE = "en";
 
+    // gender
+    public static final Integer MALE_INTEGER = 1;
+    public static final Integer FEMALE_INTEGER = 2;
+    public static final Integer UNKNOW_INTEGER = 3;
+
+    // married status
+    public static final Integer SINGLE = 1;
+    public static final Integer MARRIED = 2;
+    public static final Integer DIVORCED = 3;
+    public static final Integer WIDOWED = 4;
+
     // Friend status
     public static final Integer PENDING = 0;
     public static final Integer ACCEPT = 1;
