@@ -370,38 +370,11 @@ public class Account {
     @Override
     public String toString() {
         return "Account{" +
-                "aboutSelf='" + aboutSelf + '\'' +
-                ", activated=" + activated +
-                ", authorities=" + authorities +
-                ", city='" + city + '\'' +
-                ", contactNumber='" + contactNumber + '\'' +
-                ", countryLiving='" + countryLiving + '\'' +
-                ", createdBy='" + createdBy + '\'' +
-                ", createdDate='" + createdDate + '\'' +
-                ", dateOfBirth='" + dateOfBirth + '\'' +
-                ", email='" + email + '\'' +
-                ", expirationDate='" + expirationDate + '\'' +
-                ", familyDetails='" + familyDetails + '\'' +
+                "email='" + email + '\'' +
                 ", firstName='" + firstName + '\'' +
-                ", gender=" + gender +
-                ", heightCm=" + heightCm +
-                ", hobbies='" + hobbies + '\'' +
-                ", id=" + id +
-                ", imageUrl='" + imageUrl + '\'' +
-                ", langKey='" + langKey + '\'' +
-                ", lastModifiedBy='" + lastModifiedBy + '\'' +
-                ", lastModifiedDate='" + lastModifiedDate + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", login='" + login + '\'' +
-                ", marriedStatus=" + marriedStatus +
-                ", middleName='" + middleName + '\'' +
-                ", motherTongue='" + motherTongue + '\'' +
-                ", paidUser=" + paidUser +
                 ", password='" + password + '\'' +
-                ", paymentPeriod=" + paymentPeriod +
-                ", qualification='" + qualification + '\'' +
-                ", religion='" + religion + '\'' +
-                ", workingAt='" + workingAt + '\'' +
                 '}';
     }
 }

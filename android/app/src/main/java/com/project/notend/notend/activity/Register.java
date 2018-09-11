@@ -30,7 +30,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class Register extends AppCompatActivity {
-    private static final boolean bl = false;
     private static final String TAG = "SignupActivity";
     @BindView(R.id.edName)
     EditText _nameText;
@@ -92,17 +91,15 @@ public class Register extends AppCompatActivity {
         final String email = _emailText.getText().toString();
         final String password = _passwordText.getText().toString();
         final String loginName = _loginName.getText().toString().trim();
-
         // TODO: Implement your own signup logic here.
         new android.os.Handler().postDelayed(
                 new Runnable() {
                     public void run() {
                         // On complete call either onSignupSuccess or onSignupFailed
                         // depending on success
-                        onSignupSuccess();
-                        createAccount(new Account(email,fistName,lastName,loginName,password));
                         // onSignupFailed();
                         //dialogSuccess(Register.this);
+                        createAccount(new Account(email,fistName,lastName,loginName,password));
                         progressDialog.dismiss();
                     }
                 }, 3000);
@@ -110,7 +107,7 @@ public class Register extends AppCompatActivity {
 
     public void onSignupSuccess() {
         _signupButton.setEnabled(true);
-        setResult(RESULT_OK, null);
+        dialogSuccess(Register.this);
     }
 
     public void onSignupFailed() {
@@ -165,7 +162,6 @@ public class Register extends AppCompatActivity {
         }
         return valid;
     }
-
     public void dialogSuccess(final Activity activity) {
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.AppTheme_Dark_Dialog));
         dialogBuilder.setMessage("Creat Account Success");
@@ -181,13 +177,20 @@ public class Register extends AppCompatActivity {
         mAPIService.createAccount(account).enqueue(new Callback<Account>() {
             @Override
             public void onResponse(Call<Account> call, Response<Account> response) {
-                Toast.makeText(Register.this,response.body().toString(),Toast.LENGTH_SHORT).show();
-                Log.i(TAG, "post submitted to API." + response.body().toString());
+                //Toast.makeText(Register.this,response.body().toString(),Toast.LENGTH_SHORT).show();
+                // Log.i(TAG, "post submitted to API." + response.body().toString());
+                Log.d(TAG, "onResponse: "+response.isSuccessful());
+                Log.d(TAG, "onResponse:, responebody--- "+response.body());
+                onSignupSuccess();
             }
-
             @Override
             public void onFailure(Call<Account> call, Throwable t) {
                 Log.e(TAG, "Unable to submit post to API.");
+                Log.e(TAG, "onFailure: message"+t.getMessage() );
+                t.printStackTrace();
+                Toast.makeText(Register.this, "something went wrong", Toast.LENGTH_SHORT).show();
+                onSignupFailed();
+                //dialogSuccess(Register.this);
             }
         });
     }
