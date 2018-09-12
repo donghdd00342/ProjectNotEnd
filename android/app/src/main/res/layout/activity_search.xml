@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Search"
+        android:textColor="@color/blue_light"
+        android:drawableLeft="@drawable/ic_search"
+        android:background="@color/iron"
+        android:textSize="25sp"
+        android:elevation="5dp"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="10dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Age"
+        android:textSize="25sp"
+        android:layout_marginTop="20dp"
+        android:paddingLeft="5dp"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:weightSum="6"
+        >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Từ"
+            android:textSize="25sp"
+            android:padding="10dp"
+            android:textColor="@color/aluminum"/>
+        <Spinner
+            android:id="@+id/spinner1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:background="@android:drawable/btn_dropdown"
+            android:spinnerMode="dropdown"
+            ></Spinner>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Đến"
+            android:textSize="25sp"
+            android:padding="10dp"
+            android:textColor="@color/aluminum"/>
+        <Spinner
+            android:id="@+id/spinner2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:background="@android:drawable/btn_dropdown"
+            android:spinnerMode="dropdown"
+            ></Spinner>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Address"
+        android:textSize="25sp"
+        android:layout_marginTop="20dp"
+        android:paddingLeft="5dp"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
+    <Spinner
+        android:id="@+id/spinner3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown"
+        ></Spinner>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Search"
+        android:background="@drawable/round_button"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:paddingLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:textSize="20sp"
+        android:textColor="@color/blue_light"
+        android:drawableLeft="@drawable/ic_search"/>
+</LinearLayout>

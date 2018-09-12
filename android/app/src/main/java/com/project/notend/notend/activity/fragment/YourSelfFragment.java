@@ -17,7 +17,7 @@ public class YourSelfFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_contact, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_yourself, container, false);
         return rootView;
     }
 }

@@ -1,11 +1,374 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Yourself"
-        android:textSize="40dp"
-        android:textStyle="bold"
-        android:layout_centerInParent="true"/>
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
-</RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/profile_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="4dp"
+            android:paddingBottom="10dp">
+
+            <ImageView
+                android:id="@+id/imgProfile"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/img3" />
+
+            <Button
+                android:id="@+id/btEditImage"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/button_background"
+                android:drawableLeft="@drawable/ic_photo_camera"
+                android:drawablePadding="30dp"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="100dp"
+                android:text="changen Image"
+                android:textColor="#fff" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/profile_layout"
+            android:layout_marginTop="0dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@color/button_pressed"
+                android:clickable="true"
+                android:elevation="4dp"
+                android:padding="5dp"
+                android:text="Inform Basic"
+                android:textColor="@color/black"
+                android:textSize="25sp" />
+
+            <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/table1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:shrinkColumns="*"
+                android:stretchColumns="*">
+
+                <TableRow
+                    android:id="@+id/tableRow1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#fff"
+                    android:padding="5dip">
+
+                    <TextView
+                        android:layout_weight="1"
+                        android:background="#fff"
+                        android:gravity="left"
+                        android:padding="5dip"
+                        android:text="Name"
+                        android:textColor="#000000" />
+
+                    <TextView
+                        android:layout_weight="1"
+                        android:background="#fff"
+                        android:gravity="left"
+                        android:padding="5dip"
+                        android:text="Quang"
+                        android:textColor="#8470ff" />
+                </TableRow>
+                //row2
+
+                <TableRow
+                    android:id="@+id/tableRow2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#fff"
+                    android:padding="5dip">
+
+                    <TextView
+                        android:layout_weight="1"
+                        android:background="#fff"
+                        android:gravity="left"
+                        android:padding="5dip"
+                        android:text="Age"
+                        android:textColor="#000000" />
+
+                    <TextView
+                        android:layout_weight="1"
+                        android:background="#fff"
+                        android:gravity="left"
+                        android:padding="5dip"
+                        android:text="20"
+                        android:textColor="#8470ff" />
+                </TableRow>
+                //row3
+
+                <TableRow
+                    android:id="@+id/tableRow3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#fff"
+                    android:padding="5dip">
+
+                    <TextView
+                        android:layout_weight="1"
+                        android:background="#fff"
+                        android:gravity="left"
+                        android:padding="5dip"
+                        android:text="Hieght"
+                        android:textColor="#000000" />
+
+                    <TextView
+                        android:layout_weight="1"
+                        android:background="#fff"
+                        android:gravity="left"
+                        android:padding="5dip"
+                        android:text="170"
+                        android:textColor="#8470ff" />
+                </TableRow>
+                //row4
+
+                <TableRow
+                    android:id="@+id/tableRow4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#fff"
+                    android:padding="5dip">
+
+                    <TextView
+                        android:layout_weight="1"
+                        android:background="#fff"
+                        android:gravity="left"
+                        android:padding="5dip"
+                        android:text="Address"
+                        android:textColor="#000000" />
+
+                    <TextView
+                        android:layout_weight="1"
+                        android:background="#fff"
+                        android:gravity="left"
+                        android:padding="5dip"
+                        android:text="Hà Nội"
+                        android:textColor="#8470ff" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/tableRow5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#fff"
+                    android:padding="5dip">
+
+                    <TextView
+                        android:layout_weight="1"
+                        android:background="#fff"
+                        android:gravity="left"
+                        android:padding="5dip"
+                        android:text="country"
+                        android:textColor="#000000" />
+
+                    <TextView
+                        android:layout_weight="1"
+                        android:background="#fff"
+                        android:gravity="left"
+                        android:padding="5dip"
+                        android:text="Việt Name"
+                        android:textColor="#8470ff" />
+                </TableRow>
+            </TableLayout>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@color/button_pressed"
+                android:clickable="true"
+                android:elevation="4dp"
+                android:padding="5dp"
+                android:text="education and occupation"
+                android:textColor="@color/black"
+                android:textSize="25sp" />
+
+            <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/table2"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:shrinkColumns="*"
+                android:stretchColumns="*">
+
+                <TableRow
+                    android:id="@+id/tableRow21"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#fff"
+                    android:padding="5dip">
+
+                    <TextView
+                        android:layout_weight="1"
+                        android:background="#fff"
+                        android:gravity="left"
+                        android:padding="5dip"
+                        android:text="education"
+                        android:textColor="#000000" />
+
+                    <TextView
+                        android:layout_weight="1"
+                        android:background="#fff"
+                        android:gravity="left"
+                        android:padding="5dip"
+                        android:text="Đại học"
+                        android:textColor="#8470ff" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/tableRow22"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#fff"
+                    android:padding="5dip">
+
+                    <TextView
+                        android:layout_weight="1"
+                        android:background="#fff"
+                        android:gravity="left"
+                        android:padding="5dip"
+                        android:text="Job"
+                        android:textColor="#000000" />
+
+                    <TextView
+                        android:layout_weight="1"
+                        android:background="#fff"
+                        android:gravity="left"
+                        android:padding="5dip"
+                        android:text="_"
+                        android:textColor="#8470ff" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/tableRow23"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#fff"
+                    android:padding="5dip">
+
+                    <TextView
+                        android:layout_weight="1"
+                        android:background="#fff"
+                        android:gravity="left"
+                        android:padding="5dip"
+                        android:text="salary"
+                        android:textColor="#000000" />
+
+                    <TextView
+                        android:layout_weight="1"
+                        android:background="#fff"
+                        android:gravity="left"
+                        android:padding="5dip"
+                        android:text="-"
+                        android:textColor="#8470ff" />
+                </TableRow>
+            </TableLayout>
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@color/button_pressed"
+                android:clickable="true"
+                android:elevation="4dp"
+                android:padding="5dp"
+                android:text="Family"
+                android:textColor="@color/black"
+                android:textSize="25sp" />
+            <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/table3"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:shrinkColumns="*"
+                android:stretchColumns="*">
+
+                <TableRow
+                    android:id="@+id/tableRow31"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#fff"
+                    android:padding="5dip">
+
+                    <TextView
+                        android:layout_weight="1"
+                        android:background="#fff"
+                        android:gravity="left"
+                        android:padding="5dip"
+                        android:text="have Children"
+                        android:textColor="#000000" />
+
+                    <TextView
+                        android:layout_weight="1"
+                        android:background="#fff"
+                        android:gravity="left"
+                        android:padding="5dip"
+                        android:text="_"
+                        android:textColor="#8470ff" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/tableRow32"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#fff"
+                    android:padding="5dip">
+
+                    <TextView
+                        android:layout_weight="1"
+                        android:background="#fff"
+                        android:gravity="left"
+                        android:padding="5dip"
+                        android:text="desire to have children"
+                        android:textColor="#000000" />
+
+                    <TextView
+                        android:layout_weight="1"
+                        android:background="#fff"
+                        android:gravity="left"
+                        android:padding="5dip"
+                        android:text="_"
+                        android:textColor="#8470ff" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/tableRow33"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#fff"
+                    android:padding="5dip">
+
+                    <TextView
+                        android:layout_weight="1"
+                        android:background="#fff"
+                        android:gravity="left"
+                        android:padding="5dip"
+                        android:text="status of life"
+                        android:textColor="#000000" />
+
+                    <TextView
+                        android:layout_weight="1"
+                        android:background="#fff"
+                        android:gravity="left"
+                        android:padding="5dip"
+                        android:text="-"
+                        android:textColor="#8470ff" />
+                </TableRow>
+            </TableLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</ScrollView>
