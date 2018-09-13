@@ -10,13 +10,18 @@ import com.donghd.notend.service.TransactionHistoryService;
 import com.donghd.notend.service.UserService;
 import com.donghd.notend.service.dto.UserDTO;
 import com.donghd.notend.web.rest.errors.*;
+import com.donghd.notend.web.rest.util.PaginationUtil;
 import com.donghd.notend.web.rest.vm.KeyAndPasswordVM;
 import com.donghd.notend.web.rest.vm.ManagedUserVM;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -87,6 +92,14 @@ public class AccountResource {
         if (!user.isPresent()) {
             throw new InternalServerErrorException("No user was found for this activation key");
         }
+    }
+
+    @GetMapping("/users/getall")
+    @Timed
+    public ResponseEntity<List<UserDTO>> getAll(Pageable pageable) {
+        final Page<UserDTO> page = userService.getAllManagedUsers(pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/users/getall");
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
     /**
