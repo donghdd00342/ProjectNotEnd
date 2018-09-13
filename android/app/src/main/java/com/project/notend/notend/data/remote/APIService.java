@@ -1,17 +1,23 @@
 package com.project.notend.notend.data.remote;
 
 import com.project.notend.notend.entities.Account;
+import com.project.notend.notend.entities.TokenId;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 
 public interface APIService {
 
     @POST("api/register")
     Call<Account> createAccount(@Body Account account);
+
+    @Headers("Content-Type: application/json;charset=UTF-8")
+    @POST("api/authenticate")
+    Call<TokenId> loginAccount(@Body String body);
 
 //    @Field("email") String email,
 //    @Field("firstName") String firstName,

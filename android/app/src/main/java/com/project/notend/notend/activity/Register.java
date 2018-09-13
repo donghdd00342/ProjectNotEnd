@@ -65,8 +65,6 @@ public class Register extends AppCompatActivity {
         _loginLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Register.this, LoginActivity.class);
-                Register.this.startActivity(intent);
                 finish();
             }
         });
@@ -99,8 +97,9 @@ public class Register extends AppCompatActivity {
                         // depending on success
                         // onSignupFailed();
                         //dialogSuccess(Register.this);
-                        createAccount(new Account(email,fistName,lastName,loginName,password));
                         progressDialog.dismiss();
+                        createAccount(new Account(email,fistName,lastName,loginName,password));
+
                     }
                 }, 3000);
     }
@@ -108,6 +107,7 @@ public class Register extends AppCompatActivity {
     public void onSignupSuccess() {
         _signupButton.setEnabled(true);
         dialogSuccess(Register.this);
+
     }
 
     public void onSignupFailed() {

@@ -19,8 +19,9 @@ public class CustomListener implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         dialog.cancel();
-        Intent intent = new Intent(activity, MainActivity.class);
-        activity.startActivity(intent);
+//        Intent intent = new Intent(activity, MainActivity.class);
+//        activity.startActivity(intent);
+        activity.setResult(-1, null);
         ((Activity) activity).finish();
     }
 }
