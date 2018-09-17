@@ -89,6 +89,16 @@ public class UserService {
     }
 
     public User registerUser(UserDTO userDTO, String password) {
+        // fake avatar
+        if (userDTO.getGender() != null) {
+            if (userDTO.getGender().equals(Constants.MALE_INTEGER)) {
+                userDTO.setImageUrl("avatar/boy/"+ RandomUtil.getRandomNumberInRange(1, 10) +".jpg");
+            } else {
+                userDTO.setImageUrl("avatar/girl/"+ RandomUtil.getRandomNumberInRange(1, 10) +".jpg");
+            }
+        } else {
+            userDTO.setImageUrl("avatar/no-avatar.jpg");
+        }
 
         User newUser = new User();
         String encryptedPassword = passwordEncoder.encode(password);
@@ -98,6 +108,11 @@ public class UserService {
         newUser.setFirstName(userDTO.getFirstName());
         newUser.setLastName(userDTO.getLastName());
         newUser.setEmail(userDTO.getEmail());
+        // fake gender
+        if (null == userDTO.getGender()) {
+            userDTO.setGender(Constants.UNKNOW_INTEGER);
+        }
+        newUser.setGender(userDTO.getGender());
         newUser.setImageUrl(userDTO.getImageUrl());
         if (userDTO.getLangKey() != null) {
             newUser.setLangKey(userDTO.getLangKey());
@@ -278,7 +293,15 @@ public class UserService {
 
     @Transactional(readOnly = true)
     public Page<UserDTO> getAllManagedUsers(Pageable pageable) {
-        return userRepository.findAllByLoginNot(pageable, Constants.ANONYMOUS_USER).map(UserDTO::new);
+        Optional<User> optUsr = getUserWithAuthorities();
+        if (optUsr.isPresent()) {
+            User u = optUsr.get();
+            log.debug("u.getGender() =============================================== {}", u.getGender());
+            return userRepository.findByGenderNotAndCreatedByAndActivatedIsTrue(pageable, u.getGender(), "anonymousUser").map(UserDTO::new);
+        } else {
+            throw new InvalidPasswordException();
+        }
+        // return userRepository.findAllByLoginNot(pageable, Constants.ANONYMOUS_USER).map(UserDTO::new);
     }
 
     @Transactional(readOnly = true)
