@@ -80,6 +80,7 @@
                         android:textColor="#000000" />
 
                     <TextView
+                        android:id="@+id/myName"
                         android:layout_weight="1"
                         android:background="#fff"
                         android:gravity="left"
@@ -105,6 +106,7 @@
                         android:textColor="#000000" />
 
                     <TextView
+                        android:id="@+id/myAge"
                         android:layout_weight="1"
                         android:background="#fff"
                         android:gravity="left"
@@ -126,10 +128,11 @@
                         android:background="#fff"
                         android:gravity="left"
                         android:padding="5dip"
-                        android:text="Hieght"
+                        android:text="Height"
                         android:textColor="#000000" />
 
                     <TextView
+                        android:id="@+id/myHeight"
                         android:layout_weight="1"
                         android:background="#fff"
                         android:gravity="left"
@@ -155,11 +158,12 @@
                         android:textColor="#000000" />
 
                     <TextView
+                        android:id="@+id/myAddress"
                         android:layout_weight="1"
                         android:background="#fff"
                         android:gravity="left"
                         android:padding="5dip"
-                        android:text="Hà Nội"
+                        android:text="Hà N?i"
                         android:textColor="#8470ff" />
                 </TableRow>
 
@@ -175,15 +179,16 @@
                         android:background="#fff"
                         android:gravity="left"
                         android:padding="5dip"
-                        android:text="country"
+                        android:text="Country"
                         android:textColor="#000000" />
 
                     <TextView
+                        android:id="@+id/myCountry"
                         android:layout_weight="1"
                         android:background="#fff"
                         android:gravity="left"
                         android:padding="5dip"
-                        android:text="Việt Name"
+                        android:text="Vi?t Nam"
                         android:textColor="#8470ff" />
                 </TableRow>
             </TableLayout>
@@ -219,15 +224,16 @@
                         android:background="#fff"
                         android:gravity="left"
                         android:padding="5dip"
-                        android:text="education"
+                        android:text="Education"
                         android:textColor="#000000" />
 
                     <TextView
+                        android:id="@+id/myEdu"
                         android:layout_weight="1"
                         android:background="#fff"
                         android:gravity="left"
                         android:padding="5dip"
-                        android:text="Đại học"
+                        android:text="Ð?i h?c"
                         android:textColor="#8470ff" />
                 </TableRow>
 
@@ -247,6 +253,7 @@
                         android:textColor="#000000" />
 
                     <TextView
+                        android:id="@+id/myJob"
                         android:layout_weight="1"
                         android:background="#fff"
                         android:gravity="left"
@@ -267,10 +274,11 @@
                         android:background="#fff"
                         android:gravity="left"
                         android:padding="5dip"
-                        android:text="salary"
+                        android:text="Salary"
                         android:textColor="#000000" />
 
                     <TextView
+                        android:id="@+id/mySalary"
                         android:layout_weight="1"
                         android:background="#fff"
                         android:gravity="left"
@@ -309,10 +317,11 @@
                         android:background="#fff"
                         android:gravity="left"
                         android:padding="5dip"
-                        android:text="have Children"
+                        android:text="Have Children"
                         android:textColor="#000000" />
 
                     <TextView
+                        android:id="@+id/myHaveChildren"
                         android:layout_weight="1"
                         android:background="#fff"
                         android:gravity="left"
@@ -333,10 +342,11 @@
                         android:background="#fff"
                         android:gravity="left"
                         android:padding="5dip"
-                        android:text="desire to have children"
+                        android:text="Desire to have children"
                         android:textColor="#000000" />
 
                     <TextView
+                        android:id="@+id/myDesireChildren"
                         android:layout_weight="1"
                         android:background="#fff"
                         android:gravity="left"
@@ -357,10 +367,11 @@
                         android:background="#fff"
                         android:gravity="left"
                         android:padding="5dip"
-                        android:text="status of life"
+                        android:text="Status of life"
                         android:textColor="#000000" />
 
                     <TextView
+                        android:id="@+id/myStatusLife"
                         android:layout_weight="1"
                         android:background="#fff"
                         android:gravity="left"
