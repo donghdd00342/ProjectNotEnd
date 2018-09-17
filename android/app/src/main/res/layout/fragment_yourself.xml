@@ -163,7 +163,7 @@
                         android:background="#fff"
                         android:gravity="left"
                         android:padding="5dip"
-                        android:text="Hà N?i"
+                        android:text="Hà Nội"
                         android:textColor="#8470ff" />
                 </TableRow>
 
@@ -188,7 +188,7 @@
                         android:background="#fff"
                         android:gravity="left"
                         android:padding="5dip"
-                        android:text="Vi?t Nam"
+                        android:text="Việt Nam"
                         android:textColor="#8470ff" />
                 </TableRow>
             </TableLayout>
@@ -233,7 +233,7 @@
                         android:background="#fff"
                         android:gravity="left"
                         android:padding="5dip"
-                        android:text="Ð?i h?c"
+                        android:text="Ðại học"
                         android:textColor="#8470ff" />
                 </TableRow>
 
