@@ -25,6 +25,10 @@ public interface APIService {
     @GET("api/account")
     Call<Account> getAccountInfo(@Header("Authorization") String authHeader);
 
+    @POST("api/account/change-password")
+    Call<Void> changePassword(@Body String body, @Header("Authorization") String authHeader);
+
+
 //    @Field("email") String email,
 //    @Field("firstName") String firstName,
 //    @Field("lastName") String lastName,

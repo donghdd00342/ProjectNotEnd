@@ -1,5 +1,8 @@
 package com.project.notend.notend.activity.fragment;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,7 +11,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Button;
+import com.project.notend.notend.activity.ChangePasswordActivity;
+import com.project.notend.notend.activity.EditProfile;
 
+import butterknife.BindView;
+
+import com.project.notend.notend.MainActivity;
 import com.project.notend.notend.R;
 import com.project.notend.notend.data.remote.APIService;
 import com.project.notend.notend.data.remote.ApiUtils;
@@ -34,6 +43,10 @@ public class YourSelfFragment extends Fragment {
     private TextView tvHaveChildren;
     private TextView tvDesireChildren;
     private TextView tvStatusLife;
+    Context context;
+
+//    @BindView(R.id.btn_changepassview)
+//    Button _changePassButton;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,6 +58,27 @@ public class YourSelfFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_yourself, container, false);
         initView(rootView);
+        context = rootView.getContext();
+        Button _changePassButton = (Button) rootView.findViewById(R.id.btn_changepassview);
+        Button btEdit = (Button) rootView.findViewById(R.id.btn_Edit);
+
+        _changePassButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // Start the Signup activity
+                Intent i = new Intent(context, ChangePasswordActivity.class);
+                startActivity(i);
+            }
+        });
+        btEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, EditProfile.class);
+                startActivity(intent);
+            }
+        });
+
         return rootView;
     }
 

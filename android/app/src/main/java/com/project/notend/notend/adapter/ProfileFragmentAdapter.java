@@ -11,31 +11,26 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.project.notend.notend.R;
-import com.project.notend.notend.activity.fragment.ContactFragment;
-import com.project.notend.notend.activity.fragment.ListUserFragment;
-import com.project.notend.notend.activity.fragment.MessengerFragment;
-import com.project.notend.notend.activity.fragment.YourSelfFragment;
+import com.project.notend.notend.activity.editprofilefragment.EditFragment;
+import com.project.notend.notend.activity.editprofilefragment.HobbyFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter {
+public class ProfileFragmentAdapter extends FragmentPagerAdapter {
     private Context mContext;
     private static int count;
-    private String tabTitles[] = new String[] { "List", "Friend","Messenger","YourSelf"};
-    private int[] imageResId = { R.drawable.human, R.drawable.administrator ,R.drawable.communication,
-            R.drawable.administrator};
+    private String tabTitles[] = new String[] { "Profile", "Interest"};
+    private int[] imageResId = { R.drawable.administrator ,R.drawable.communication};
     private List<Fragment> fragmentList;
 
-    public SimpleFragmentPagerAdapter(Context context, FragmentManager fm) {
+    public ProfileFragmentAdapter(Context context, FragmentManager fm) {
         super(fm);
         mContext = context;
         fragmentList = new ArrayList<>();
-        fragmentList.add(new ListUserFragment());
-        fragmentList.add(new ContactFragment());
-        fragmentList.add(new MessengerFragment());
-        fragmentList.add(new YourSelfFragment());
+        fragmentList.add(new EditFragment());
+        fragmentList.add(new HobbyFragment());
         count = fragmentList.size();
     }
 
