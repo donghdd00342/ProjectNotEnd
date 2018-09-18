@@ -367,6 +367,13 @@ public class Account {
         this.password = password;
         this.gender = gender;
     }
+    public Account(String email, String firstName, String lastName,String login, String password) {
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.login = login;
+        this.password = password;
+    }
 
     @Override
     public String toString() {

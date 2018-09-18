@@ -1,10 +1,7 @@
 package com.project.notend.notend.activity;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,12 +27,12 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static com.project.notend.notend.data.config.config.CURRENT_TOKEN_ID;
-import static com.project.notend.notend.data.config.config.PREFS_NAME;
 
 public class LoginActivity extends AppCompatActivity {
 
     private static final String TAG = "LoginActivity";
     private static final int REQUEST_SIGNUP = 0;
+    private static ProgressDialog progressDialog;
     private APIService mAPIService;
 
     @BindView(R.id.edUsername)
@@ -80,7 +77,7 @@ public class LoginActivity extends AppCompatActivity {
 
         _loginButton.setEnabled(false);
 
-        final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this,
+        progressDialog = new ProgressDialog(LoginActivity.this,
                 R.style.AppTheme_Dark_Dialog);
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage("Authenticating...");
@@ -90,11 +87,11 @@ public class LoginActivity extends AppCompatActivity {
         final String password = _passwordText.getText().toString();
 
         // TODO: Implement your own authentication logic here.
-
         new android.os.Handler().postDelayed(
                 new Runnable() {
                     public void run() {
                         // On complete call either onLoginSuccess or onLoginFailed
+                        // onLoginFailed();
                         try {
                             JSONObject paramObject = new JSONObject();
                             paramObject.put("username", userName);
@@ -103,8 +100,6 @@ public class LoginActivity extends AppCompatActivity {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        // onLoginFailed();
-                        progressDialog.dismiss();
                     }
                 }, 3000);
     }
@@ -144,20 +139,16 @@ public class LoginActivity extends AppCompatActivity {
                     TokenId resObj = response.body();
                     if (resObj.getIdToken().length() > 0) {
                         SharedPrefs.getInstance().put(CURRENT_TOKEN_ID, resObj.getIdToken().toString());
-//                        Context context = LoginActivity.this;
-//                        SharedPreferences sharedPref = context.getSharedPreferences("share_prefs",
-//                                Context.MODE_PRIVATE);
-//                        SharedPreferences.Editor editor = sharedPref.edit();
-//                        editor.putString(CURRENT_TOKEN_ID, resObj.getIdToken().toString());
-//                        editor.commit();
                         Intent intent = new Intent(LoginActivity.this, Content.class);
                         startActivity(intent);
                         Toast.makeText(LoginActivity.this, "Welcome", Toast.LENGTH_SHORT).show();
+                        progressDialog.dismiss();
                         finish();
                     }
                 } else {
                     Toast.makeText(LoginActivity.this, "The username or password is incorrect",
                             Toast.LENGTH_SHORT).show();
+                    progressDialog.dismiss();
                     _loginButton.setEnabled(true);
                 }
             }
@@ -165,6 +156,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<TokenId> call, Throwable t) {
                 Toast.makeText(getBaseContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                progressDialog.dismiss();
             }
         });
     }

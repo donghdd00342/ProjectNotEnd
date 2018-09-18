@@ -30,6 +30,7 @@ import retrofit2.Response;
 
 public class Register extends AppCompatActivity {
     private static final String TAG = "SignupActivity";
+    private static ProgressDialog progressDialog1;
     @BindView(R.id.edName)
     EditText _nameText;
     @BindView(R.id.edLastName)
@@ -80,11 +81,11 @@ public class Register extends AppCompatActivity {
         }
         _signupButton.setEnabled(false);
 
-        final ProgressDialog progressDialog = new ProgressDialog(this,
+        progressDialog1 = new ProgressDialog(this,
                 R.style.AppTheme_Dark_Dialog);
-        progressDialog.setIndeterminate(true);
-        progressDialog.setMessage("Creating Account...");
-        progressDialog.show();
+        progressDialog1.setIndeterminate(true);
+        progressDialog1.setMessage("Creating Account...");
+        progressDialog1.show();
 
         final String fistName = _nameText.getText().toString();
         final String lastName = _lastNameText.getText().toString();
@@ -96,7 +97,6 @@ public class Register extends AppCompatActivity {
             case R.id.rbFemale:
                 gender = 2;
                 break;
-
             case R.id.rbMale:
                 gender = 1;
                 break;
@@ -112,7 +112,6 @@ public class Register extends AppCompatActivity {
                         // depending on success
                         // onSignupFailed();
                         //dialogSuccess(Register.this);
-                        progressDialog.dismiss();
                         createAccount(new Account(email, fistName, lastName, loginName, password, gender));
 
                     }
@@ -122,6 +121,7 @@ public class Register extends AppCompatActivity {
     public void onSignupSuccess() {
         _signupButton.setEnabled(true);
         dialogSuccess(Register.this);
+
 
     }
 
@@ -198,6 +198,7 @@ public class Register extends AppCompatActivity {
                 Log.d(TAG, "onResponse: " + response.isSuccessful());
                 Log.d(TAG, "onResponse:, responebody--- " + response.body());
                 onSignupSuccess();
+                progressDialog1.dismiss();
             }
 
             @Override
@@ -207,6 +208,7 @@ public class Register extends AppCompatActivity {
                 t.printStackTrace();
                 Toast.makeText(Register.this, "something went wrong", Toast.LENGTH_SHORT).show();
                 onSignupFailed();
+                progressDialog1.dismiss();
                 //dialogSuccess(Register.this);
             }
         });
