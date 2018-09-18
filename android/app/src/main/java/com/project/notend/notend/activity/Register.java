@@ -3,7 +3,6 @@ package com.project.notend.notend.activity;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
@@ -13,10 +12,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.project.notend.notend.MainActivity;
 import com.project.notend.notend.R;
 import com.project.notend.notend.data.remote.APIService;
 import com.project.notend.notend.data.remote.ApiUtils;
@@ -47,6 +46,8 @@ public class Register extends AppCompatActivity {
     Button _signupButton;
     @BindView(R.id.link_login)
     TextView _loginLink;
+    @BindView(R.id.rgSex)
+    RadioGroup _radioSexGroup;
     private APIService mAPIService;
 
     @Override
@@ -68,6 +69,7 @@ public class Register extends AppCompatActivity {
                 finish();
             }
         });
+
     }
 
     public void signup() {
@@ -89,6 +91,19 @@ public class Register extends AppCompatActivity {
         final String email = _emailText.getText().toString();
         final String password = _passwordText.getText().toString();
         final String loginName = _loginName.getText().toString().trim();
+        final int gender;
+        switch (_radioSexGroup.getCheckedRadioButtonId()) {
+            case R.id.rbFemale:
+                gender = 2;
+                break;
+
+            case R.id.rbMale:
+                gender = 1;
+                break;
+            default:
+                gender = 3;
+                break;
+        }
         // TODO: Implement your own signup logic here.
         new android.os.Handler().postDelayed(
                 new Runnable() {
@@ -98,7 +113,7 @@ public class Register extends AppCompatActivity {
                         // onSignupFailed();
                         //dialogSuccess(Register.this);
                         progressDialog.dismiss();
-                        createAccount(new Account(email,fistName,lastName,loginName,password));
+                        createAccount(new Account(email, fistName, lastName, loginName, password, gender));
 
                     }
                 }, 3000);
@@ -162,6 +177,7 @@ public class Register extends AppCompatActivity {
         }
         return valid;
     }
+
     public void dialogSuccess(final Activity activity) {
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.AppTheme_Dark_Dialog));
         dialogBuilder.setMessage("Creat Account Success");
@@ -179,14 +195,15 @@ public class Register extends AppCompatActivity {
             public void onResponse(Call<Account> call, Response<Account> response) {
                 //Toast.makeText(Register.this,response.body().toString(),Toast.LENGTH_SHORT).show();
                 // Log.i(TAG, "post submitted to API." + response.body().toString());
-                Log.d(TAG, "onResponse: "+response.isSuccessful());
-                Log.d(TAG, "onResponse:, responebody--- "+response.body());
+                Log.d(TAG, "onResponse: " + response.isSuccessful());
+                Log.d(TAG, "onResponse:, responebody--- " + response.body());
                 onSignupSuccess();
             }
+
             @Override
             public void onFailure(Call<Account> call, Throwable t) {
                 Log.e(TAG, "Unable to submit post to API.");
-                Log.e(TAG, "onFailure: message"+t.getMessage() );
+                Log.e(TAG, "onFailure: message" + t.getMessage());
                 t.printStackTrace();
                 Toast.makeText(Register.this, "something went wrong", Toast.LENGTH_SHORT).show();
                 onSignupFailed();

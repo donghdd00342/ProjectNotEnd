@@ -33,8 +33,9 @@
     <Button
         android:layout_width="150dp"
         android:layout_height="wrap_content"
+        android:id="@+id/btPayment"
         android:layout_gravity="center"
-        android:text="User Profie"/>
+        android:text="Payment"/>
 
     <Button
         android:layout_width="150dp"
