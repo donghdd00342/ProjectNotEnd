@@ -359,12 +359,13 @@ public class Account {
         this.workingAt = workingAt;
     }
 
-    public Account(String email, String firstName, String lastName,String login, String password) {
+    public Account(String email, String firstName, String lastName,String login, String password,int gender) {
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
         this.login = login;
         this.password = password;
+        this.gender = gender;
     }
 
     @Override

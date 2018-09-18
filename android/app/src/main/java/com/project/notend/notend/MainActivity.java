@@ -9,6 +9,7 @@ import android.widget.Button;
 import com.project.notend.notend.activity.Content;
 import com.project.notend.notend.activity.EditProfile;
 import com.project.notend.notend.activity.LoginActivity;
+import com.project.notend.notend.activity.Payment;
 import com.project.notend.notend.activity.Register;
 
 import butterknife.BindView;
@@ -21,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
     Button btRegister;
     @BindView(R.id.btContent)
     Button btContent;
+    @BindView(R.id.btPayment)
+    Button btPayment;
     @BindView(R.id.btEdit)
     Button btEdit;
 
@@ -50,6 +53,14 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.this.startActivity(intent);
             }
         });
+        btPayment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, Payment.class);
+                MainActivity.this.startActivity(intent);
+            }
+        });
+
         btEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -48,5 +48,10 @@
         <item name="textAllCaps">false</item>
     </style>
 
+    <style name="RadioButton">       
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">bold</item>   
+    </style>
+
 
 </resources>

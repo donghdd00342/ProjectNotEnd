@@ -40,6 +40,43 @@
                 android:inputType="textCapWords"
                 android:hint="Last name" />
         </android.support.design.widget.TextInputLayout>
+        <!--gender-->
+
+            <RadioGroup
+                android:id="@+id/rgSex"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <RadioButton
+                    android:id="@+id/rbUnknow"
+                    android:checked="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/radiobutton_selector"
+                    android:textColor="@drawable/radiobutton_color_selector"
+                    android:layout_marginLeft="20dp"
+                    style="@style/RadioButton"
+                android:text="unknow" />
+                <RadioButton
+                    android:id="@+id/rbMale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/radiobutton_selector"
+                    android:textColor="@drawable/radiobutton_color_selector"
+                    android:layout_marginLeft="20dp"
+                    style="@style/RadioButton"
+                    android:text="male" />
+                <RadioButton
+                    android:id="@+id/rbFemale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/radiobutton_selector"
+                    android:textColor="@drawable/radiobutton_color_selector"
+                    android:layout_marginLeft="20dp"
+                    style="@style/RadioButton"
+                    android:text="female" />
+            </RadioGroup>
         <!--  Email Label -->
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"

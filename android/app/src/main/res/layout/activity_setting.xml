@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="@dimen/margin10"
+        android:background="@color/iron">
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:id="@+id/imgAvatar"
+            android:layout_marginLeft="20dp"
+            app:civ_border_width="3dp"
+            app:civ_border_color="#d4d3d3"
+            android:src="@drawable/img2"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvName"
+            android:text="Ngoc"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_toRightOf="@+id/imgAvatar"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvAge"
+            android:text="Tuổi : 20"
+            android:layout_toRightOf="@+id/imgAvatar"
+            android:layout_below="@+id/tvName"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvDate"
+            android:text="Hạn Đăng ký : 14/9/2108"
+            android:layout_toRightOf="@+id/imgAvatar"
+            android:layout_below="@+id/tvAge"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            />
+    </RelativeLayout>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Gia han tai khoan"
+        android:textAlignment="viewStart"
+        android:drawableStart="@drawable/ic_monetization_on_black_24dp"
+        android:paddingLeft="110dp"
+        android:textAllCaps="false"
+        android:id="@+id/btUp"
+        />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Danh sách mỏ rộng"
+        android:textAlignment="viewStart"
+        android:drawableStart="@drawable/ic_menu"
+        android:paddingLeft="110dp"
+        android:textAllCaps="false"
+        android:id="@+id/btMorong"
+        />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cài đặt hệ thống"
+        android:textAlignment="viewStart"
+        android:drawableStart="@drawable/ic_settings"
+        android:paddingLeft="110dp"
+        android:textAllCaps="false"
+        android:id="@+id/btSetting"
+        />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Đăng xuất"
+        android:textAlignment="viewStart"
+        android:drawableStart="@drawable/ic_exit_to_app"
+        android:paddingLeft="110dp"
+        android:textAllCaps="false"
+        android:id="@+id/btOut"
+        />
+</LinearLayout>
