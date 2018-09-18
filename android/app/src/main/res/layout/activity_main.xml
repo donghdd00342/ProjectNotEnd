@@ -20,15 +20,15 @@
     <Button
         android:layout_width="150dp"
         android:layout_height="wrap_content"
+        android:id="@+id/btContent"
         android:layout_gravity="center"
-        android:text="User Profie"/>
+        android:text="User List"/>
 
     <Button
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:id="@+id/btContent"
         android:layout_gravity="center"
-        android:text="User List"/>
+        android:text="User Profie"/>
 
     <Button
         android:layout_width="150dp"
@@ -38,8 +38,9 @@
         android:text="Payment"/>
 
     <Button
+        android:id="@+id/btEdit"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Chating UI"/>
+        android:text="Edit Profile"/>
 </LinearLayout>

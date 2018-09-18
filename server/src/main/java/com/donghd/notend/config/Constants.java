@@ -79,6 +79,44 @@ public final class Constants {
 
         return list;
     }
+
+    // avatar
+    public static final List<String> BOY_AVATAR_LIST = createAvatarBoy();
+    public static final List<String> GIRL_AVATAR_LIST = createAvatarGirl();
+
+    private static List<String> createAvatarBoy() {
+        List<String> list = new ArrayList();
+
+        list.add("avatar/boy/1.jpg");
+        list.add("avatar/boy/2.jpg");
+        list.add("avatar/boy/3.jpg");
+        list.add("avatar/boy/4.jpg");
+        list.add("avatar/boy/5.jpg");
+        list.add("avatar/boy/6.jpg");
+        list.add("avatar/boy/7.jpg");
+        list.add("avatar/boy/8.jpg");
+        list.add("avatar/boy/9.jpg");
+        list.add("avatar/boy/10.jpg");
+
+        return list;
+    }
+
+    private static List<String> createAvatarGirl() {
+        List<String> list = new ArrayList();
+
+        list.add("avatar/girl/1.jpg");
+        list.add("avatar/girl/2.jpg");
+        list.add("avatar/girl/3.jpg");
+        list.add("avatar/girl/4.jpg");
+        list.add("avatar/girl/5.jpg");
+        list.add("avatar/girl/6.jpg");
+        list.add("avatar/girl/7.jpg");
+        list.add("avatar/girl/8.jpg");
+        list.add("avatar/girl/9.jpg");
+        list.add("avatar/girl/10.jpg");
+
+        return list;
+    }
     
     private Constants() {
     }

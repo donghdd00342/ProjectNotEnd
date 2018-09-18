@@ -1,7 +1,10 @@
 package com.project.notend.notend.activity;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,6 +30,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static com.project.notend.notend.data.config.config.CURRENT_TOKEN_ID;
+import static com.project.notend.notend.data.config.config.PREFS_NAME;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -71,7 +75,6 @@ public class LoginActivity extends AppCompatActivity {
         Log.d(TAG, "Login");
 
         if (!validate()) {
-            onLoginFailed();
             return;
         }
 
@@ -92,13 +95,11 @@ public class LoginActivity extends AppCompatActivity {
                 new Runnable() {
                     public void run() {
                         // On complete call either onLoginSuccess or onLoginFailed
-                        onLoginSuccess();
                         try {
                             JSONObject paramObject = new JSONObject();
                             paramObject.put("username", userName);
                             paramObject.put("password", password);
-                            loginAccount(paramObject.toString());
-                            Toast.makeText(getBaseContext(), paramObject.toString(), Toast.LENGTH_LONG).show();
+                            callAPI(paramObject.toString());
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -108,31 +109,12 @@ public class LoginActivity extends AppCompatActivity {
                 }, 3000);
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_SIGNUP) {
-            if (resultCode == RESULT_OK) {
-                // TODO: Implement successful signup logic here
-                // By default we just finish the Activity and log them in automatically
-                //this.finish();
-            }
-        }
-    }
 
-    @Override
-    public void onBackPressed() {
-        // disable going back to the MainActivity
-        moveTaskToBack(true);
-    }
-
-    public void onLoginSuccess() {
-        _loginButton.setEnabled(true);
-        finish();
-    }
-
-    public void onLoginFailed() {
-        _loginButton.setEnabled(true);
-    }
+//    @Override
+//    public void onBackPressed() {
+//        // disable going back to the MainActivity
+//        moveTaskToBack(true);
+//    }
 
     public boolean validate() {
         boolean valid = true;
@@ -154,7 +136,7 @@ public class LoginActivity extends AppCompatActivity {
         return valid;
     }
 
-    public void loginAccount(String paramObject) {
+    public void callAPI(String paramObject) {
         mAPIService.loginAccount(paramObject).enqueue(new Callback<TokenId>() {
             @Override
             public void onResponse(Call<TokenId> call, Response<TokenId> response) {
@@ -162,16 +144,21 @@ public class LoginActivity extends AppCompatActivity {
                     TokenId resObj = response.body();
                     if (resObj.getIdToken().length() > 0) {
                         SharedPrefs.getInstance().put(CURRENT_TOKEN_ID, resObj.getIdToken().toString());
+//                        Context context = LoginActivity.this;
+//                        SharedPreferences sharedPref = context.getSharedPreferences("share_prefs",
+//                                Context.MODE_PRIVATE);
+//                        SharedPreferences.Editor editor = sharedPref.edit();
+//                        editor.putString(CURRENT_TOKEN_ID, resObj.getIdToken().toString());
+//                        editor.commit();
                         Intent intent = new Intent(LoginActivity.this, Content.class);
                         startActivity(intent);
-                        onLoginSuccess();
-
-                    } else {
-                        onLoginFailed();
-                        Toast.makeText(LoginActivity.this, "The username or password is incorrect", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "Welcome", Toast.LENGTH_SHORT).show();
+                        finish();
                     }
                 } else {
-                    Toast.makeText(LoginActivity.this, "Error! Please try again!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "The username or password is incorrect",
+                            Toast.LENGTH_SHORT).show();
+                    _loginButton.setEnabled(true);
                 }
             }
 
@@ -181,6 +168,4 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
-
-
 }

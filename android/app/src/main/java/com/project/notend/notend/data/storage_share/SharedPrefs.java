@@ -6,7 +6,7 @@ import android.content.SharedPreferences;
 import com.project.notend.notend.App;
 
 public class SharedPrefs {
-    private static final String PREFS_NAME = "share_prefs";
+    public static final String PREFS_NAME = "share_prefs";
     private static SharedPrefs mInstance;
     private SharedPreferences mSharedPreferences;
 

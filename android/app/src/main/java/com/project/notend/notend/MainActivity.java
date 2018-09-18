@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.project.notend.notend.activity.Content;
+import com.project.notend.notend.activity.EditProfile;
 import com.project.notend.notend.activity.LoginActivity;
 import com.project.notend.notend.activity.Payment;
 import com.project.notend.notend.activity.Register;
@@ -23,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
     Button btContent;
     @BindView(R.id.btPayment)
     Button btPayment;
+    @BindView(R.id.btEdit)
+    Button btEdit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +61,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        btEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, EditProfile.class);
+                MainActivity.this.startActivity(intent);
+            }
+        });
 
     }
 

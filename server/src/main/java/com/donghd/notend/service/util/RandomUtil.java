@@ -1,5 +1,7 @@
 package com.donghd.notend.service.util;
 
+import java.util.Random;
+
 import org.apache.commons.lang3.RandomStringUtils;
 
 /**
@@ -38,4 +40,12 @@ public final class RandomUtil {
     public static String generateResetKey() {
         return RandomStringUtils.randomNumeric(DEF_COUNT);
     }
+
+    public static int getRandomNumberInRange(int min, int max) {
+		if (min >= max) {
+			throw new IllegalArgumentException("max must be greater than min");
+		}
+		Random r = new Random();
+		return r.nextInt((max - min) + 1) + min;
+	}
 }

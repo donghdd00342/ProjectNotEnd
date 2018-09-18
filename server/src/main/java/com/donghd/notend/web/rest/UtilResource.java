@@ -29,4 +29,15 @@ public class UtilResource {
         log.debug("REST request to get languages");
         return Constants.LIST_OF_LANGUAGES;
     }
+
+    @GetMapping("/avatar/boy")
+    public List<String> getBoys() {
+        log.debug("REST request to get avatar/boy");
+        return Constants.BOY_AVATAR_LIST;
+    }
+    @GetMapping("/avatar/girl")
+    public List<String> getGirls() {
+        log.debug("REST request to get avatar/girl");
+        return Constants.GIRL_AVATAR_LIST;
+    }
 }
