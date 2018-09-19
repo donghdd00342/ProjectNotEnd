@@ -1,11 +1,14 @@
 package com.project.notend.notend.entities;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class Account {
+public class Account implements Parcelable {
     @SerializedName("aboutSelf")
     @Expose
     private String aboutSelf;
@@ -384,5 +387,141 @@ public class Account {
                 ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
                 '}';
+    }
+
+    protected Account(Parcel in) {
+        aboutSelf = in.readString();
+        byte tmpActivated = in.readByte();
+        activated = tmpActivated == 0 ? null : tmpActivated == 1;
+        authorities = in.createStringArrayList();
+        city = in.readString();
+        contactNumber = in.readString();
+        countryLiving = in.readString();
+        createdBy = in.readString();
+        createdDate = in.readString();
+        dateOfBirth = in.readString();
+        email = in.readString();
+        expirationDate = in.readString();
+        familyDetails = in.readString();
+        firstName = in.readString();
+        if (in.readByte() == 0) {
+            gender = null;
+        } else {
+            gender = in.readInt();
+        }
+        if (in.readByte() == 0) {
+            heightCm = null;
+        } else {
+            heightCm = in.readInt();
+        }
+        hobbies = in.readString();
+        if (in.readByte() == 0) {
+            id = null;
+        } else {
+            id = in.readInt();
+        }
+        imageUrl = in.readString();
+        langKey = in.readString();
+        lastModifiedBy = in.readString();
+        lastModifiedDate = in.readString();
+        lastName = in.readString();
+        login = in.readString();
+        if (in.readByte() == 0) {
+            marriedStatus = null;
+        } else {
+            marriedStatus = in.readInt();
+        }
+        middleName = in.readString();
+        motherTongue = in.readString();
+        byte tmpPaidUser = in.readByte();
+        paidUser = tmpPaidUser == 0 ? null : tmpPaidUser == 1;
+        password = in.readString();
+        if (in.readByte() == 0) {
+            paymentPeriod = null;
+        } else {
+            paymentPeriod = in.readInt();
+        }
+        qualification = in.readString();
+        religion = in.readString();
+        workingAt = in.readString();
+    }
+
+    public static final Creator<Account> CREATOR = new Creator<Account>() {
+        @Override
+        public Account createFromParcel(Parcel in) {
+            return new Account(in);
+        }
+
+        @Override
+        public Account[] newArray(int size) {
+            return new Account[size];
+        }
+    };
+
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(aboutSelf);
+        parcel.writeByte((byte) (activated == null ? 0 : activated ? 1 : 2));
+        parcel.writeStringList(authorities);
+        parcel.writeString(city);
+        parcel.writeString(contactNumber);
+        parcel.writeString(countryLiving);
+        parcel.writeString(createdBy);
+        parcel.writeString(createdDate);
+        parcel.writeString(dateOfBirth);
+        parcel.writeString(email);
+        parcel.writeString(expirationDate);
+        parcel.writeString(familyDetails);
+        parcel.writeString(firstName);
+        if (gender == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeInt(gender);
+        }
+        if (heightCm == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeInt(heightCm);
+        }
+        parcel.writeString(hobbies);
+        if (id == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeInt(id);
+        }
+        parcel.writeString(imageUrl);
+        parcel.writeString(langKey);
+        parcel.writeString(lastModifiedBy);
+        parcel.writeString(lastModifiedDate);
+        parcel.writeString(lastName);
+        parcel.writeString(login);
+        if (marriedStatus == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeInt(marriedStatus);
+        }
+        parcel.writeString(middleName);
+        parcel.writeString(motherTongue);
+        parcel.writeByte((byte) (paidUser == null ? 0 : paidUser ? 1 : 2));
+        parcel.writeString(password);
+        if (paymentPeriod == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeInt(paymentPeriod);
+        }
+        parcel.writeString(qualification);
+        parcel.writeString(religion);
+        parcel.writeString(workingAt);
     }
 }
