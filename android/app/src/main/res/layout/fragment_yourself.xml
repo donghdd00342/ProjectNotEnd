@@ -385,7 +385,7 @@
                 android:id="@+id/btn_changepassview"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="5dp"
                 android:layout_marginTop="24dp"
                 android:padding="12dp"
                 android:text="Change password" />
@@ -394,10 +394,19 @@
                 android:id="@+id/btn_Edit"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
                 android:padding="12dp"
                 android:text="Edit Profile" />
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btn_paypal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="5dp"
+                android:padding="12dp"
+                android:text="Become Premium" />
 
         </LinearLayout>
     </RelativeLayout>

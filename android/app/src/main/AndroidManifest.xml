@@ -41,15 +41,21 @@
         <activity
             android:name=".activity.LoginActivity"
             android:label="Login"
-            android:theme="@style/AppTheme.Dark"></activity>
-        <activity android:name=".activity.Payment"></activity>
+            android:theme="@style/AppTheme.Dark">
+
+        </activity>
+        <activity android:name=".activity.Payment">
+
+        </activity>
         <activity
             android:name=".activity.ChangePasswordActivity"
             android:label="ChangePasswordActivity"
             android:theme="@style/AppTheme.Dark">
         </activity>
         <activity android:name=".activity.DetailUser"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme">
+
+        </activity>
     </application>
 
 </manifest>

@@ -34,4 +34,11 @@ public interface APIService {
     @GET("api/users/getall")
     Call<List<Account>> getAllDetailAccount(@Header("Authorization") String authHeader);
 
+    @POST("api/account")
+    Call<Account> editAccount(@Body Account account, @Header("Authorization") String authHeader);
+
+    @GET("api/account/upgrade")
+    Call<Account> upgradeAccount(@Header("Authorization") String authHeader);
+
+
 }
