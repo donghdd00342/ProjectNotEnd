@@ -1,6 +1,5 @@
 package com.project.notend.notend.adapter;
 
-import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -9,7 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.project.notend.notend.R;
+import com.project.notend.notend.entities.Account;
 import com.project.notend.notend.entities.User;
 
 import java.util.List;
@@ -18,13 +19,15 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 
+import static com.project.notend.notend.data.remote.ApiUtils.SERVER_URL_ACCOUNT;
+
 
 public class ListUserAdapter extends RecyclerView.Adapter {
 
     private Context mContext;
-    private List<User> listData;
+    private List<Account> listData;
 
-    public ListUserAdapter(Context context, List<User> listData) {
+    public ListUserAdapter(Context context, List<Account> listData) {
         this.mContext = context;
         this.listData = listData;
     }
@@ -40,10 +43,11 @@ public class ListUserAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         NewsHolder newsHolder = (NewsHolder) holder;
-        User user = listData.get(position);
-        newsHolder.tvName.setText(user.getName());
-        newsHolder.tvDetail.setText(user.getAge()+","+user.getGender());
-        newsHolder.imAvatar.setImageResource(user.getAvatar());
+        Account account = listData.get(position);
+        newsHolder.tvName.setText(account.getLastName() + " " + account.getFirstName());
+        newsHolder.tvDetail.setText(account.getEmail().toString());
+        String url = SERVER_URL_ACCOUNT + account.getImageUrl();
+        Glide.with(mContext).load(url).into(newsHolder.imAvatar);
     }
 
     @Override
