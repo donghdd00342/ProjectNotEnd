@@ -31,6 +31,11 @@ public final class Constants {
     public static final Integer ACCEPT = 1;
     public static final Integer BLOCK = -1;
 
+    // friend status
+    public static final Integer FRIEND_STATUS_NONE = 10;
+    public static final Integer FRIEND_STATUS_PENDDING = 11;
+    public static final Integer FRIEND_STATUS_FRIENDED = 12;
+
     // Message status
     public static final Integer SENT = 0;
     public static final Integer RECEIVED = 1;

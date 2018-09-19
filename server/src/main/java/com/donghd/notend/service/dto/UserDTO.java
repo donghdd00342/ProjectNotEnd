@@ -63,6 +63,16 @@ public class UserDTO {
     private Instant expirationDate;
     private Integer paymentPeriod;
 
+    private Integer friendStatus;
+
+    public Integer getFriendStatus() {
+    	return this.friendStatus;
+    }
+
+    public void setFriendStatus(Integer friendStatus) {
+    	this.friendStatus = friendStatus;
+    }
+
     @Email
     @Size(min = 5, max = 254)
     private String email;

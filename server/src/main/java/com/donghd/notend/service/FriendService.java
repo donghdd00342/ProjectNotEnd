@@ -50,4 +50,6 @@ public interface FriendService {
      * @param id the id of the entity
      */
     void delete(Long id);
+
+    Integer checkFriendStatus(Long myId, Long friendId);
 }

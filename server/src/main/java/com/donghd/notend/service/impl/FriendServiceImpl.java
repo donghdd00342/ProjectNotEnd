@@ -1,6 +1,7 @@
 package com.donghd.notend.service.impl;
 
 import com.donghd.notend.service.FriendService;
+import com.donghd.notend.config.Constants;
 import com.donghd.notend.domain.Friend;
 import com.donghd.notend.repository.FriendRepository;
 import com.donghd.notend.service.dto.FriendDTO;
@@ -113,5 +114,15 @@ public class FriendServiceImpl implements FriendService {
     public void delete(Long id) {
         log.debug("Request to delete Friend : {}", id);
         friendRepository.deleteById(id);
+    }
+
+    @Override
+    public Integer checkFriendStatus(Long myId, Long friendId) {
+        Optional<Friend> statusOpt = friendRepository.findByFriend_IdAndOwner_Id(friendId, myId);
+        if (statusOpt.isPresent()) {
+            return statusOpt.get().getStatus();
+        } else {
+            return Constants.FRIEND_STATUS_NONE;
+        }
     }
 }

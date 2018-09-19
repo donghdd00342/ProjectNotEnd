@@ -254,6 +254,23 @@ public class UserService {
                 user.setImageUrl(userDTO.getImageUrl());
                 user.setActivated(userDTO.isActivated());
                 user.setLangKey(userDTO.getLangKey());
+
+                user.setExpirationDate(userDTO.getExpirationDate());
+                user.setContactNumber(userDTO.getContactNumber());
+                user.setCountryLiving(userDTO.getCountryLiving());
+                user.setDateOfBirth(userDTO.getDateOfBirth());
+                user.setFamilyDetails(userDTO.getFamilyDetails());
+                user.setGender(userDTO.getGender());
+                user.setHeightCm(userDTO.getHeightCm());
+                user.setHobbies(userDTO.getHobbies());
+                user.setMarriedStatus(userDTO.getMarriedStatus());
+                user.setMiddleName(userDTO.getMiddleName());
+                user.setMotherTongue(userDTO.getMotherTongue());
+                user.setQualification(userDTO.getQualification());
+                user.setReligion(userDTO.getReligion());
+                user.setWorkingAt(userDTO.getWorkingAt());
+                user.setPaidUser(userDTO.getPaidUser());
+
                 Set<Authority> managedAuthorities = user.getAuthorities();
                 managedAuthorities.clear();
                 userDTO.getAuthorities().stream()
