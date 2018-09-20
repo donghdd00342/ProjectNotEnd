@@ -11,6 +11,7 @@ import com.project.notend.notend.activity.Content;
 import com.project.notend.notend.activity.EditProfile;
 import com.project.notend.notend.activity.LoginActivity;
 import com.project.notend.notend.activity.Payment;
+import com.project.notend.notend.activity.PaypalActivity;
 import com.project.notend.notend.activity.Register;
 import com.project.notend.notend.data.storage_share.SharedPrefs;
 
@@ -69,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         btPayment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, Payment.class);
+                Intent intent = new Intent(MainActivity.this, PaypalActivity.class);
                 MainActivity.this.startActivity(intent);
             }
         });

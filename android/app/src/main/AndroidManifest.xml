@@ -56,6 +56,11 @@
             android:theme="@style/AppTheme">
 
         </activity>
+        <activity
+            android:name=".activity.PaypalActivity"
+            android:label="PayPal"
+            android:theme="@style/AppTheme.Dark">
+        </activity>
     </application>
 
 </manifest>

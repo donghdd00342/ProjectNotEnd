@@ -135,7 +135,7 @@ public class YourSelfFragment extends Fragment {
                     Account a = response.body();
                     fillData(a);
                     if(!a.getPaidUser()){
-                        _edit.setEnabled(false);
+                        _edit.setEnabled(true);
                     } else{
                         _paypal.setText("Extend your payment");
                     }
