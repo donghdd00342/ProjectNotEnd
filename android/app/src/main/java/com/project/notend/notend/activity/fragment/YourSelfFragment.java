@@ -1,6 +1,8 @@
 package com.project.notend.notend.activity.fragment;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,13 +14,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Button;
+import android.widget.Toast;
+
 import com.project.notend.notend.activity.ChangePasswordActivity;
+import com.project.notend.notend.activity.Content;
 import com.project.notend.notend.activity.EditProfile;
 
 import butterknife.BindView;
 
 import com.project.notend.notend.MainActivity;
 import com.project.notend.notend.R;
+import com.project.notend.notend.activity.LoginActivity;
+import com.project.notend.notend.activity.PaypalActivity;
 import com.project.notend.notend.data.remote.APIService;
 import com.project.notend.notend.data.remote.ApiUtils;
 import com.project.notend.notend.entities.Account;
@@ -51,6 +58,8 @@ public class YourSelfFragment extends Fragment {
     Button _edit;
     @BindView(R.id.btn_paypal)
     Button _paypal;
+    @BindView(R.id.btn_logout)
+    Button _logout;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -86,29 +95,43 @@ public class YourSelfFragment extends Fragment {
         _paypal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(context, PaypalActivity.class);
+                startActivity(intent);
+            }
+        });
+        _logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showAlertDialog();
             }
         });
 
         return rootView;
     }
 
-    public void get_premium(){
-        mAPIService.upgradeAccount("Bearer "+token).enqueue(new Callback<Account>() {
+    public void showAlertDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setMessage("You want to logout?");
+        builder.setCancelable(false);
+        builder.setPositiveButton("No", new DialogInterface.OnClickListener() {
             @Override
-            public void onResponse(Call<Account> call, Response<Account> response) {
-                Log.e("myApp", "success: "+response);
-                if (response.isSuccessful()){
-                    Account a = response.body();
-                    if(!a.getPaidUser()){
-
-                    }
-                }
+            public void onClick(DialogInterface dialogInterface, int i) {
+//                Toast.makeText(context, "Yes", Toast.LENGTH_SHORT).show();
             }
-
-            @Override
-            public void onFailure(Call<Account> call, Throwable t) {}
         });
+        builder.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+                String token = SharedPrefs.getInstance().get(CURRENT_TOKEN_ID,String.class);
+                SharedPrefs.getInstance().clear();
+                Intent intent = new Intent(context, LoginActivity.class);
+                startActivity(intent);
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
     }
 
     public void initView(View rootView){

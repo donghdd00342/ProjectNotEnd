@@ -47,7 +47,7 @@ public interface APIService {
     Call<Account> editAccount(@Body Account account, @Header("Authorization") String authHeader);
 
     @GET("api/account/upgrade")
-    Call<Account> upgradeAccount(@Header("Authorization") String authHeader);
+    Call<Void> upgradeAccount(@Header("Authorization") String authHeader);
 
 
 }

@@ -26,12 +26,6 @@
         <activity
             android:name=".activity.EditProfile"
             android:theme="@style/AppTheme.Dark">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
         </activity>
         <activity
             android:name=".activity.Register"
@@ -42,9 +36,6 @@
             android:name=".activity.LoginActivity"
             android:label="Login"
             android:theme="@style/AppTheme.Dark">
-
-        </activity>
-        <activity android:name=".activity.Payment">
 
         </activity>
         <activity
