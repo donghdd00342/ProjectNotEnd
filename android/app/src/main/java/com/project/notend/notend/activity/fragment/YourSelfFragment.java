@@ -23,6 +23,7 @@ import com.project.notend.notend.data.remote.APIService;
 import com.project.notend.notend.data.remote.ApiUtils;
 import com.project.notend.notend.entities.Account;
 
+import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -31,6 +32,7 @@ import static com.project.notend.notend.data.config.config.CURRENT_TOKEN_ID;
 import com.project.notend.notend.data.storage_share.SharedPrefs;
 
 public class YourSelfFragment extends Fragment {
+    private static String token = SharedPrefs.getInstance().get(CURRENT_TOKEN_ID,String.class);
     private APIService mAPIService;
     private TextView tvName;
     private TextView tvAge;
@@ -45,8 +47,10 @@ public class YourSelfFragment extends Fragment {
     private TextView tvStatusLife;
     Context context;
 
-//    @BindView(R.id.btn_changepassview)
-//    Button _changePassButton;
+    @BindView(R.id.btn_Edit)
+    Button _edit;
+    @BindView(R.id.btn_paypal)
+    Button _paypal;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -59,6 +63,7 @@ public class YourSelfFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_yourself, container, false);
         initView(rootView);
         context = rootView.getContext();
+        ButterKnife.bind(this, rootView);
         Button _changePassButton = (Button) rootView.findViewById(R.id.btn_changepassview);
         Button btEdit = (Button) rootView.findViewById(R.id.btn_Edit);
 
@@ -78,8 +83,32 @@ public class YourSelfFragment extends Fragment {
                 startActivity(intent);
             }
         });
+        _paypal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
 
         return rootView;
+    }
+
+    public void get_premium(){
+        mAPIService.upgradeAccount("Bearer "+token).enqueue(new Callback<Account>() {
+            @Override
+            public void onResponse(Call<Account> call, Response<Account> response) {
+                Log.e("myApp", "success: "+response);
+                if (response.isSuccessful()){
+                    Account a = response.body();
+                    if(!a.getPaidUser()){
+
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Account> call, Throwable t) {}
+        });
     }
 
     public void initView(View rootView){
@@ -98,8 +127,6 @@ public class YourSelfFragment extends Fragment {
     }
 
     private void getAccountInfo(){
-        String token = SharedPrefs.getInstance().get(CURRENT_TOKEN_ID,String.class);
-
         mAPIService.getAccountInfo("Bearer "+token).enqueue(new Callback<Account>() {
             @Override
             public void onResponse(Call<Account> call, Response<Account> response) {
@@ -107,6 +134,11 @@ public class YourSelfFragment extends Fragment {
                 if (response.isSuccessful()){
                     Account a = response.body();
                     fillData(a);
+                    if(!a.getPaidUser()){
+                        _edit.setEnabled(true);
+                    } else{
+                        _paypal.setText("Extend your payment");
+                    }
                 }
             }
 
