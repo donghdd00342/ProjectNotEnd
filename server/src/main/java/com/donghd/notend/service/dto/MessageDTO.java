@@ -20,6 +20,44 @@ public class MessageDTO implements Serializable {
     private Instant sendingDateTime;
 
     private Long fromUserId;
+    
+    private String fromUserLogin;
+    private String fromUserFirstName;
+    private String fromUserLastName;
+    private String fromUserImageUrl;
+
+    public String getFromUserLogin() {
+    	return this.fromUserLogin;
+    }
+
+    public void setFromUserLogin(String fromUserLogin) {
+    	this.fromUserLogin = fromUserLogin;
+    }
+
+    public String getFromUserFirstName() {
+    	return this.fromUserFirstName;
+    }
+
+    public void setFromUserFirstName(String fromUserFirstName) {
+    	this.fromUserFirstName = fromUserFirstName;
+    }
+
+    public String getFromUserLastName() {
+    	return this.fromUserLastName;
+    }
+
+    public void setFromUserLastName(String fromUserLastName) {
+    	this.fromUserLastName = fromUserLastName;
+    }
+
+    public String getFromUserImageUrl() {
+    	return this.fromUserImageUrl;
+    }
+
+    public void setFromUserImageUrl(String fromUserImageUrl) {
+    	this.fromUserImageUrl = fromUserImageUrl;
+    }
+
 
     @NotNull
     private Long toUserId;
