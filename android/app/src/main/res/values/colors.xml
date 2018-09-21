@@ -17,6 +17,7 @@
     <color name="iron">#CCCCCC</color>
     <color name="white">#FFFFFF</color>
     <color name="oregan">#FFFFFF</color>
+    <color name="red">#ef3919</color>
     <color name="button_pressed">#10000000</color>
     <color name="button_focused">#60000000</color>
     <color name="button_default">#60000000</color>

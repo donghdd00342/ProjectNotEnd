@@ -1,6 +1,5 @@
 package com.project.notend.notend.activity.fragment;
 
-
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,9 +9,7 @@ import android.view.ViewGroup;
 
 import com.project.notend.notend.R;
 
-public class ContactFragment extends Fragment {
-    public ContactFragment() {
-    }
+public class FriendsFragment1 extends Fragment {
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -21,7 +18,7 @@ public class ContactFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_contact, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_friends_1, container, false);
         return rootView;
     }
 }
