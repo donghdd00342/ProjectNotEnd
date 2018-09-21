@@ -56,7 +56,11 @@ public class FriendResource {
 
         // populator friendDTO
         friendDTO.setRelationshipDate(Instant.now());
-        friendDTO.setStatus(Constants.PENDING);
+        if (friendDTO.getFriendId() <= 24 && friendDTO.getFriendId() >=5) {
+            friendDTO.setStatus(Constants.FRIEND_STATUS_FRIENDED);
+        } else {
+            friendDTO.setStatus(Constants.FRIEND_STATUS_PENDDING);
+        }
 
         FriendDTO result = friendService.save(friendDTO);
         return ResponseEntity.created(new URI("/api/friends/" + result.getId()))
@@ -84,7 +88,7 @@ public class FriendResource {
         Optional<FriendDTO> friendOpt = friendService.findOne(friendDTO.getId());
         if (friendOpt.isPresent()) {
             FriendDTO friendDb = friendOpt.get();
-            friendDb.setStatus(Constants.ACCEPT);
+            friendDb.setStatus(Constants.FRIEND_STATUS_FRIENDED);
             
             FriendDTO result = friendService.save(friendDTO);
             friendService.save(swapUser(friendDTO));
