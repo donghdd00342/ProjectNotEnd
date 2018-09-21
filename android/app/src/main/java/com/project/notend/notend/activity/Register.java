@@ -126,7 +126,7 @@ public class Register extends AppCompatActivity {
     }
 
     public void onSignupFailed() {
-        Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
+        Toast.makeText(getBaseContext(), "Enter validate", Toast.LENGTH_LONG).show();
         _signupButton.setEnabled(true);
     }
 

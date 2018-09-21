@@ -105,6 +105,9 @@ public class Account implements Parcelable {
     @SerializedName("workingAt")
     @Expose
     private String workingAt;
+    @SerializedName("friendStatus")
+    @Expose
+    private Integer friendStatus;
 
     public String getAboutSelf() {
         return aboutSelf;
@@ -362,7 +365,15 @@ public class Account implements Parcelable {
         this.workingAt = workingAt;
     }
 
-    public Account(String email, String firstName, String lastName,String login, String password,int gender) {
+    public Integer getFriendStatus() {
+        return friendStatus;
+    }
+
+    public void setFriendStatus(Integer friendStatus) {
+        this.friendStatus = friendStatus;
+    }
+
+    public Account(String email, String firstName, String lastName, String login, String password, int gender) {
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -408,6 +419,11 @@ public class Account implements Parcelable {
             gender = null;
         } else {
             gender = in.readInt();
+        }
+        if (in.readByte() == 0) {
+            friendStatus = null;
+        } else {
+            friendStatus = in.readInt();
         }
         if (in.readByte() == 0) {
             heightCm = null;
@@ -484,6 +500,12 @@ public class Account implements Parcelable {
         } else {
             parcel.writeByte((byte) 1);
             parcel.writeInt(gender);
+        }
+        if (friendStatus == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeInt(friendStatus);
         }
         if (heightCm == null) {
             parcel.writeByte((byte) 0);

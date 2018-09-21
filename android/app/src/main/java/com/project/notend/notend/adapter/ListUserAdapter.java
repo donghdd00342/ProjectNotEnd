@@ -57,7 +57,6 @@ public class ListUserAdapter extends RecyclerView.Adapter  {
         newsHolder.setItemClickListener(new ItemClickListener() {
             @Override
             public void onClick(View view, int position, boolean isLongClick) {
-                Toast.makeText(mContext, " "+listData.get(position), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(mContext, DetailUser.class);
                 Bundle bundle = new Bundle();
                 bundle.putParcelable("data", account);
