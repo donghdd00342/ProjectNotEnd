@@ -1,27 +1,20 @@
 package com.project.notend.notend.activity;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.view.ContextThemeWrapper;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.project.notend.notend.R;
 import com.project.notend.notend.data.remote.APIService;
 import com.project.notend.notend.data.remote.ApiUtils;
-import com.project.notend.notend.dialog.CustomListener;
-import com.project.notend.notend.entities.Account;
+import com.project.notend.notend.data.storage_share.SharedPrefs;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -94,8 +87,9 @@ public class ChangePasswordActivity extends AppCompatActivity {
                             paramObject.put("currentPassword", currentPassword);
                             paramObject.put("newPassword", newPassword);
 
-                            SharedPreferences sharedPref1 = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-                            String token = sharedPref1.getString(CURRENT_TOKEN_ID, "");
+//                            SharedPreferences sharedPref1 = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+//                            String token = sharedPref1.getString(CURRENT_TOKEN_ID, "");
+                            String token = SharedPrefs.getInstance().get(CURRENT_TOKEN_ID,String.class);
                             String header = "Bearer " + token;
 
                             mAPIService.changePassword(paramObject.toString(), header).enqueue(new Callback<Void>() {

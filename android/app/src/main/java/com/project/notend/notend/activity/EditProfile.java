@@ -1,5 +1,6 @@
 package com.project.notend.notend.activity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -8,6 +9,9 @@ import android.support.v7.app.AppCompatActivity;
 import com.project.notend.notend.R;
 import com.project.notend.notend.adapter.ProfileFragmentAdapter;
 import com.project.notend.notend.adapter.SimpleFragmentPagerAdapter;
+
+import static com.project.notend.notend.data.config.config.CURRENT_TOKEN_ID;
+import static com.project.notend.notend.data.config.config.PREFS_NAME;
 
 public class EditProfile extends AppCompatActivity {
     TabLayout tabLayout;

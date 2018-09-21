@@ -141,9 +141,9 @@ public class AccountResource {
         userDTO.setPaidUser(true);
         Instant expirationDate = userDTO.getExpirationDate();
         if (expirationDate != null) {
-            userDTO.setExpirationDate(expirationDate.minus(3, ChronoUnit.MONTHS));
+            userDTO.setExpirationDate(expirationDate.minus(90, ChronoUnit.DAYS));
         } else {
-            userDTO.setExpirationDate(Instant.now().minus(3, ChronoUnit.MONTHS));
+            userDTO.setExpirationDate(Instant.now().minus(90, ChronoUnit.DAYS));
         }
         try {
             userService.updateUser(userDTO);

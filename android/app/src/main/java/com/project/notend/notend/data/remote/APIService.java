@@ -43,6 +43,11 @@ public interface APIService {
     @POST("/api/friends")
     Call<Void> askFriend(@Body String body, @Header("Authorization") String authHeader);
 
+    @POST("api/account")
+    Call<Account> editAccount(@Body Account account, @Header("Authorization") String authHeader);
+
+    @GET("api/account/upgrade")
+    Call<Account> upgradeAccount(@Header("Authorization") String authHeader);
 
 
 }

@@ -5,12 +5,15 @@ import com.codahale.metrics.annotation.Timed;
 import com.donghd.notend.domain.User;
 import com.donghd.notend.repository.UserRepository;
 import com.donghd.notend.security.AuthoritiesConstants;
+import com.donghd.notend.service.FriendService;
 import com.donghd.notend.service.MailService;
 import com.donghd.notend.service.UserService;
 import com.donghd.notend.service.dto.UserDTO;
 import com.donghd.notend.web.rest.errors.BadRequestAlertException;
 import com.donghd.notend.web.rest.errors.EmailAlreadyUsedException;
+import com.donghd.notend.web.rest.errors.InternalServerErrorException;
 import com.donghd.notend.web.rest.errors.LoginAlreadyUsedException;
+import com.donghd.notend.web.rest.errors.SomethingWentWrongException;
 import com.donghd.notend.web.rest.util.HeaderUtil;
 import com.donghd.notend.web.rest.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -42,11 +45,13 @@ public class UserResource {
 
     private final MailService mailService;
 
-    public UserResource(UserService userService, UserRepository userRepository, MailService mailService) {
+    private final FriendService friendService;
 
+    public UserResource(UserService userService, UserRepository userRepository, MailService mailService, FriendService friendService) {
         this.userService = userService;
         this.userRepository = userRepository;
         this.mailService = mailService;
+        this.friendService = friendService;
     }
 
     /**
@@ -145,9 +150,18 @@ public class UserResource {
     @Timed
     public ResponseEntity<UserDTO> getUser(@PathVariable String login) {
         log.debug("REST request to get User : {}", login);
-        return ResponseUtil.wrapOrNotFound(
-            userService.getUserWithAuthoritiesByLogin(login)
-                .map(UserDTO::new));
+        UserDTO friendDTO =  null;
+        Optional<UserDTO> userDTOOpt = userService.getUserWithAuthoritiesByLogin(login).map(UserDTO::new);
+        if (userDTOOpt.isPresent()) {
+            friendDTO =  userDTOOpt.get();
+            UserDTO myDTO =  userService.getUserWithAuthorities().map(UserDTO::new).orElseThrow(() -> new InternalServerErrorException("User could not be found"));
+            
+            Integer friendStatus = friendService.checkFriendStatus(myDTO.getId(), friendDTO.getId());
+            friendDTO.setFriendStatus(friendStatus);
+        } else {
+            throw new SomethingWentWrongException("login not found!", "UserResource", "errorKey");
+        }
+        return ResponseUtil.wrapOrNotFound(Optional.of(friendDTO));
     }
 
     /**
