@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.project.notend.notend.R;
-import com.project.notend.notend.activity.fragment.ContactFragment;
+import com.project.notend.notend.activity.fragment.FriendsFragment;
 import com.project.notend.notend.activity.fragment.ListUserFragment;
 import com.project.notend.notend.activity.fragment.MessengerFragment;
 import com.project.notend.notend.activity.fragment.YourSelfFragment;
@@ -33,7 +33,7 @@ public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter {
         mContext = context;
         fragmentList = new ArrayList<>();
         fragmentList.add(new ListUserFragment());
-        fragmentList.add(new ContactFragment());
+        fragmentList.add(new FriendsFragment());
         fragmentList.add(new MessengerFragment());
         fragmentList.add(new YourSelfFragment());
         count = fragmentList.size();
