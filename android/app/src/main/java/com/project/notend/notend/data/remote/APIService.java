@@ -13,6 +13,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 public interface APIService {
 
@@ -33,6 +34,14 @@ public interface APIService {
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @GET("api/users/getall")
     Call<List<Account>> getAllDetailAccount(@Header("Authorization") String authHeader);
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @GET("api/users/{login}")
+    Call<Account> getDetailUser(@Path("login") String login, @Header("Authorization") String authHeader);
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST("/api/friends")
+    Call<Void> askFriend(@Body String body, @Header("Authorization") String authHeader);
 
     @POST("api/account")
     Call<Account> editAccount(@Body Account account, @Header("Authorization") String authHeader);

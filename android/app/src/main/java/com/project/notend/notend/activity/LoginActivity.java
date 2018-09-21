@@ -15,6 +15,7 @@ import com.project.notend.notend.R;
 import com.project.notend.notend.data.remote.APIService;
 import com.project.notend.notend.data.remote.ApiUtils;
 import com.project.notend.notend.data.storage_share.SharedPrefs;
+import com.project.notend.notend.entities.Account;
 import com.project.notend.notend.entities.TokenId;
 
 import org.json.JSONException;
@@ -26,6 +27,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.project.notend.notend.data.config.config.CURRENT_ID;
 import static com.project.notend.notend.data.config.config.CURRENT_TOKEN_ID;
 
 public class LoginActivity extends AppCompatActivity {
@@ -97,6 +99,7 @@ public class LoginActivity extends AppCompatActivity {
                             paramObject.put("username", userName);
                             paramObject.put("password", password);
                             callAPI(paramObject.toString());
+                            setIdAccount();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -157,7 +160,27 @@ public class LoginActivity extends AppCompatActivity {
             public void onFailure(Call<TokenId> call, Throwable t) {
                 Toast.makeText(getBaseContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
                 progressDialog.dismiss();
+                _loginButton.setEnabled(true);
             }
         });
+    }
+
+    private void setIdAccount(){
+        mAPIService.getAccountInfo( "Bearer " + SharedPrefs.getInstance().get(CURRENT_TOKEN_ID,String.class))
+                .enqueue(new Callback<Account>() {
+                    @Override
+                    public void onResponse(Call<Account> call, Response<Account> response) {
+                        Log.e("myApp", "success: "+response);
+                        if (response.isSuccessful()){
+                            Account a = response.body();
+                            SharedPrefs.getInstance().put(CURRENT_ID, a.getId().toString());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Account> call, Throwable t) {
+                        Log.e("myApp", "success: "+t.getMessage());
+                    }
+                });
     }
 }
