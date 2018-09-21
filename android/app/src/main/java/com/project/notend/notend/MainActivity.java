@@ -10,8 +10,6 @@ import android.widget.Toast;
 import com.project.notend.notend.activity.Content;
 import com.project.notend.notend.activity.EditProfile;
 import com.project.notend.notend.activity.LoginActivity;
-import com.project.notend.notend.activity.Payment;
-import com.project.notend.notend.activity.PaypalActivity;
 import com.project.notend.notend.activity.Register;
 import com.project.notend.notend.data.storage_share.SharedPrefs;
 
@@ -27,8 +25,6 @@ public class MainActivity extends AppCompatActivity {
     Button btRegister;
     @BindView(R.id.btContent)
     Button btContent;
-    @BindView(R.id.btPayment)
-    Button btPayment;
     @BindView(R.id.btEdit)
     Button btEdit;
 
@@ -38,7 +34,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         final String token = SharedPrefs.getInstance().get(CURRENT_TOKEN_ID,String.class);
-//        Toast.makeText(getBaseContext(), token , Toast.LENGTH_SHORT).show();
+//        Toast.makeText(MainActivity.this, token, Toast.LENGTH_SHORT).show();
+
         if (token.length() != 0){
             Intent intent = new Intent(MainActivity.this, Content.class);
             startActivity(intent);
@@ -65,13 +62,6 @@ public class MainActivity extends AppCompatActivity {
                     Intent intent = new Intent(MainActivity.this, Content.class);
                     MainActivity.this.startActivity(intent);
                 }
-            }
-        });
-        btPayment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, PaypalActivity.class);
-                MainActivity.this.startActivity(intent);
             }
         });
 

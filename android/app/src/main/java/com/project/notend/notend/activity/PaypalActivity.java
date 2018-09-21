@@ -70,7 +70,7 @@ public class PaypalActivity extends AppCompatActivity {
     }
 
     public void onPaypalPressed(){
-        PayPalPayment payment = new PayPalPayment(new BigDecimal(150), "USD", "Cortana",
+        PayPalPayment payment = new PayPalPayment(new BigDecimal(300), "USD", "3 months member ship",
                 PayPalPayment.PAYMENT_INTENT_SALE);
         Intent intent = new Intent(this, PaymentActivity.class);
         intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, config);
@@ -79,13 +79,21 @@ public class PaypalActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(final int requestCode, int resultCode, Intent data) {
         if(resultCode == Activity.RESULT_OK){
             PaymentConfirmation confirm = data.getParcelableExtra(PaymentActivity.EXTRA_RESULT_CONFIRMATION);
             if(confirm != null){
                 try{
                     Log.i("PaymentExample", confirm.toJSONObject().toString(4));
                     Toast.makeText(this, "Payment Successfull", Toast.LENGTH_SHORT).show();
+                    String token = SharedPrefs.getInstance().get(CURRENT_TOKEN_ID,String.class);
+                    String header = "Bearer " + token;
+                    mAPIService.upgradeAccount(header).enqueue(new Callback<Void>() {
+                        @Override
+                        public void onResponse(Call<Void> call, Response<Void> response) {}
+                        @Override
+                        public void onFailure(Call<Void> call, Throwable t) {}
+                    });
                 } catch(JSONException e){
                     Log.e("PaymentExample", "Failure occurred",e);
                 }
