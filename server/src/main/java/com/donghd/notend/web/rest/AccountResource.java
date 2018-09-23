@@ -1,8 +1,10 @@
 package com.donghd.notend.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
-
+import com.donghd.notend.config.Constants;
+import com.donghd.notend.domain.Authority;
 import com.donghd.notend.domain.User;
+import com.donghd.notend.repository.AuthorityRepository;
 import com.donghd.notend.repository.UserRepository;
 import com.donghd.notend.security.SecurityUtils;
 import com.donghd.notend.service.MailService;
@@ -51,11 +53,13 @@ public class AccountResource {
 
     private final TransactionHistoryService transactionHistoryService;
 
-    public AccountResource(UserRepository userRepository, UserService userService, MailService mailService, TransactionHistoryService transactionHistoryService) {
+    private final AuthorityRepository authorityRepository;
+    public AccountResource(AuthorityRepository authorityRepository, UserRepository userRepository, UserService userService, MailService mailService, TransactionHistoryService transactionHistoryService) {
         this.transactionHistoryService = transactionHistoryService;
         this.userRepository = userRepository;
         this.userService = userService;
         this.mailService = mailService;
+        this.authorityRepository = authorityRepository;
     }
 
     /**
@@ -175,11 +179,13 @@ public class AccountResource {
         if (existingUser.isPresent() && (!existingUser.get().getLogin().equalsIgnoreCase(userLogin))) {
             throw new EmailAlreadyUsedException();
         }
-        Optional<User> user = userRepository.findOneByLogin(userLogin);
-        if (!user.isPresent()) {
+        Optional<User> userOpt = userRepository.findOneByLogin(userLogin);
+        if (!userOpt.isPresent()) {
             throw new InternalServerErrorException("User could not be found");
         }
-        if (!user.get().getPaidUser()) {
+        User user = userOpt.get();
+        List<String> authList = userService.getAuthorities();
+        if ((!authList.contains(Constants.ROLE_ADMIN)) && (!user.getPaidUser())) {
             throw new InternalServerErrorException("Only paid users can use this function");
         }
         userService.updateUser(userDTO.getFirstName(), userDTO.getLastName(), userDTO.getEmail(),

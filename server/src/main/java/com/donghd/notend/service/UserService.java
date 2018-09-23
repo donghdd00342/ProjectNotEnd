@@ -313,8 +313,13 @@ public class UserService {
         Optional<User> optUsr = getUserWithAuthorities();
         if (optUsr.isPresent()) {
             User u = optUsr.get();
-            log.debug("u.getGender() =============================================== {}", u.getGender());
-            return userRepository.findByGenderNotAndCreatedByAndActivatedIsTrue(pageable, u.getGender(), "anonymousUser").map(UserDTO::new);
+            Authority authAdmin = authorityRepository.findByName(Constants.ROLE_ADMIN);
+            if (u.getAuthorities().contains(authAdmin)) {
+                return userRepository.findAll(pageable).map(UserDTO::new);
+            } else {
+                log.debug("u.getGender() =============================================== {}", u.getGender());
+                return userRepository.findByGenderNotAndCreatedByAndActivatedIsTrue(pageable, u.getGender(), "anonymousUser").map(UserDTO::new);
+            }
         } else {
             throw new InvalidPasswordException();
         }

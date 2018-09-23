@@ -24,7 +24,9 @@
     "enableTranslation": false,
     "testFrameworks": [],
     "jhiPrefix": "jhi",
-    "clientPackageManager": "npm",
-    "skipClient": true
+    "clientPackageManager": "yarn",
+    "skipClient": true,
+    "clientFramework": "angularX",
+    "useSass": true
   }
 }

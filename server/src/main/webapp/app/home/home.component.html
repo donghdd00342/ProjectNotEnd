@@ -1,0 +1,20 @@
+<div class="row">
+    <div class="col-md-3">
+        <span class="hipster img-fluid rounded"></span>
+    </div>
+    <div class="col-md-9">
+        <h1 class="display-4">Welcome to NotEnd!</h1>
+        <p class="lead">Mạng hẹn hò lớn nhất Việt Nam.</p>
+
+        <div [ngSwitch]="isAuthenticated()">
+            <div class="alert alert-success" *ngSwitchCase="true">
+                <span *ngIf="account"
+                   > You are logged in as user "{{account.login}}". </span>
+            </div>
+
+            <div class="alert alert-warning" *ngSwitchCase="false">
+                <span>Vui lòng đăng nhập.</span>
+            </div>
+        </div>
+    </div>
+</div>
