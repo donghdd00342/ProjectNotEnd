@@ -56,6 +56,8 @@ dependencies {
     //butter knife
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    //Socket
+    implementation 'com.github.nkzawa:socket.io-client:0.3.0'
     // GSON body parser
     implementation 'com.google.code.gson:gson:2.8.2'
 }

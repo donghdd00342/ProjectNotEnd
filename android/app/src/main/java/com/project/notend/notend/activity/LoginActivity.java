@@ -99,7 +99,7 @@ public class LoginActivity extends AppCompatActivity {
                             paramObject.put("username", userName);
                             paramObject.put("password", password);
                             callAPI(paramObject.toString());
-                            setIdAccount();
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -142,6 +142,7 @@ public class LoginActivity extends AppCompatActivity {
                     TokenId resObj = response.body();
                     if (resObj.getIdToken().length() > 0) {
                         SharedPrefs.getInstance().put(CURRENT_TOKEN_ID, resObj.getIdToken().toString());
+                        setIdAccount(resObj.getIdToken().toString());
                         Intent intent = new Intent(LoginActivity.this, Content.class);
                         startActivity(intent);
                         Toast.makeText(LoginActivity.this, "Welcome", Toast.LENGTH_SHORT).show();
@@ -165,15 +166,15 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void setIdAccount(){
-        mAPIService.getAccountInfo( "Bearer " + SharedPrefs.getInstance().get(CURRENT_TOKEN_ID,String.class))
+    private void setIdAccount(String idToken){
+        mAPIService.getAccountInfo( "Bearer " + idToken)
                 .enqueue(new Callback<Account>() {
                     @Override
                     public void onResponse(Call<Account> call, Response<Account> response) {
                         Log.e("myApp", "success: "+response);
                         if (response.isSuccessful()){
                             Account a = response.body();
-                            SharedPrefs.getInstance().put(CURRENT_ID, a.getId().toString());
+                            SharedPrefs.getInstance().put(CURRENT_ID, a.getId());
                         }
                     }
 
