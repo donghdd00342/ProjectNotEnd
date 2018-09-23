@@ -35,6 +35,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.project.notend.notend.data.config.config.CURRENT_ID;
 import static com.project.notend.notend.data.config.config.CURRENT_TOKEN_ID;
 import com.project.notend.notend.data.storage_share.SharedPrefs;
 
@@ -153,7 +154,6 @@ public class YourSelfFragment extends Fragment {
         mAPIService.getAccountInfo("Bearer "+token).enqueue(new Callback<Account>() {
             @Override
             public void onResponse(Call<Account> call, Response<Account> response) {
-                Log.e("myApp", "success: "+response);
                 if (response.isSuccessful()){
                     Account a = response.body();
                     fillData(a);
@@ -171,7 +171,7 @@ public class YourSelfFragment extends Fragment {
     }
 
     private void fillData(Account a) {
-        tvName.setText(a.getFirstName() + a.getLastName());
+        tvName.setText(a.getFirstName() + " " + a.getLastName());
 //        tvAge.setText();
         tvHeight.setText(String.valueOf(a.getHeightCm()));
         tvAddress.setText(a.getCity());

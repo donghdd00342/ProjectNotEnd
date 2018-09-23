@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:clickable="true"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp"
+    android:layout_marginTop="3dp"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:backgroundTint="@color/white"
+    android:gravity="center_vertical">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/civAvatar"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:civ_border_width="1dp"
+        app:civ_border_color="#d4d3d3"
+        android:src="@drawable/im1"
+        android:layout_marginTop="4dp"
+        android:layout_alignParentLeft="true"/>
+
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Terry"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:layout_toRightOf="@id/civAvatar"
+        android:layout_marginLeft="16dp"/>
+
+    <TextView
+        android:id="@+id/tvMessage"
+        android:text="message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:layout_below="@id/tvName"
+        android:layout_alignLeft="@id/tvName" />
+
+    <TextView
+        android:text="11:36"
+        android:id="@+id/text_open_chat_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/tvName"
+        android:layout_marginLeft="8dp"
+        android:layout_alignBaseline="@id/tvName"
+        android:textSize="10sp"
+        android:textColor="#bebed1"/>
+
+</RelativeLayout>
