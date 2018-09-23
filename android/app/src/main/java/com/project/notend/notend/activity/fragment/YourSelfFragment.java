@@ -35,6 +35,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.project.notend.notend.data.config.config.CURRENT_ID;
 import static com.project.notend.notend.data.config.config.CURRENT_TOKEN_ID;
 import com.project.notend.notend.data.storage_share.SharedPrefs;
 

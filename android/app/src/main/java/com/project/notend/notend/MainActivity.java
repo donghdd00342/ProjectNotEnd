@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.project.notend.notend.activity.ChatActivity;
 import com.project.notend.notend.activity.Content;
 import com.project.notend.notend.activity.EditProfile;
 import com.project.notend.notend.activity.LoginActivity;
@@ -36,10 +37,10 @@ public class MainActivity extends AppCompatActivity {
         final String token = SharedPrefs.getInstance().get(CURRENT_TOKEN_ID,String.class);
 //        Toast.makeText(MainActivity.this, token, Toast.LENGTH_SHORT).show();
 
-        if (token.length() != 0){
-            Intent intent = new Intent(MainActivity.this, Content.class);
-            startActivity(intent);
-        }
+//        if (token.length() != 0){
+//            Intent intent = new Intent(MainActivity.this, Content.class);
+//            startActivity(intent);
+//        }
 
         btLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         btEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, EditProfile.class);
+                Intent intent = new Intent(MainActivity.this, ChatActivity.class);
                 MainActivity.this.startActivity(intent);
             }
         });

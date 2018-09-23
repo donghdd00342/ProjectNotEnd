@@ -15,6 +15,7 @@ import com.project.notend.notend.data.remote.APIService;
 import com.project.notend.notend.data.remote.ApiUtils;
 import com.project.notend.notend.data.storage_share.SharedPrefs;
 import com.project.notend.notend.entities.Account;
+import com.project.notend.notend.entities.Friend;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -59,42 +60,6 @@ public class DetailUser extends AppCompatActivity {
         Bundle getBundle = this.getIntent().getExtras();
         final Account account = getBundle.getParcelable("data");
         initData(account.getLogin());
-        btn_addFriend.setVisibility(View.VISIBLE);
-        if (null == account.getFriendStatus()){
-            btn_addFriend.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    try {
-                        JSONObject paramObject = new JSONObject();
-                        paramObject.put("friendId", account.getId().toString());
-                        paramObject.put("ownerId", SharedPrefs.getInstance()
-                                .get(CURRENT_ID, String.class).toString());
-                        sendAddFriend(paramObject.toString());
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
-        }else {
-            if ( account.getFriendStatus()== 0 ){
-                btn_addFriend.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        try {
-                            JSONObject paramObject = new JSONObject();
-                            paramObject.put("friendId", account.getId().toString());
-                            paramObject.put("ownerId", SharedPrefs.getInstance()
-                                    .get(CURRENT_ID, String.class).toString());
-                            sendAddFriend(paramObject.toString());
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
-            }else {
-                btn_addFriend.setVisibility(View.GONE);
-            }
-        }
 
 
     }
@@ -111,11 +76,35 @@ public class DetailUser extends AppCompatActivity {
             @Override
             public void onResponse(Call<Account> call, Response<Account> response) {
                 if (response.isSuccessful()){
-                    Account account = response.body();
+                    final Account account = response.body();
                     String url = SERVER_URL_ACCOUNT + account.getImageUrl();
                     Glide.with(getBaseContext()).load(url).into(imgProfile);
                     getSupportActionBar().setTitle(account.getLastName() + " " + account.getFirstName());
                     tvMyName.setText(account.getLastName() + " " + account.getFirstName());
+                    btn_addFriend.setVisibility(View.VISIBLE);
+                    if (null == account.getFriendStatus() || account.getFriendStatus() == 10){
+                        btn_addFriend.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Friend friend = new Friend();
+                                friend.setFriendFirstName(account.getFirstName().toString());
+                                friend.setFriendLastName(account.getLastName());
+                                friend.setFriendImageUrl(account.getImageUrl().toString());
+                                friend.setFriendLogin(account.getLogin());
+                                friend.setFriendId(account.getId());
+                                friend.setOwnerId(SharedPrefs.getInstance()
+                                        .get(CURRENT_ID, Integer.class));
+                                sendAddFriend(friend);
+                            }
+                        });
+                    }else {
+                        if ( account.getFriendStatus()== 11 ){
+                            btn_addFriend.setEnabled(false);
+                            btn_addFriend.setText("đã gửi lời mời kết bạn");
+                        }else {
+                            btn_addFriend.setVisibility(View.GONE);
+                        }
+                    }
                 }
             }
 
@@ -126,7 +115,7 @@ public class DetailUser extends AppCompatActivity {
         });
     }
 
-    private void sendAddFriend(String paramObject){
+    private void sendAddFriend(Friend paramObject){
         mAPIService.askFriend(paramObject,
                 "Bearer "+ SharedPrefs.getInstance().get(CURRENT_TOKEN_ID, String.class).toString())
                 .enqueue(new Callback<Void>() {
