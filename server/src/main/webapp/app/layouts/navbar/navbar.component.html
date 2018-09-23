@@ -46,13 +46,13 @@
                             <span>User management</span>
                         </a>
                     </li>
-                    <!-- <li>
-                        <a class="dropdown-item" routerLink="admin/jhi-metrics" routerLinkActive="active" (click)="collapseNavbar()">
+                    <li>
+                        <a class="dropdown-item" routerLink="admin/dashboard-metrics" routerLinkActive="active" (click)="collapseNavbar()">
                             <fa-icon [icon]="'tachometer-alt'" [fixedWidth]="true"></fa-icon>
                             <span>Metrics</span>
                         </a>
                     </li>
-                    <li>
+                    <!--<li>
                         <a class="dropdown-item" routerLink="admin/jhi-health" routerLinkActive="active" (click)="collapseNavbar()">
                             <fa-icon [icon]="'heart'" [fixedWidth]="true"></fa-icon>
                             <span>Health</span>
@@ -75,13 +75,13 @@
                             <fa-icon [icon]="'tasks'" [fixedWidth]="true"></fa-icon>
                             <span>Logs</span>
                         </a>
-                    </li>
+                    </li>-->
                     <li *ngIf="swaggerEnabled">
                         <a class="dropdown-item" routerLink="admin/docs" routerLinkActive="active" (click)="collapseNavbar()">
                             <fa-icon [icon]="'book'" [fixedWidth]="true"></fa-icon>
                             <span>API</span>
                         </a>
-                    </li> -->
+                    </li>
                     <!-- jhipster-needle-add-element-to-admin-menu - JHipster will add entities to the admin menu here -->
                     <!-- <li *ngIf="!inProduction">
                         <a class="dropdown-item" href='./h2-console' target="_tab" (click)="collapseNavbar()">

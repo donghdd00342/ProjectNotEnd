@@ -15,4 +15,8 @@ export class JhiMetricsService {
     threadDump(): Observable<any> {
         return this.http.get(SERVER_API_URL + 'management/threaddump');
     }
+
+    userStatistics(): Observable<any> {
+        return this.http.get(SERVER_API_URL + 'api/users/statistics');
+    }
 }

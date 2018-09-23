@@ -16,6 +16,8 @@ import com.donghd.notend.web.rest.errors.LoginAlreadyUsedException;
 import com.donghd.notend.web.rest.errors.SomethingWentWrongException;
 import com.donghd.notend.web.rest.util.HeaderUtil;
 import com.donghd.notend.web.rest.util.PaginationUtil;
+import com.donghd.notend.web.rest.vm.UserStatistics;
+
 import io.github.jhipster.web.util.ResponseUtil;
 
 import org.slf4j.Logger;
@@ -86,6 +88,13 @@ public class UserResource {
                 .headers(HeaderUtil.createAlert( "A user is created with identifier " + newUser.getLogin(), newUser.getLogin()))
                 .body(newUser);
         }
+    }
+
+    @GetMapping("/users/statistics")
+    @Timed
+    @Secured(AuthoritiesConstants.ADMIN)
+    public UserStatistics getUserStatistics() {
+        return userService.userStatistic();
     }
 
     /**

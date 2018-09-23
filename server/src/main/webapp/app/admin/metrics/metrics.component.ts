@@ -9,6 +9,7 @@ import { JhiMetricsService } from './metrics.service';
     templateUrl: './metrics.component.html'
 })
 export class JhiMetricsMonitoringComponent implements OnInit {
+    statistics: any = {};
     metrics: any = {};
     cachesStats: any = {};
     servicesStats: any = {};
@@ -25,6 +26,9 @@ export class JhiMetricsMonitoringComponent implements OnInit {
 
     refresh() {
         this.updatingMetrics = true;
+        this.metricsService.userStatistics().subscribe(statistics => {
+            this.statistics = statistics;
+        });
         this.metricsService.getMetrics().subscribe(metrics => {
             this.metrics = metrics;
             this.updatingMetrics = false;

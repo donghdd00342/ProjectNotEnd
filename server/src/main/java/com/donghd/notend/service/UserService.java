@@ -3,6 +3,9 @@ package com.donghd.notend.service;
 import com.donghd.notend.domain.Authority;
 import com.donghd.notend.domain.User;
 import com.donghd.notend.repository.AuthorityRepository;
+import com.donghd.notend.repository.FriendRepository;
+import com.donghd.notend.repository.MessageRepository;
+import com.donghd.notend.repository.TransactionHistoryRepository;
 import com.donghd.notend.config.Constants;
 import com.donghd.notend.repository.UserRepository;
 import com.donghd.notend.security.AuthoritiesConstants;
@@ -18,6 +21,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import com.donghd.notend.web.rest.errors.InvalidPasswordException;
+import com.donghd.notend.web.rest.vm.UserStatistics;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -41,13 +46,46 @@ public class UserService {
 
     private final AuthorityRepository authorityRepository;
 
+    private final FriendRepository friendRepository;
+    private final TransactionHistoryRepository transactionHistoryRepository;
+    private final MessageRepository messageRepository;
+
     private final CacheManager cacheManager;
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, AuthorityRepository authorityRepository, CacheManager cacheManager) {
+    public UserService(
+            MessageRepository messageRepository,
+            TransactionHistoryRepository transactionHistoryRepository,
+            FriendRepository friendRepository,
+            UserRepository userRepository, 
+            PasswordEncoder passwordEncoder, 
+            AuthorityRepository authorityRepository, 
+            CacheManager cacheManager
+        ) {
+        this.messageRepository = messageRepository;
+        this.transactionHistoryRepository = transactionHistoryRepository;
+        this.friendRepository = friendRepository;
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.authorityRepository = authorityRepository;
         this.cacheManager = cacheManager;
+    }
+
+    public UserStatistics userStatistic() {
+        UserStatistics userStatistics = new UserStatistics();
+
+        userStatistics.setTotalUser(userRepository.count());
+        userStatistics.setActivedUser(userRepository.countByActivatedIsTrue());
+        userStatistics.setPaidUser(userRepository.countByPaidUserIsTrue());
+
+        userStatistics.setTotalFriends(friendRepository.count()/2);
+        userStatistics.setPendingFriends(friendRepository.countByStatus(Constants.FRIEND_STATUS_PENDDING));
+
+        userStatistics.setTotalMessages(messageRepository.count());
+        userStatistics.setUnreadMessages(messageRepository.countByStatus(Constants.SENT));
+
+        userStatistics.setTotalTrangsactions(transactionHistoryRepository.count());
+
+        return userStatistics;
     }
 
     public Optional<User> activateRegistration(String key) {

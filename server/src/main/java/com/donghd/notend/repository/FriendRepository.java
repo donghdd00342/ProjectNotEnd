@@ -31,5 +31,7 @@ public interface FriendRepository extends JpaRepository<Friend, Long> {
 
     Optional<Friend> findByFriend_Id(Long friendId);
     Optional<Friend> findByFriend_IdAndOwner_Id(Long friendId, Long ownerId);
+    
+    long countByStatus(Integer statusInt);
 
 }

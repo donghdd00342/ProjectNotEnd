@@ -25,4 +25,6 @@ public interface MessageRepository extends JpaRepository<Message, Long> {
     Page<Message> findByToUser_IdAndStatus(Long toUserId, Integer status, Pageable pageable);
     Page<Message> findByToUser_Id(Long toUserId, Pageable pageable);
 
+    long countByStatus(Integer statusInt);
+
 }
