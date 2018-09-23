@@ -1,6 +1,7 @@
 package com.project.notend.notend.data.remote;
 
 import com.project.notend.notend.entities.Account;
+import com.project.notend.notend.entities.Friend;
 import com.project.notend.notend.entities.TokenId;
 
 import java.util.List;
@@ -49,5 +50,7 @@ public interface APIService {
     @GET("api/account/upgrade")
     Call<Void> upgradeAccount(@Header("Authorization") String authHeader);
 
-
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @GET("api/friends")
+    Call<List<Friend>> getFriendList(@Header("Authorization") String authHeader);
 }
