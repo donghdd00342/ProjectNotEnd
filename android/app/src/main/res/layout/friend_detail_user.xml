@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/scroll_view"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/footer"
+        android:background="@color/white"
+        android:fillViewport="true">
+
+        <RelativeLayout
+            android:id="@+id/layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:id="@+id/profile_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:elevation="4dp"
+                android:paddingBottom="10dp">
+
+                <ImageView
+                    android:id="@+id/imgProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/img3" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/profile_layout"
+                android:layout_marginTop="0dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="@color/button_pressed"
+                    android:clickable="true"
+                    android:elevation="4dp"
+                    android:padding="5dp"
+                    android:text="Inform Basic"
+                    android:textColor="@color/black"
+                    android:textSize="25sp" />
+
+                <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/table1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:shrinkColumns="*"
+                    android:stretchColumns="*">
+
+                    <TableRow
+                        android:id="@+id/tableRow1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#fff"
+                        android:padding="5dip">
+
+                        <TextView
+                            android:layout_weight="1"
+                            android:background="#fff"
+                            android:gravity="left"
+                            android:padding="5dip"
+                            android:text="Name"
+                            android:textColor="#000000" />
+
+                        <TextView
+                            android:id="@+id/tvMyName"
+                            android:layout_weight="1"
+                            android:background="#fff"
+                            android:gravity="left"
+                            android:padding="5dip"
+                            android:text="Quang"
+                            android:textColor="#8470ff" />
+                    </TableRow>
+                    //row2
+
+                    <TableRow
+                        android:id="@+id/tableRow2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#fff"
+                        android:padding="5dip">
+
+                        <TextView
+                            android:layout_weight="1"
+                            android:background="#fff"
+                            android:gravity="left"
+                            android:padding="5dip"
+                            android:text="Age"
+                            android:textColor="#000000" />
+
+                        <TextView
+                            android:id="@+id/tvMyAge"
+                            android:layout_weight="1"
+                            android:background="#fff"
+                            android:gravity="left"
+                            android:padding="5dip"
+                            android:text="20"
+                            android:textColor="#8470ff" />
+                    </TableRow>
+                    //row3
+
+                    <TableRow
+                        android:id="@+id/tableRow3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#fff"
+                        android:padding="5dip">
+
+                        <TextView
+                            android:layout_weight="1"
+                            android:background="#fff"
+                            android:gravity="left"
+                            android:padding="5dip"
+                            android:text="Height"
+                            android:textColor="#000000" />
+
+                        <TextView
+                            android:id="@+id/tvMyHeight"
+                            android:layout_weight="1"
+                            android:background="#fff"
+                            android:gravity="left"
+                            android:padding="5dip"
+                            android:text="---"
+                            android:textColor="#8470ff" />
+                    </TableRow>
+                    //row4
+
+                    <TableRow
+                        android:id="@+id/tableRow4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#fff"
+                        android:padding="5dip">
+
+                        <TextView
+                            android:layout_weight="1"
+                            android:background="#fff"
+                            android:gravity="left"
+                            android:padding="5dip"
+                            android:text="Address"
+                            android:textColor="#000000" />
+
+                        <TextView
+                            android:id="@+id/tvMyAddress"
+                            android:layout_weight="1"
+                            android:background="#fff"
+                            android:gravity="left"
+                            android:padding="5dip"
+                            android:text="Hà Nội"
+                            android:textColor="#8470ff" />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/tableRow5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#fff"
+                        android:padding="5dip">
+
+                        <TextView
+                            android:layout_weight="1"
+                            android:background="#fff"
+                            android:gravity="left"
+                            android:padding="5dip"
+                            android:text="Country"
+                            android:textColor="#000000" />
+
+                        <TextView
+                            android:id="@+id/tvMyCountry"
+                            android:layout_weight="1"
+                            android:background="#fff"
+                            android:gravity="left"
+                            android:padding="5dip"
+                            android:text="Việt Nam"
+                            android:textColor="#8470ff" />
+                    </TableRow>
+                </TableLayout>
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="@color/button_pressed"
+                    android:clickable="true"
+                    android:elevation="4dp"
+                    android:padding="5dp"
+                    android:text="education and occupation"
+                    android:textColor="@color/black"
+                    android:textSize="25sp" />
+
+                <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/table2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:shrinkColumns="*"
+                    android:stretchColumns="*">
+
+                    <TableRow
+                        android:id="@+id/tableRow21"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#fff"
+                        android:padding="5dip">
+
+                        <TextView
+                            android:layout_weight="1"
+                            android:background="#fff"
+                            android:gravity="left"
+                            android:padding="5dip"
+                            android:text="Education"
+                            android:textColor="#000000" />
+
+                        <TextView
+                            android:id="@+id/myEdu"
+                            android:layout_weight="1"
+                            android:background="#fff"
+                            android:gravity="left"
+                            android:padding="5dip"
+                            android:text="Ðại học"
+                            android:textColor="#8470ff" />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/tableRow22"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#fff"
+                        android:padding="5dip">
+
+                        <TextView
+                            android:layout_weight="1"
+                            android:background="#fff"
+                            android:gravity="left"
+                            android:padding="5dip"
+                            android:text="Job"
+                            android:textColor="#000000" />
+
+                        <TextView
+                            android:id="@+id/myJob"
+                            android:layout_weight="1"
+                            android:background="#fff"
+                            android:gravity="left"
+                            android:padding="5dip"
+                            android:text="_"
+                            android:textColor="#8470ff" />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/tableRow23"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#fff"
+                        android:padding="5dip">
+
+                        <TextView
+                            android:layout_weight="1"
+                            android:background="#fff"
+                            android:gravity="left"
+                            android:padding="5dip"
+                            android:text="Salary"
+                            android:textColor="#000000" />
+
+                        <TextView
+                            android:id="@+id/mySalary"
+                            android:layout_weight="1"
+                            android:background="#fff"
+                            android:gravity="left"
+                            android:padding="5dip"
+                            android:text="-"
+                            android:textColor="#8470ff" />
+                    </TableRow>
+                </TableLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="@color/button_pressed"
+                    android:clickable="true"
+                    android:elevation="4dp"
+                    android:padding="5dp"
+                    android:text="Family"
+                    android:textColor="@color/black"
+                    android:textSize="25sp" />
+
+                <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/table3"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:shrinkColumns="*"
+                    android:stretchColumns="*">
+
+                    <TableRow
+                        android:id="@+id/tableRow31"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#fff"
+                        android:padding="5dip">
+
+                        <TextView
+                            android:layout_weight="1"
+                            android:background="#fff"
+                            android:gravity="left"
+                            android:padding="5dip"
+                            android:text="Have Children"
+                            android:textColor="#000000" />
+
+                        <TextView
+                            android:id="@+id/myHaveChildren"
+                            android:layout_weight="1"
+                            android:background="#fff"
+                            android:gravity="left"
+                            android:padding="5dip"
+                            android:text="_"
+                            android:textColor="#8470ff" />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/tableRow32"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#fff"
+                        android:padding="5dip">
+
+                        <TextView
+                            android:layout_weight="1"
+                            android:background="#fff"
+                            android:gravity="left"
+                            android:padding="5dip"
+                            android:text="Desire to have children"
+                            android:textColor="#000000" />
+                        <TextView
+                            android:id="@+id/myDesireChildren"
+                            android:layout_weight="1"
+                            android:background="#fff"
+                            android:gravity="left"
+                            android:padding="5dip"
+                            android:text="_"
+                            android:textColor="#8470ff" />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/tableRow33"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#fff"
+                        android:padding="5dip">
+                        <TextView
+                            android:layout_weight="1"
+                            android:background="#fff"
+                            android:gravity="left"
+                            android:padding="5dip"
+                            android:text="Status of life"
+                            android:textColor="#000000" />
+                        <TextView
+                            android:id="@+id/myStatusLife"
+                            android:layout_weight="1"
+                            android:background="#fff"
+                            android:gravity="left"
+                            android:padding="5dip"
+                            android:text="-"
+                            android:textColor="#8470ff" />
+                    </TableRow>
+                </TableLayout>
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

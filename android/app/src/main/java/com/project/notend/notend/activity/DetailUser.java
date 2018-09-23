@@ -31,7 +31,6 @@ import static com.project.notend.notend.data.config.config.CURRENT_TOKEN_ID;
 import static com.project.notend.notend.data.remote.ApiUtils.SERVER_URL_ACCOUNT;
 
 public class DetailUser extends AppCompatActivity {
-
     @BindView(R.id.imgProfile)
     ImageView imgProfile;
     @BindView(R.id.tvMyName)

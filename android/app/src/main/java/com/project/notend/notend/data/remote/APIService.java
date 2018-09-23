@@ -62,6 +62,8 @@ public interface APIService {
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST("/api/messages")
     Call<ChatMessage> createMessager(@Body ChatMessage chatMessage,@Header("Authorization") String authHeader);
-
+  
+    @GET("api/friends")
+    Call<List<Friend>> getFriendList(@Header("Authorization") String authHeader);
 
 }
