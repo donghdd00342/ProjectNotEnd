@@ -81,5 +81,4 @@ public interface APIService {
 
     @GET("api/transaction-histories")
     Call<Object> getHistory(@Header("Authorization") String authHeader);
-
 }
