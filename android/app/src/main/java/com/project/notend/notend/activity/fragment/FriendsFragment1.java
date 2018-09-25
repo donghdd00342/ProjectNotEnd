@@ -61,7 +61,6 @@ public class FriendsFragment1 extends Fragment {
         setHasOptionsMenu(true);
 
         getFriendList();
-        Log.e("acc",""+acclist);
         FriendsListAdapter rvAdapter = new FriendsListAdapter(getContext(),acclist);
         rv.setAdapter(rvAdapter);
     }
@@ -72,6 +71,7 @@ public class FriendsFragment1 extends Fragment {
             public void onResponse(Call<List<Friend>> call, Response<List<Friend>> response) {
                 if (response.isSuccessful()){
                     friendList = response.body();
+
                     for(int i=0;i<friendList.size();i++){
                         getFriendDetailUser(friendList.get(i).getFriendLogin());
                     }
@@ -90,7 +90,9 @@ public class FriendsFragment1 extends Fragment {
             @Override
             public void onResponse(Call<Account> call, Response<Account> response) {
                 if (response.isSuccessful()){
-                    acclist.add(response.body());
+                    if (acclist.size() < friendList.size()){
+                        acclist.add(response.body());
+                    }
                 }
             }
 

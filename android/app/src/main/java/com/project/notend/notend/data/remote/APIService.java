@@ -9,12 +9,14 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface APIService {
@@ -66,4 +68,12 @@ public interface APIService {
     @GET("api/friends")
     Call<List<Friend>> getFriendList(@Header("Authorization") String authHeader);
 
+    @GET("api/friends/request")
+    Call<List<Friend>> getRequestFriend(@Header("Authorization") String authHeader);
+
+    @PUT("api/friends")
+    Call<List<Friend>> acceptRequestFriend(@Body Friend body, @Header("Authorization") String authHeader);
+
+    @DELETE("api/friends/{id}")
+    Call<List<Friend>> deleteRequestFriend(@Path("friendId") Integer friendId, @Header("Authorization") String authHeader);
 }
