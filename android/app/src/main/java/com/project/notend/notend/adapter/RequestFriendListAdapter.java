@@ -3,6 +3,7 @@ package com.project.notend.notend.adapter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,16 +58,15 @@ public class RequestFriendListAdapter extends RecyclerView.Adapter{
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         NewsHolder newsHolder =  (NewsHolder) holder;
         final Friend friend = listRequestFriend.get(position);
-        if(friend.getStatus() == 11){
-            newsHolder.reqName.setText(friend.getFriendLastName() + " " + friend.getFriendFirstName());
-            String url = SERVER_URL_ACCOUNT + friend.getFriendImageUrl();
-            Glide.with(mContext).load(url).into(newsHolder.reqAvatar);
-            if(btn_AcceptReq.isClickable()){
-                executeAcceptRequest(friend);
-                newsHolder.reqHolder.setVisibility(View.GONE);
-            }else if (btn_DeleteReq.isClickable()){
-                executeDeleteRequest(friend.getFriendId());
-            }
+        Log.e("friend",""+friend);
+        newsHolder.reqName.setText(friend.getFriendLastName() + " " + friend.getFriendFirstName());
+        String url = SERVER_URL_ACCOUNT + friend.getFriendImageUrl();
+        Glide.with(mContext).load(url).into(newsHolder.reqAvatar);
+        if(btn_AcceptReq.isClickable()){
+            executeAcceptRequest(friend);
+            newsHolder.reqHolder.setVisibility(View.GONE);
+        }else if (btn_DeleteReq.isClickable()){
+            executeDeleteRequest(friend.getFriendId());
         }
     }
 
