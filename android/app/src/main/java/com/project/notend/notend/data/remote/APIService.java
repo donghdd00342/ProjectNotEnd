@@ -9,6 +9,7 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -73,6 +74,6 @@ public interface APIService {
     @PUT("api/friends")
     Call<List<Friend>> acceptRequestFriend(@Body Friend body, @Header("Authorization") String authHeader);
 
-    @PUT("api/friends/{id}")
+    @DELETE("api/friends/{id}")
     Call<List<Friend>> deleteRequestFriend(@Path("friendId") Integer friendId, @Header("Authorization") String authHeader);
 }
