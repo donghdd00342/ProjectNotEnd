@@ -2,7 +2,6 @@ package com.project.notend.notend.activity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -26,54 +25,53 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static com.project.notend.notend.data.config.config.CURRENT_TOKEN_ID;
-import static com.project.notend.notend.data.config.config.PREFS_NAME;
 
-public class ChangePasswordActivity extends AppCompatActivity {
+public class ResetPasswordActivity extends AppCompatActivity {
 
-    private static final String TAG = "ChangePasswordActivity";
+    private static final String TAG = "ResetPasswordActivity";
     private static final int REQUEST_SIGNUP = 0;
     private APIService mAPIService;
 
-    @BindView(R.id.edCurrentPassword)
-    EditText _currPasswordText;
+    @BindView(R.id.edKey)
+    EditText _key;
     @BindView(R.id.edNewPassword)
     EditText _newPasswordText;
     @BindView(R.id.edConfirmPassword)
     EditText _confirmPassword;
-    @BindView(R.id.btn_confirm)
-    Button _confirmButton;
+    @BindView(R.id.btn_reset)
+    Button _reset;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_changepassword);
+        setContentView(R.layout.activity_resetpassword);
         ButterKnife.bind(this);
         mAPIService = ApiUtils.getApiService();
-        _confirmButton.setOnClickListener(new View.OnClickListener() {
+        _reset.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                changePassword();
+                resetPassword();
             }
         });
     }
 
-    public void changePassword() {
-        Log.d(TAG, "ChangePassword");
-        _confirmButton.setEnabled(false);
+    public void resetPassword() {
+        Log.d(TAG, "ResetPassword");
+        _reset.setEnabled(false);
 
         if (!validate()) {
             return;
         }
 
 
-        final ProgressDialog progressDialog = new ProgressDialog(ChangePasswordActivity.this,
+        final ProgressDialog progressDialog = new ProgressDialog(ResetPasswordActivity.this,
                 R.style.AppTheme_Dark_Dialog);
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage("Please wait...");
         progressDialog.show();
 
-        final String currentPassword = _currPasswordText.getText().toString();
+        final String key = _key.getText().toString();
         final String newPassword = _newPasswordText.getText().toString();
 
         // TODO: Implement your own authentication logic here.
@@ -84,27 +82,20 @@ public class ChangePasswordActivity extends AppCompatActivity {
                         // On complete call either onLoginSuccess or onLoginFailed
                         try {
                             JSONObject paramObject = new JSONObject();
-                            paramObject.put("currentPassword", currentPassword);
+                            paramObject.put("key", key);
                             paramObject.put("newPassword", newPassword);
 
-//                            SharedPreferences sharedPref1 = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-//                            String token = sharedPref1.getString(CURRENT_TOKEN_ID, "");
-                            String token = SharedPrefs.getInstance().get(CURRENT_TOKEN_ID,String.class);
-                            String header = "Bearer " + token;
-
-                            mAPIService.changePassword(paramObject.toString(), header).enqueue(new Callback<Void>() {
+                            mAPIService.resetPassword(paramObject.toString()).enqueue(new Callback<Void>() {
                                 @Override
                                 public void onResponse(Call<Void> call, Response<Void> response) {
-//                                    Log.d(TAG, "onResponse: " + response.isSuccessful());
-//                                    Log.d(TAG, "onResponse:, responebody--- " + response.code());
                                     if (response.isSuccessful()) {
                                         Toast.makeText(getBaseContext(), "Done !!!", Toast.LENGTH_SHORT).show();
                                         finish();
-                                        Intent intent = new Intent(ChangePasswordActivity.this, Content.class);
+                                        Intent intent = new Intent(ResetPasswordActivity.this, Content.class);
                                         startActivity(intent);
-                                    }else{
-                                        Toast.makeText(getBaseContext(), "Incorrect Password", Toast.LENGTH_SHORT).show();
-                                        _confirmButton.setEnabled(true);
+                                    } else {
+                                        Toast.makeText(getBaseContext(), "Incorrect key !!!", Toast.LENGTH_SHORT).show();
+                                        _reset.setEnabled(true);
                                     }
 
                                 }
@@ -135,15 +126,15 @@ public class ChangePasswordActivity extends AppCompatActivity {
 
     public boolean validate() {
         boolean valid = true;
-        String currentPassword = _currPasswordText.getText().toString();
+        String key = _key.getText().toString();
         String newPassword = _newPasswordText.getText().toString();
         String confirmPassword = _confirmPassword.getText().toString();
 
-        if (currentPassword.isEmpty() || currentPassword.length() < 4 || currentPassword.length() > 10) {
-            _currPasswordText.setError("between 4 and 10 alphanumeric characters");
+        if (key.isEmpty()) {
+            _key.setError("Please enter key !!!");
             valid = false;
         } else {
-            _currPasswordText.setError(null);
+            _key.setError(null);
         }
 
         if (newPassword.isEmpty() || newPassword.length() < 4 || newPassword.length() > 10) {
@@ -168,7 +159,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
         }
 
         if (!valid ){
-            _confirmButton.setEnabled(true);
+            _reset.setEnabled(true);
         }
         return valid;
     }
