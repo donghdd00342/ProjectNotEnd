@@ -1,12 +1,18 @@
 package com.project.notend.notend.data.remote;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.project.notend.notend.entities.Account;
 import com.project.notend.notend.entities.ChatMessage;
 import com.project.notend.notend.entities.Friend;
 import com.project.notend.notend.entities.TokenId;
 
+import org.json.JSONObject;
+
 import java.util.List;
 
+import okhttp3.Response;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
@@ -54,6 +60,7 @@ public interface APIService {
     @GET("api/account/upgrade")
     Call<Void> upgradeAccount(@Header("Authorization") String authHeader);
 
+
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @GET("api/friends")
     Call<List<Friend>> getAllFriendsChat(@Header("Authorization") String authHeader);
@@ -69,4 +76,12 @@ public interface APIService {
     @GET("api/friends")
     Call<List<Friend>> getFriendList(@Header("Authorization") String authHeader);
 
+    @POST("api/account/reset-password/init")
+    Call<Void> getKey(@Body String email);
+
+    @POST("api/account/reset-password/finish")
+    Call<Void> resetPassword(@Body String body);
+
+    @GET("api/transaction-histories")
+    Call<Object> getHistory(@Header("Authorization") String authHeader);
 }

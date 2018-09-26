@@ -24,6 +24,7 @@ import butterknife.BindView;
 
 import com.project.notend.notend.MainActivity;
 import com.project.notend.notend.R;
+import com.project.notend.notend.activity.HistoryActivity;
 import com.project.notend.notend.activity.LoginActivity;
 import com.project.notend.notend.activity.PaypalActivity;
 import com.project.notend.notend.data.remote.APIService;
@@ -61,6 +62,8 @@ public class YourSelfFragment extends Fragment {
     Button _paypal;
     @BindView(R.id.btn_logout)
     Button _logout;
+    @BindView(R.id.btn_history)
+    Button _history;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -97,6 +100,13 @@ public class YourSelfFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, PaypalActivity.class);
+                startActivity(intent);
+            }
+        });
+        _history.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, HistoryActivity.class);
                 startActivity(intent);
             }
         });
@@ -158,7 +168,7 @@ public class YourSelfFragment extends Fragment {
                     Account a = response.body();
                     fillData(a);
                     if(!a.getPaidUser()){
-                        _edit.setEnabled(true);
+                        _edit.setEnabled(false);
                     } else{
                         _paypal.setText("Extend your payment");
                     }
