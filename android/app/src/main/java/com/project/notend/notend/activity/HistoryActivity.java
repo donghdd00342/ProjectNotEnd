@@ -36,6 +36,7 @@ public class HistoryActivity extends AppCompatActivity {
     private static final String TAG = "HistoryActivity";
     private static final int REQUEST_SIGNUP = 0;
     private APIService mAPIService;
+    private RecyclerView rvTransaction;
 
     List<String> transactions = new ArrayList<>();
 
@@ -47,14 +48,10 @@ public class HistoryActivity extends AppCompatActivity {
         mAPIService = ApiUtils.getApiService();
         init_data();
         Log.e("TAG", String.valueOf(transactions.size()) );
-
-        TransactionAdapter adapter = new TransactionAdapter(this, transactions);
-
         GridLayoutManager layoutManager = new GridLayoutManager(this,1);
 
-        RecyclerView rvTransaction = (RecyclerView) findViewById(R.id.rvHistory);
+        rvTransaction = (RecyclerView) findViewById(R.id.rvHistory);
         rvTransaction.setLayoutManager(layoutManager);
-        rvTransaction.setAdapter(adapter);
     }
 
     private void init_data(){
@@ -70,8 +67,12 @@ public class HistoryActivity extends AppCompatActivity {
                         JSONObject jobj = new JSONObject(json.getString(i));
                         String transaction = "Amount: " + jobj.getString("amout") + "$\nPaydate: " +
                                 jobj.getString("payDate");
+
                         transactions.add(transaction);
                     }
+                    TransactionAdapter adapter = new TransactionAdapter(HistoryActivity.this, transactions);
+                    rvTransaction.setAdapter(adapter);
+
                 } catch (Exception e){
                     Log.e("TAG", e.toString() );
                 }

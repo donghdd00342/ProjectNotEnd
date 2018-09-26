@@ -71,9 +71,6 @@ public class FriendsFragment1 extends Fragment {
                     friendList = response.body();
                     FriendsListAdapter rvAdapter = new FriendsListAdapter(getContext(),friendList);
                     rv.setAdapter(rvAdapter);
-//                    for(int i=0;i<friendList.size();i++){
-//                        getFriendDetailUser(friendList.get(i).getFriendLogin());
-//                    }
                 }
             }
 
@@ -83,21 +80,6 @@ public class FriendsFragment1 extends Fragment {
             }
         });
     }
-//    private void getFriendDetailUser(String login){
-//        mAPIService.getDetailUser(login,"Bearer "+token).enqueue(new Callback<Account>() {
-//            @Override
-//            public void onResponse(Call<Account> call, Response<Account> response) {
-//                if (response.isSuccessful()){
-//                    acclist.add(response.body());
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<Account> call, Throwable t) {
-//
-//            }
-//        });
-//    }
 
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
@@ -107,4 +89,6 @@ public class FriendsFragment1 extends Fragment {
             ft.detach(this).attach(this).commit();
         }
     }
+
+
 }

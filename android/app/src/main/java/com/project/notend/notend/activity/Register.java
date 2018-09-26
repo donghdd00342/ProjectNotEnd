@@ -75,18 +75,16 @@ public class Register extends AppCompatActivity {
 
     public void signup() {
         Log.d(TAG, "Signup");
-        if (!validate()) {
+        _signupButton.setEnabled(false);
+        if (!validate()){
             onSignupFailed();
             return;
         }
-        _signupButton.setEnabled(false);
-
         progressDialog1 = new ProgressDialog(this,
                 R.style.AppTheme_Dark_Dialog);
         progressDialog1.setIndeterminate(true);
         progressDialog1.setMessage("Creating Account...");
         progressDialog1.show();
-
         final String fistName = _nameText.getText().toString();
         final String lastName = _lastNameText.getText().toString();
         final String email = _emailText.getText().toString();
@@ -112,8 +110,9 @@ public class Register extends AppCompatActivity {
                         // depending on success
                         // onSignupFailed();
                         //dialogSuccess(Register.this);
-                        createAccount(new Account(email, fistName, lastName, loginName, password, gender));
-
+                        if (validate()){
+                            createAccount(new Account(email, fistName, lastName, loginName, password, gender));
+                        }
                     }
                 }, 3000);
     }
@@ -121,8 +120,6 @@ public class Register extends AppCompatActivity {
     public void onSignupSuccess() {
         _signupButton.setEnabled(true);
         dialogSuccess(Register.this);
-
-
     }
 
     public void onSignupFailed() {
@@ -207,10 +204,8 @@ public class Register extends AppCompatActivity {
                 Log.e(TAG, "Unable to submit post to API.");
                 Log.e(TAG, "onFailure: message" + t.getMessage());
                 t.printStackTrace();
-                Toast.makeText(Register.this, "something went wrong", Toast.LENGTH_SHORT).show();
                 onSignupFailed();
                 progressDialog1.dismiss();
-                //dialogSuccess(Register.this);
             }
         });
     }
