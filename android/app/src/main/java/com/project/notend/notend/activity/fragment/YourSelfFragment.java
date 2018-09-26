@@ -180,7 +180,7 @@ public class YourSelfFragment extends Fragment {
                 if (response.isSuccessful()){
                     Account a = response.body();
                     fillData(a);
-                    Toast.makeText(getContext(),a.getFirstName(),Toast.LENGTH_LONG).show();
+//                    Toast.makeText(getContext(),a.getFirstName(),Toast.LENGTH_LONG).show();
                     if(!a.getPaidUser()){
                         _edit.setEnabled(false);
                     } else{
