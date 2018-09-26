@@ -29,7 +29,7 @@ public class ChatAdapter extends RecyclerView.Adapter {
     private final List<ChatMessage> mMessageList;
     private Context context;
 
-    public ChatAdapter(Context  context, List<ChatMessage> mMessageList) {
+    public ChatAdapter(Context context, List<ChatMessage> mMessageList) {
         this.context = context;
         this.mMessageList = mMessageList;
     }
@@ -60,7 +60,7 @@ public class ChatAdapter extends RecyclerView.Adapter {
                 ((SentMessageHolder) holder).bind(message);
                 break;
             case VIEW_TYPE_MESSAGE_RECEIVED:
-                ((ReceivedMessageHolder) holder).bind(message,context);
+                ((ReceivedMessageHolder) holder).bind(message, context);
         }
     }
 
@@ -69,7 +69,6 @@ public class ChatAdapter extends RecyclerView.Adapter {
         return mMessageList.size();
     }
 
-    
 
     @Override
     public int getItemViewType(int position) {
@@ -84,6 +83,7 @@ public class ChatAdapter extends RecyclerView.Adapter {
             return VIEW_TYPE_MESSAGE_RECEIVED;
         }
     }
+
     private class SentMessageHolder extends RecyclerView.ViewHolder {
         TextView messageText, timeText;
 
@@ -93,6 +93,7 @@ public class ChatAdapter extends RecyclerView.Adapter {
             messageText = (TextView) itemView.findViewById(R.id.text_message_body);
             timeText = (TextView) itemView.findViewById(R.id.text_message_time);
         }
+
         void bind(ChatMessage message) {
             messageText.setText(message.getMsg());
 
@@ -112,22 +113,24 @@ public class ChatAdapter extends RecyclerView.Adapter {
             nameText = (TextView) itemView.findViewById(R.id.text_message_name);
             profileImage = (CircleImageView) itemView.findViewById(R.id.image_message_profile);
         }
-        void bind(ChatMessage message,Context mContext) {
+
+        void bind(ChatMessage message, Context mContext) {
             messageText.setText(message.getMsg());
 
             // Format the stored timestamp into a readable String using method.
             timeText.setText(message.getSendingDateTime());
 
-            nameText.setText(message.getFromUserLastName()+ " " + message.getFromUserFirstName());
+            nameText.setText(message.getFromUserLastName() + " " + message.getFromUserFirstName());
             // Insert the profile image from the URL into the ImageView.
             String url = SERVER_URL_ACCOUNT + message.getFromUserImageUrl();
             Glide.with(mContext).load(url).into(profileImage);
 
         }
     }
+
     public void addItem(ChatMessage message) {
         mMessageList.add(message);
         notifyItemInserted(mMessageList.size());
     }
 
-    }
+}

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -46,24 +47,20 @@ public class FriendsFragment1 extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_friends_1, container, false);
+        View view = inflater.inflate(R.layout.fragment_friends_1, container, false);
+        rv = (RecyclerView) view.findViewById(R.id.rvFriends);
+        GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
+        rv.setLayoutManager(layoutManager);
+        rv.setHasFixedSize(true);
+        setHasOptionsMenu(true);
+        getFriendList();
+        //Log.e("acc",""+acclist);
+        return view;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        rv = (RecyclerView) view.findViewById(R.id.rvFriends);
-        GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
-        rv.setLayoutManager(layoutManager);
-        rv.setHasFixedSize(true);
-
-        setHasOptionsMenu(true);
-
-        getFriendList();
-        Log.e("acc",""+acclist);
-        FriendsListAdapter rvAdapter = new FriendsListAdapter(getContext(),acclist);
-        rv.setAdapter(rvAdapter);
     }
 
     private void getFriendList() {
@@ -72,9 +69,11 @@ public class FriendsFragment1 extends Fragment {
             public void onResponse(Call<List<Friend>> call, Response<List<Friend>> response) {
                 if (response.isSuccessful()){
                     friendList = response.body();
-                    for(int i=0;i<friendList.size();i++){
-                        getFriendDetailUser(friendList.get(i).getFriendLogin());
-                    }
+                    FriendsListAdapter rvAdapter = new FriendsListAdapter(getContext(),friendList);
+                    rv.setAdapter(rvAdapter);
+//                    for(int i=0;i<friendList.size();i++){
+//                        getFriendDetailUser(friendList.get(i).getFriendLogin());
+//                    }
                 }
             }
 
@@ -84,21 +83,28 @@ public class FriendsFragment1 extends Fragment {
             }
         });
     }
+//    private void getFriendDetailUser(String login){
+//        mAPIService.getDetailUser(login,"Bearer "+token).enqueue(new Callback<Account>() {
+//            @Override
+//            public void onResponse(Call<Account> call, Response<Account> response) {
+//                if (response.isSuccessful()){
+//                    acclist.add(response.body());
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<Account> call, Throwable t) {
+//
+//            }
+//        });
+//    }
 
-    private void getFriendDetailUser(String login){
-        mAPIService.getDetailUser(login,"Bearer "+token).enqueue(new Callback<Account>() {
-            @Override
-            public void onResponse(Call<Account> call, Response<Account> response) {
-                if (response.isSuccessful()){
-                    acclist.add(response.body());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Account> call, Throwable t) {
-
-            }
-        });
-
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser){
+            FragmentTransaction ft = getFragmentManager().beginTransaction();
+            ft.detach(this).attach(this).commit();
+        }
     }
 }

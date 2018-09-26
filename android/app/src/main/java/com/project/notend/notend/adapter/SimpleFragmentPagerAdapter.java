@@ -24,7 +24,7 @@ public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter {
     private Context mContext;
     private static int count;
     private String tabTitles[] = new String[] { "List", "Friend","Messenger","YourSelf"};
-    private int[] imageResId = { R.drawable.human, R.drawable.administrator ,R.drawable.communication,
+    private int[] imageResId = { R.drawable.find_user, R.drawable.friend ,R.drawable.communication,
             R.drawable.administrator};
     private List<Fragment> fragmentList;
 

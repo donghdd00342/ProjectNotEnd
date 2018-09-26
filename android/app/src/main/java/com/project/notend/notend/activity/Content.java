@@ -21,15 +21,14 @@ public class Content extends AppCompatActivity {
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         SimpleFragmentPagerAdapter adapter = new SimpleFragmentPagerAdapter(this, getSupportFragmentManager());
         viewPager.setAdapter(adapter);
+        viewPager.setOffscreenPageLimit(3);
         tabLayout.setupWithViewPager(viewPager);
         for (int i = 0; i < tabLayout.getTabCount(); i++) {
             TabLayout.Tab tab = tabLayout.getTabAt(i);
             //tab.setCustomView(adapter.getTabView(i));
             tab.setIcon(adapter.getTabIcon(i));
         }
-
     }
-
 //    @Override
 //    public void onBackPressed() {
 //        // disable going back to the MainActivity

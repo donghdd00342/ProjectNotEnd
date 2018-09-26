@@ -75,6 +75,10 @@ public class ChatActivity extends AppCompatActivity {
         String fistNameFriend = intent.getExtras().getString("fistNameFriend");
         String lastNameFriend = intent.getExtras().getString("lastNameFriend");
         String imageUrlFriend = intent.getExtras().getString("imageUrlFriend");
+        messageList.add(new ChatMessage(1, 1, "Xin chào!", "1-1-2012", 2,imageUrlFriend));
+        messageList.add(new ChatMessage(1, 1, "mình là " + fistNameFriend, "1-1-2012", 2,imageUrlFriend));
+        messageList.add(new ChatMessage(2, 1, "rất vui khi được làm quen với bạn", "1-1-2012", 1,imageUrlFriend));
+        messageList.add(new ChatMessage(1, 1, " : )) - end", "1-1-2012", 2,imageUrlFriend));
         //set ActionBar
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -134,10 +138,6 @@ public class ChatActivity extends AppCompatActivity {
     //get data messagers
     private void initdata(final int id_friend, final String lastNameFriend,
                           final String fistNameFriend, final String imageUrlFriend) {
-        messageList.add(new ChatMessage(1, 1, "ms1", "1-1-2012", 2));
-        messageList.add(new ChatMessage(1, 1, "ms2", "1-1-2012", 2));
-        messageList.add(new ChatMessage(2, 1, "ms3", "1-1-2012", 1));
-        messageList.add(new ChatMessage(1, 1, "ms4", "1-1-2012", 2));
         mAPIService.getAllMessagers("Bearer " + SharedPrefs.getInstance().get(CURRENT_TOKEN_ID, String.class))
                 .enqueue(new Callback<List<ChatMessage>>() {
                     @Override

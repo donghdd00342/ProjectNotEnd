@@ -99,4 +99,13 @@ public class ListUserAdapter extends RecyclerView.Adapter  {
         void onClick(View view, int position,boolean isLongClick);
     }
 
+    public void addAccount(List<Account> list){
+
+        for (Account account : list){
+            listData.add(account);
+        }
+        notifyDataSetChanged();
+
+    }
+
 }
