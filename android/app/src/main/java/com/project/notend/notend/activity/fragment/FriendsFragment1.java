@@ -37,6 +37,7 @@ public class FriendsFragment1 extends Fragment {
     List<Friend> friendList = new ArrayList<>();
     List<Account> acclist = new ArrayList<>();
     private APIService mAPIService;
+    private FriendsListAdapter rvAdapter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -64,12 +65,12 @@ public class FriendsFragment1 extends Fragment {
     }
 
     private void getFriendList() {
-        mAPIService.getFriendList("Bearer "+token).enqueue(new Callback<List<Friend>>() {
+        mAPIService.getFriendList("Bearer "+SharedPrefs.getInstance().get(CURRENT_TOKEN_ID,String.class)).enqueue(new Callback<List<Friend>>() {
             @Override
             public void onResponse(Call<List<Friend>> call, Response<List<Friend>> response) {
                 if (response.isSuccessful()){
                     friendList = response.body();
-                    FriendsListAdapter rvAdapter = new FriendsListAdapter(getContext(),friendList);
+                    rvAdapter = new FriendsListAdapter(getContext(),friendList);
                     rv.setAdapter(rvAdapter);
                 }
             }
@@ -81,14 +82,13 @@ public class FriendsFragment1 extends Fragment {
         });
     }
 
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        if (isVisibleToUser){
-            FragmentTransaction ft = getFragmentManager().beginTransaction();
-            ft.detach(this).attach(this).commit();
-        }
-    }
+//    @Override
+//    public void setUserVisibleHint(boolean isVisibleToUser) {
+//        super.setUserVisibleHint(isVisibleToUser);
+//        if (isVisibleToUser){
+//            getFriendList();
+//        }
+//    }
 
 
 }
