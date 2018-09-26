@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide;
 import com.project.notend.notend.R;
 import com.project.notend.notend.activity.FriendDetailUser;
 import com.project.notend.notend.entities.Account;
+import com.project.notend.notend.entities.Friend;
 
 import java.util.List;
 
@@ -26,12 +27,12 @@ import static com.project.notend.notend.data.remote.ApiUtils.SERVER_URL_ACCOUNT;
 
 public class FriendsListAdapter extends RecyclerView.Adapter {
     private Context mContext;
-    private List<Account> listAcc;
+    private List<Friend> listFriend;
 
 
-    public FriendsListAdapter(Context context, List<Account> listAcc) {
+    public FriendsListAdapter(Context context, List<Friend> listFriend) {
         this.mContext = context;
-        this.listAcc = listAcc;
+        this.listFriend = listFriend;
     }
 
     @NonNull
@@ -45,18 +46,16 @@ public class FriendsListAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         NewsHolder newsHolder = (NewsHolder) holder;
-        final Account account = listAcc.get(position);
-        newsHolder.tvName.setText(account.getFirstName() + " " + account.getLastName());
-        newsHolder.tvDetail.setText(account.getEmail());
-        String url = SERVER_URL_ACCOUNT + account.getImageUrl();
+        final Friend friend = listFriend.get(position);
+        newsHolder.tvName.setText(friend.getFriendFirstName() + " " + friend.getFriendLastName());
+        newsHolder.tvDetail.setText(friend.getFriendLogin());
+        String url = SERVER_URL_ACCOUNT + friend.getFriendImageUrl();
         Glide.with(mContext).load(url).into(newsHolder.imAvatar);
         newsHolder.setItemClickListener(new ItemClickListener() {
             @Override
             public void onClick(View view, int position, boolean isLongClick) {
                 Intent intent = new Intent(mContext, FriendDetailUser.class);
-                Bundle bundle = new Bundle();
-                bundle.putParcelable("data", account);
-                intent.putExtras(bundle);
+                intent.putExtra("friendLogin",friend.getFriendLogin());
                 mContext.startActivity(intent);
             }
         });
@@ -64,7 +63,7 @@ public class FriendsListAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return listAcc.size();
+        return listFriend.size();
     }
 
     public class NewsHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

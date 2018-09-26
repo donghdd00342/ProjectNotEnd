@@ -116,12 +116,13 @@ public class ChatMessage {
         this.toUserId = toUserId;
     }
 
-    public ChatMessage(Integer fromUserId, Integer id, String msg, String sendingDateTime, Integer toUserId) {
+    public ChatMessage(Integer fromUserId, Integer id, String msg, String sendingDateTime, Integer toUserId, String fromUserImageUrl) {
         this.fromUserId = fromUserId;
         this.id = id;
         this.msg = msg;
         this.sendingDateTime = sendingDateTime;
         this.toUserId = toUserId;
+        this.fromUserImageUrl= fromUserImageUrl;
     }
 
     public ChatMessage() {

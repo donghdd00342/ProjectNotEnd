@@ -69,4 +69,12 @@ public class MessengerFragment extends Fragment {
                     }
                 });
     }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser){
+            initData();
+        }
+    }
 }

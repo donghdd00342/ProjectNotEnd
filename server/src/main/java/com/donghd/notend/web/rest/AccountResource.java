@@ -171,26 +171,24 @@ public class AccountResource {
      * @throws EmailAlreadyUsedException 400 (Bad Request) if the email is already used
      * @throws RuntimeException 500 (Internal Server Error) if the user login wasn't found
      */
-    @PostMapping("/account")
-    @Timed
-    public void saveAccount(@Valid @RequestBody UserDTO userDTO) {
-        final String userLogin = SecurityUtils.getCurrentUserLogin().orElseThrow(() -> new InternalServerErrorException("Current user login not found"));
-        Optional<User> existingUser = userRepository.findOneByEmailIgnoreCase(userDTO.getEmail());
-        if (existingUser.isPresent() && (!existingUser.get().getLogin().equalsIgnoreCase(userLogin))) {
-            throw new EmailAlreadyUsedException();
-        }
-        Optional<User> userOpt = userRepository.findOneByLogin(userLogin);
-        if (!userOpt.isPresent()) {
-            throw new InternalServerErrorException("User could not be found");
-        }
-        User user = userOpt.get();
-        List<String> authList = userService.getAuthorities();
-        if ((!authList.contains(Constants.ROLE_ADMIN)) && (!user.getPaidUser())) {
-            throw new InternalServerErrorException("Only paid users can use this function");
-        }
-        userService.updateUser(userDTO.getFirstName(), userDTO.getLastName(), userDTO.getEmail(),
-            userDTO.getLangKey(), userDTO.getImageUrl());
-   }
+//     @PostMapping("/account")
+//     @Timed
+//     public void saveAccount(@Valid @RequestBody UserDTO userDTO) {
+//         final String userLogin = SecurityUtils.getCurrentUserLogin().orElseThrow(() -> new InternalServerErrorException("Current user login not found"));
+//         Optional<User> existingUser = userRepository.findOneByEmailIgnoreCase(userDTO.getEmail());
+//         if (existingUser.isPresent() && (!existingUser.get().getLogin().equalsIgnoreCase(userLogin))) {
+//             throw new EmailAlreadyUsedException();
+//         }
+//         Optional<User> user = userRepository.findOneByLogin(userLogin);
+//         if (!user.isPresent()) {
+//             throw new InternalServerErrorException("User could not be found");
+//         }
+//         if (!user.get().getPaidUser()) {
+//             throw new InternalServerErrorException("Only paid users can use this function");
+//         }
+//         userService.updateUser(userDTO.getFirstName(), userDTO.getLastName(), userDTO.getEmail(),
+//             userDTO.getLangKey(), userDTO.getImageUrl());
+//    }
 
     /**
      * POST  /account/change-password : changes the current user's password

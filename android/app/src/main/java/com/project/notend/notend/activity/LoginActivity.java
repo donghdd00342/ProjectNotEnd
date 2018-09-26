@@ -45,6 +45,8 @@ public class LoginActivity extends AppCompatActivity {
     Button _loginButton;
     @BindView(R.id.link_signup)
     TextView _signupLink;
+    @BindView(R.id.link_forgetPass)
+    TextView forgetPass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +67,15 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // Start the Signup activity
                 Intent intent = new Intent(getApplicationContext(), Register.class);
+                startActivityForResult(intent, REQUEST_SIGNUP);
+            }
+        });
+        forgetPass.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // Start the Signup activity
+                Intent intent = new Intent(getApplicationContext(), GetkeyPasswordActivity.class);
                 startActivityForResult(intent, REQUEST_SIGNUP);
             }
         });
