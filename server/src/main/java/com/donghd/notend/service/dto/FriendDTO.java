@@ -24,6 +24,44 @@ public class FriendDTO implements Serializable {
     private String friendImageUrl;
     private String friendLogin;
 
+    private String ownerFirstName;
+    private String ownerLastName;
+    private String ownerImageUrl;
+    private String ownerLogin;
+
+    public String getOwnerFirstName() {
+    	return this.ownerFirstName;
+    }
+
+    public void setOwnerFirstName(String ownerFirstName) {
+    	this.ownerFirstName = ownerFirstName;
+    }
+
+    public String getOwnerLastName() {
+    	return this.ownerLastName;
+    }
+
+    public void setOwnerLastName(String ownerLastName) {
+    	this.ownerLastName = ownerLastName;
+    }
+
+    public String getOwnerImageUrl() {
+    	return this.ownerImageUrl;
+    }
+
+    public void setOwnerImageUrl(String ownerImageUrl) {
+    	this.ownerImageUrl = ownerImageUrl;
+    }
+
+    public String getOwnerLogin() {
+    	return this.ownerLogin;
+    }
+
+    public void setOwnerLogin(String ownerLogin) {
+    	this.ownerLogin = ownerLogin;
+    }
+
+
     public String getFriendLogin() {
     	return this.friendLogin;
     }

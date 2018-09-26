@@ -17,6 +17,10 @@ public interface FriendMapper extends EntityMapper<FriendDTO, Friend> {
     @Mapping(source = "friend.lastName", target = "friendLastName")
     @Mapping(source = "friend.imageUrl", target = "friendImageUrl")
     @Mapping(source = "friend.login", target = "friendLogin")
+    @Mapping(source = "owner.firstName", target = "ownerFirstName")
+    @Mapping(source = "owner.lastName", target = "ownerLastName")
+    @Mapping(source = "owner.imageUrl", target = "ownerImageUrl")
+    @Mapping(source = "owner.login", target = "ownerLogin")
     FriendDTO toDto(Friend friend);
 
     @Mapping(source = "ownerId", target = "owner")
