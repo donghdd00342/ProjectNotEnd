@@ -184,7 +184,7 @@ public class Friend implements Parcelable {
         }
         parcel.writeString(friendImageUrl);
     }
-
+  
     public Friend() {
     }
 }
