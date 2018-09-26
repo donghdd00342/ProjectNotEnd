@@ -48,9 +48,18 @@ public class FriendDetailUser extends AppCompatActivity{
         actionBar.setDisplayShowHomeEnabled(true);
         ButterKnife.bind(this);
         mAPIService = ApiUtils.getApiService();
-        Bundle getBundle = this.getIntent().getExtras();
-        final Account account = getBundle.getParcelable("data");
-        initData(account.getLogin());
+        String friendLogin;
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras == null) {
+                friendLogin= null;
+            } else {
+                friendLogin= extras.getString("friendLogin");
+            }
+        } else {
+            friendLogin = (String) savedInstanceState.getSerializable("friendLogin");
+        }
+        initData(friendLogin);
     }
 
     @Override
