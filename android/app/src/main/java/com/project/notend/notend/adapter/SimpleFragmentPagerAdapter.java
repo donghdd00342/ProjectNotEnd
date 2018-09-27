@@ -19,7 +19,6 @@ import com.project.notend.notend.activity.fragment.YourSelfFragment;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter {
     private Context mContext;
     private static int count;
@@ -71,5 +70,4 @@ public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter {
     public int getTabIcon(int position){
         return imageResId[position];
     }
-
 }

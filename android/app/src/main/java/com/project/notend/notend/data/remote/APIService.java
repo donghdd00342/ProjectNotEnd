@@ -54,7 +54,7 @@ public interface APIService {
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST("/api/friends")
-    Call<Void> askFriend(@Body Friend body, @Header("Authorization") String authHeader);
+    Call<Friend> askFriend(@Body Friend body, @Header("Authorization") String authHeader);
 
     @POST("api/account")
     Call<Account> editAccount(@Body Account account, @Header("Authorization") String authHeader);
@@ -91,8 +91,8 @@ public interface APIService {
     Call<List<Friend>> getRequestFriend(@Header("Authorization") String authHeader);
 
     @PUT("api/friends")
-    Call<List<Friend>> acceptRequestFriend(@Body Friend body, @Header("Authorization") String authHeader);
+    Call<Friend> acceptRequestFriend(@Body Friend body, @Header("Authorization") String authHeader);
 
     @DELETE("api/friends/{id}")
-    Call<List<Friend>> deleteRequestFriend(@Path("friendId") Integer friendId, @Header("Authorization") String authHeader);
+    Call<Void> deleteRequestFriend(@Path("id") Integer friendId, @Header("Authorization") String authHeader);
 }

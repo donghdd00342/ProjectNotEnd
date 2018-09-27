@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -33,9 +32,8 @@ import static com.project.notend.notend.data.config.config.CURRENT_TOKEN_ID;
 public class FriendsFragment1 extends Fragment {
     private RecyclerView rv;
 
-    private static String token = SharedPrefs.getInstance().get(CURRENT_TOKEN_ID,String.class);
+    private static String token;
     List<Friend> friendList = new ArrayList<>();
-    List<Account> acclist = new ArrayList<>();
     private APIService mAPIService;
     private FriendsListAdapter rvAdapter;
 
@@ -55,7 +53,6 @@ public class FriendsFragment1 extends Fragment {
         rv.setHasFixedSize(true);
         setHasOptionsMenu(true);
         getFriendList();
-        //Log.e("acc",""+acclist);
         return view;
     }
 
@@ -65,7 +62,8 @@ public class FriendsFragment1 extends Fragment {
     }
 
     private void getFriendList() {
-        mAPIService.getFriendList("Bearer "+SharedPrefs.getInstance().get(CURRENT_TOKEN_ID,String.class)).enqueue(new Callback<List<Friend>>() {
+        token = SharedPrefs.getInstance().get(CURRENT_TOKEN_ID,String.class);
+        mAPIService.getFriendList("Bearer "+token).enqueue(new Callback<List<Friend>>() {
             @Override
             public void onResponse(Call<List<Friend>> call, Response<List<Friend>> response) {
                 if (response.isSuccessful()){
@@ -89,6 +87,4 @@ public class FriendsFragment1 extends Fragment {
 //            getFriendList();
 //        }
 //    }
-
-
 }

@@ -48,7 +48,7 @@ public class FriendsListAdapter extends RecyclerView.Adapter {
         NewsHolder newsHolder = (NewsHolder) holder;
         final Friend friend = listFriend.get(position);
         newsHolder.tvName.setText(friend.getFriendFirstName() + " " + friend.getFriendLastName());
-        newsHolder.tvDetail.setText(friend.getFriendLogin());
+        newsHolder.tvDetail.setText(" ");
         String url = SERVER_URL_ACCOUNT + friend.getFriendImageUrl();
         Glide.with(mContext).load(url).into(newsHolder.imAvatar);
         newsHolder.setItemClickListener(new ItemClickListener() {

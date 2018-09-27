@@ -23,19 +23,19 @@
                 android:scaleType="centerCrop"
                 android:src="@drawable/img3" />
 
-            <Button
-                android:id="@+id/btEditImage"
-                android:layout_width="fill_parent"
-                android:layout_height="50dp"
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="16dp"
-                android:background="@drawable/button_background"
-                android:drawableLeft="@drawable/ic_photo_camera"
-                android:drawablePadding="30dp"
-                android:gravity="left|center_vertical"
-                android:paddingLeft="100dp"
-                android:text="changen Image"
-                android:textColor="#fff" />
+            <!--<Button-->
+                <!--android:id="@+id/btEditImage"-->
+                <!--android:layout_width="fill_parent"-->
+                <!--android:layout_height="50dp"-->
+                <!--android:layout_alignParentBottom="true"-->
+                <!--android:layout_marginBottom="16dp"-->
+                <!--android:background="@drawable/button_background"-->
+                <!--android:drawableLeft="@drawable/ic_photo_camera"-->
+                <!--android:drawablePadding="30dp"-->
+                <!--android:gravity="left|center_vertical"-->
+                <!--android:paddingLeft="100dp"-->
+                <!--android:text="changen Image"-->
+                <!--android:textColor="#fff" />-->
         </RelativeLayout>
 
         <LinearLayout
@@ -102,7 +102,7 @@
                         android:background="#fff"
                         android:gravity="left"
                         android:padding="5dip"
-                        android:text="Age"
+                        android:text="Birthday"
                         android:textColor="#000000" />
 
                     <TextView
@@ -201,7 +201,7 @@
                 android:clickable="true"
                 android:elevation="4dp"
                 android:padding="5dp"
-                android:text="education and occupation"
+                android:text="Job and Religiion"
                 android:textColor="@color/black"
                 android:textSize="25sp" />
 
@@ -212,30 +212,30 @@
                 android:shrinkColumns="*"
                 android:stretchColumns="*">
 
-                <TableRow
-                    android:id="@+id/tableRow21"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="#fff"
-                    android:padding="5dip">
+                <!--<TableRow-->
+                    <!--android:id="@+id/tableRow21"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:background="#fff"-->
+                    <!--android:padding="5dip">-->
 
-                    <TextView
-                        android:layout_weight="1"
-                        android:background="#fff"
-                        android:gravity="left"
-                        android:padding="5dip"
-                        android:text="Education"
-                        android:textColor="#000000" />
+                    <!--<TextView-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:background="#fff"-->
+                        <!--android:gravity="left"-->
+                        <!--android:padding="5dip"-->
+                        <!--android:text="Education"-->
+                        <!--android:textColor="#000000" />-->
 
-                    <TextView
-                        android:id="@+id/myEdu"
-                        android:layout_weight="1"
-                        android:background="#fff"
-                        android:gravity="left"
-                        android:padding="5dip"
-                        android:text="Ðại học"
-                        android:textColor="#8470ff" />
-                </TableRow>
+                    <!--<TextView-->
+                        <!--android:id="@+id/myEdu"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:background="#fff"-->
+                        <!--android:gravity="left"-->
+                        <!--android:padding="5dip"-->
+                        <!--android:text="Ðại học"-->
+                        <!--android:textColor="#8470ff" />-->
+                <!--</TableRow>-->
 
                 <TableRow
                     android:id="@+id/tableRow22"
@@ -249,7 +249,7 @@
                         android:background="#fff"
                         android:gravity="left"
                         android:padding="5dip"
-                        android:text="Job"
+                        android:text="Working At"
                         android:textColor="#000000" />
 
                     <TextView
@@ -258,7 +258,7 @@
                         android:background="#fff"
                         android:gravity="left"
                         android:padding="5dip"
-                        android:text="_"
+                        android:text=" "
                         android:textColor="#8470ff" />
                 </TableRow>
 
@@ -274,18 +274,44 @@
                         android:background="#fff"
                         android:gravity="left"
                         android:padding="5dip"
-                        android:text="Salary"
+                        android:text="Religion"
                         android:textColor="#000000" />
 
                     <TextView
-                        android:id="@+id/mySalary"
+                        android:id="@+id/myReligion"
                         android:layout_weight="1"
                         android:background="#fff"
                         android:gravity="left"
                         android:padding="5dip"
-                        android:text="-"
+                        android:text=" "
                         android:textColor="#8470ff" />
                 </TableRow>
+
+                <TableRow
+                    android:id="@+id/tableRow24"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#fff"
+                    android:padding="5dip">
+
+                    <TextView
+                        android:layout_weight="1"
+                        android:background="#fff"
+                        android:gravity="left"
+                        android:padding="5dip"
+                        android:text="Mother Tongue"
+                        android:textColor="#000000" />
+
+                    <TextView
+                        android:id="@+id/myLang"
+                        android:layout_weight="1"
+                        android:background="#fff"
+                        android:gravity="left"
+                        android:padding="5dip"
+                        android:text=" "
+                        android:textColor="#8470ff" />
+                </TableRow>
+
             </TableLayout>
             <TextView
                 android:layout_width="fill_parent"
@@ -313,20 +339,21 @@
                     android:padding="5dip">
 
                     <TextView
+                        android:layout_width="84dp"
                         android:layout_weight="1"
                         android:background="#fff"
                         android:gravity="left"
                         android:padding="5dip"
-                        android:text="Have Children"
+                        android:text="Hobbies"
                         android:textColor="#000000" />
 
                     <TextView
-                        android:id="@+id/myHaveChildren"
+                        android:id="@+id/myHobbies"
                         android:layout_weight="1"
                         android:background="#fff"
                         android:gravity="left"
                         android:padding="5dip"
-                        android:text="_"
+                        android:text=" "
                         android:textColor="#8470ff" />
                 </TableRow>
 
@@ -342,16 +369,16 @@
                         android:background="#fff"
                         android:gravity="left"
                         android:padding="5dip"
-                        android:text="Desire to have children"
+                        android:text="Family Status"
                         android:textColor="#000000" />
 
                     <TextView
-                        android:id="@+id/myDesireChildren"
+                        android:id="@+id/myFamily"
                         android:layout_weight="1"
                         android:background="#fff"
                         android:gravity="left"
                         android:padding="5dip"
-                        android:text="_"
+                        android:text=" "
                         android:textColor="#8470ff" />
                 </TableRow>
 
@@ -363,6 +390,7 @@
                     android:padding="5dip">
 
                     <TextView
+                        android:layout_width="5dp"
                         android:layout_weight="1"
                         android:background="#fff"
                         android:gravity="left"
@@ -376,7 +404,7 @@
                         android:background="#fff"
                         android:gravity="left"
                         android:padding="5dip"
-                        android:text="-"
+                        android:text=" "
                         android:textColor="#8470ff" />
                 </TableRow>
             </TableLayout>
@@ -403,7 +431,7 @@
                 android:id="@+id/btn_paypal"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="5dp"
                 android:layout_marginTop="5dp"
                 android:padding="12dp"
                 android:text="Become Premium" />
@@ -412,7 +440,7 @@
                 android:id="@+id/btn_history"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="5dp"
                 android:layout_marginTop="5dp"
                 android:padding="12dp"
                 android:text="Transaction Histories" />
@@ -421,7 +449,7 @@
                 android:id="@+id/btn_logout"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="5dp"
                 android:layout_marginTop="5dp"
                 android:padding="12dp"
                 android:text="Logout" />

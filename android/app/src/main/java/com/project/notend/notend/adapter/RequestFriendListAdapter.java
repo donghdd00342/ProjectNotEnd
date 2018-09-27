@@ -3,11 +3,11 @@ package com.project.notend.notend.adapter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -49,25 +49,31 @@ public class RequestFriendListAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, final int position) {
-        NewsHolder newsHolder = (NewsHolder) holder;
+        final NewsHolder newsHolder = (NewsHolder) holder;
         final Friend friend = listRequestFriend.get(position);
-        newsHolder.reqName.setText(friend.getFriendLastName() + " " + friend.getFriendFirstName());
-        String url = SERVER_URL_ACCOUNT + friend.getFriendImageUrl();
+        newsHolder.reqName.setText(friend.getOwnerLastName() + " " + friend.getOwnerFirstName());
+        String url = SERVER_URL_ACCOUNT + friend.getOwnerImageUrl();
         Glide.with(mContext).load(url).into(newsHolder.reqAvatar);
 
         newsHolder.btn_AcceptReq.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 friend.setStatus(12);
+                Log.e("conffriend",""+friend.getStatus());
                 acceptRequest(friend);
+                notifyItemRangeChanged(position, getItemCount());
                 notifyItemRemoved(position);
             }
         });
         newsHolder.btn_DeleteReq.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                deleteRequest(friend.getFriendId());
-                notifyItemRemoved(position);
+                Log.e("delfriend",""+friend.getOwnerId());
+                if (friend.getStatus()==11){
+                    deleteRequest(friend.getOwnerId());
+                    notifyItemRangeChanged(position, getItemCount());
+                    notifyItemRemoved(position);
+                };
             }
         });
     }
@@ -82,8 +88,8 @@ public class RequestFriendListAdapter extends RecyclerView.Adapter {
         TextView reqName;
         @BindView(R.id.reqAvatar)
         CircleImageView reqAvatar;
-        @BindView(R.id.reqHolder)
-        RelativeLayout reqHolder;
+//        @BindView(R.id.reqHolder)
+//        RelativeLayout reqHolder;
         @BindView(R.id.btn_AcceptReq)
         Button btn_AcceptReq;
         @BindView(R.id.btn_DeleteReq)
@@ -96,26 +102,28 @@ public class RequestFriendListAdapter extends RecyclerView.Adapter {
 
     private void acceptRequest(Friend paramObject) {
         mAPIService = ApiUtils.getApiService();
-        mAPIService.acceptRequestFriend(paramObject, "Bearer " + SharedPrefs.getInstance().get(CURRENT_TOKEN_ID, String.class).toString()).enqueue(new Callback<List<Friend>>() {
+        mAPIService.acceptRequestFriend(paramObject, "Bearer " + SharedPrefs.getInstance().get(CURRENT_TOKEN_ID, String.class).toString()).enqueue(new Callback<Friend>() {
             @Override
-            public void onResponse(Call<List<Friend>> call, Response<List<Friend>> response) {
+            public void onResponse(Call<Friend> call, Response<Friend> response) {
+                Log.e("accept",""+response);
             }
 
             @Override
-            public void onFailure(Call<List<Friend>> call, Throwable t) {
+            public void onFailure(Call<Friend> call, Throwable t) {
             }
         });
     }
 
     private void deleteRequest(Integer friendId) {
         mAPIService = ApiUtils.getApiService();
-        mAPIService.deleteRequestFriend(friendId, "Bearer " + SharedPrefs.getInstance().get(CURRENT_TOKEN_ID, String.class).toString()).enqueue(new Callback<List<Friend>>() {
+        mAPIService.deleteRequestFriend(friendId, "Bearer " + SharedPrefs.getInstance().get(CURRENT_TOKEN_ID, String.class).toString()).enqueue(new Callback<Void>() {
             @Override
-            public void onResponse(Call<List<Friend>> call, Response<List<Friend>> response) {
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                Log.e("delete",""+response);
             }
 
             @Override
-            public void onFailure(Call<List<Friend>> call, Throwable t) {
+            public void onFailure(Call<Void> call, Throwable t) {
             }
         });
     }
