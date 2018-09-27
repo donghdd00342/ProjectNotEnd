@@ -23,6 +23,9 @@ public interface FriendRepository extends JpaRepository<Friend, Long> {
     @Query("select friend from Friend friend where friend.owner.login = ?#{principal.username}")
     Page<Friend> findAllByOwnerIsCurrentUser(Pageable pageable);
 
+    @Query("select friend from Friend friend where friend.owner.login = ?#{principal.username} and friend.status = 12")
+    Page<Friend> findAllByOwnerIsCurrentUserAndStatusFriended(Pageable pageable);
+
     @Query("select friend from Friend friend where friend.friend.login = ?#{principal.username}")
     List<Friend> findByFriendIsCurrentUser();
 

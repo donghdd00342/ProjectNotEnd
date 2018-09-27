@@ -65,7 +65,7 @@ public class FriendServiceImpl implements FriendService {
     @Override
     public Page<FriendDTO> findAllByOwner(Pageable pageable) {
         log.debug("Request to get all Friends By Owner");
-        return friendRepository.findAllByOwnerIsCurrentUser(pageable)
+        return friendRepository.findAllByOwnerIsCurrentUserAndStatusFriended(pageable)
             .map(friendMapper::toDto);
     }
 
