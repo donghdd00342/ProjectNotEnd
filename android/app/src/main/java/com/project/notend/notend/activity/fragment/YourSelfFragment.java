@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,7 +46,7 @@ import static com.project.notend.notend.data.remote.ApiUtils.SERVER_URL_ACCOUNT;
 import com.project.notend.notend.data.storage_share.SharedPrefs;
 
 public class YourSelfFragment extends Fragment {
-    private static String token = SharedPrefs.getInstance().get(CURRENT_TOKEN_ID,String.class);
+    private static String token ;
     private APIService mAPIService;
     private TextView tvAge;
     private TextView tvEdu;
@@ -85,6 +86,7 @@ public class YourSelfFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_yourself, container, false);
+        token = SharedPrefs.getInstance().get(CURRENT_TOKEN_ID,String.class);
         initView(rootView);
         context = rootView.getContext();
         ButterKnife.bind(this, rootView);
@@ -178,6 +180,7 @@ public class YourSelfFragment extends Fragment {
                 if (response.isSuccessful()){
                     Account a = response.body();
                     fillData(a);
+//                    Toast.makeText(getContext(),a.getFirstName(),Toast.LENGTH_LONG).show();
                     if(!a.getPaidUser()){
                         _edit.setEnabled(false);
                     } else{
@@ -211,7 +214,8 @@ public class YourSelfFragment extends Fragment {
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser){
-            getAccountInfo();
+            FragmentTransaction ft = getFragmentManager().beginTransaction();
+            ft.detach(this).attach(this).commit();
         }
     }
 }
