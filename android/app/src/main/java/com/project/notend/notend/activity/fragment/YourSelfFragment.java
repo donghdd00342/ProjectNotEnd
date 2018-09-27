@@ -8,14 +8,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.project.notend.notend.activity.ChangePasswordActivity;
 import com.project.notend.notend.activity.Content;
 import com.project.notend.notend.activity.EditProfile;
@@ -38,24 +41,33 @@ import retrofit2.Response;
 
 import static com.project.notend.notend.data.config.config.CURRENT_ID;
 import static com.project.notend.notend.data.config.config.CURRENT_TOKEN_ID;
+import static com.project.notend.notend.data.remote.ApiUtils.SERVER_URL_ACCOUNT;
+
 import com.project.notend.notend.data.storage_share.SharedPrefs;
 
 public class YourSelfFragment extends Fragment {
-    private static String token = SharedPrefs.getInstance().get(CURRENT_TOKEN_ID,String.class);
+    private static String token ;
     private APIService mAPIService;
-    private TextView tvName;
     private TextView tvAge;
-    private TextView tvHeight;
-    private TextView tvAddress;
-    private TextView tvCountry;
     private TextView tvEdu;
-    private TextView tvJob;
     private TextView tvSalary;
     private TextView tvHaveChildren;
     private TextView tvDesireChildren;
-    private TextView tvStatusLife;
     Context context;
-
+    @BindView(R.id.imgProfile)
+    ImageView imgProfile;
+    @BindView(R.id.myAddress)
+    TextView tvAddress;
+    @BindView(R.id.myCountry)
+    TextView tvCountry;
+    @BindView(R.id.myJob)
+    TextView tvJob;
+    @BindView(R.id.myStatusLife)
+    TextView tvStatusLife;
+    @BindView(R.id.myName)
+    TextView tvName;
+    @BindView(R.id.myHeight)
+    TextView tvHeight;
     @BindView(R.id.btn_Edit)
     Button _edit;
     @BindView(R.id.btn_paypal)
@@ -74,12 +86,12 @@ public class YourSelfFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_yourself, container, false);
+        token = SharedPrefs.getInstance().get(CURRENT_TOKEN_ID,String.class);
         initView(rootView);
         context = rootView.getContext();
         ButterKnife.bind(this, rootView);
         Button _changePassButton = (Button) rootView.findViewById(R.id.btn_changepassview);
         Button btEdit = (Button) rootView.findViewById(R.id.btn_Edit);
-
         _changePassButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -136,13 +148,14 @@ public class YourSelfFragment extends Fragment {
                 dialogInterface.dismiss();
                 String token = SharedPrefs.getInstance().get(CURRENT_TOKEN_ID,String.class);
                 SharedPrefs.getInstance().clear();
+                Content content = (Content) getActivity();
+                content.finish();
                 Intent intent = new Intent(context, LoginActivity.class);
                 startActivity(intent);
             }
         });
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
-
     }
 
     public void initView(View rootView){
@@ -167,6 +180,7 @@ public class YourSelfFragment extends Fragment {
                 if (response.isSuccessful()){
                     Account a = response.body();
                     fillData(a);
+//                    Toast.makeText(getContext(),a.getFirstName(),Toast.LENGTH_LONG).show();
                     if(!a.getPaidUser()){
                         _edit.setEnabled(false);
                     } else{
@@ -192,5 +206,16 @@ public class YourSelfFragment extends Fragment {
 //        tvHaveChildren.setText();
 //        tvDesireChildren.setText();
         tvStatusLife.setText(String.valueOf(a.getMarriedStatus()));
+        String url = SERVER_URL_ACCOUNT + a.getImageUrl();
+        Glide.with(getContext()).load(url).into(imgProfile);
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser){
+            FragmentTransaction ft = getFragmentManager().beginTransaction();
+            ft.detach(this).attach(this).commit();
+        }
     }
 }

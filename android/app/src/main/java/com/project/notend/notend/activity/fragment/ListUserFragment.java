@@ -73,7 +73,7 @@ public class ListUserFragment extends Fragment {
                 accountslist = response.body();
                 rvAdapter = new ListUserAdapter(getContext(), accountslist);
                 rv.setAdapter(rvAdapter);
-                Toast.makeText(getContext(), "page " + page_number + "is load", Toast.LENGTH_LONG).show();
+                //Toast.makeText(getContext(), "page " + page_number + "is load", Toast.LENGTH_LONG).show();
                 progressBar.setVisibility(View.GONE);
             }
 
