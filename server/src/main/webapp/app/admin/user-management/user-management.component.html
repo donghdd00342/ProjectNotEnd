@@ -13,11 +13,11 @@
                 <th jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
                 <th jhiSortBy="login"><span>Login</span> <fa-icon [icon]="'sort'"></fa-icon></th>
                 <th jhiSortBy="email"><span>Email</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-                <th>Status</th>
-                <th>Paid</th>
+                <th jhiSortBy="activated">Status <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="paidUser">Paid <fa-icon [icon]="'sort'"></fa-icon></th>
                 <th><span>Profiles</span></th>
                 <th jhiSortBy="createdDate"><span>Created Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-                <th jhiSortBy="lastModifiedBy"><span>Last Modified By</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="expirationDate"><span>Expiration Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
                 <!-- <th jhiSortBy="lastModifiedDate"><span>Last Modified Date</span> <fa-icon [icon]="'sort'"></fa-icon></th> -->
                 <th></th>
             </tr>
@@ -47,7 +47,7 @@
                     </div>
                 </td>
                 <td>{{user.createdDate | date:'dd/MM/yy HH:mm'}}</td>
-                <td>{{user.lastModifiedBy}}</td>
+                <td>{{user.expirationDate}}</td>
                 <!-- <td>{{user.lastModifiedDate | date:'dd/MM/yy HH:mm'}}</td> -->
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">

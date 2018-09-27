@@ -21,6 +21,35 @@ public class TransactionHistoryDTO implements Serializable {
 
     private Long userId;
 
+    private String userFirstName;
+    private String userLastName;
+    private String userEmail;
+
+    public String getUserFirstName() {
+    	return this.userFirstName;
+    }
+
+    public void setUserFirstName(String userFirstName) {
+    	this.userFirstName = userFirstName;
+    }
+
+    public String getUserLastName() {
+    	return this.userLastName;
+    }
+
+    public void setUserLastName(String userLastName) {
+    	this.userLastName = userLastName;
+    }
+
+    public String getUserEmail() {
+    	return this.userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+    	this.userEmail = userEmail;
+    }
+
+
     public Long getId() {
         return id;
     }

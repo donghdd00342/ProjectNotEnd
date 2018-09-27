@@ -1,0 +1,39 @@
+<div>
+  <h2>
+      <span>Transaction History</span>
+  </h2>
+  <jhi-alert></jhi-alert>
+  <div class="table-responsive" *ngIf="transactions">
+      <table class="table table-striped">
+          <thead>
+          <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+              <th jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+              <th jhiSortBy="amout"><span>Amout</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+              <th jhiSortBy="payDate"><span>Paying Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+              <th jhiSortBy="userEmail">User Email <fa-icon [icon]="'sort'"></fa-icon></th>
+              <th jhiSortBy="userFirstName">User First Name <fa-icon [icon]="'sort'"></fa-icon></th>
+              <th jhiSortBy="userLastName"><span>User Last Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+              <th></th>
+          </tr>
+          </thead>
+          <tbody *ngIf ="transactions">
+          <tr *ngFor="let transaction of transactions; trackBy: trackIdentity">
+              <td>{{transaction.id}}</td>
+              <td>${{transaction.amout}}</td>
+              <td>{{transaction.payDate | date:'dd/MM/yy HH:mm'}}</td>
+              <td>{{transaction.userEmail}}</td>
+              <td>{{transaction.userFirstName}}</td>
+              <td>{{transaction.userLastName}}</td>
+          </tr>
+          </tbody>
+      </table>
+  </div>
+  <div *ngIf="transactions">
+      <div class="row justify-content-center">
+          <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+      </div>
+      <div class="row justify-content-center">
+          <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+      </div>
+  </div>
+</div>

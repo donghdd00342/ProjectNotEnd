@@ -80,12 +80,15 @@ export class UserMgmtComponent implements OnInit, OnDestroy {
 
     setPaid(user, paidUser) {
         user.paidUser = paidUser;
-        // if (paidUser == true) {
-        //     let expirationDate = new Date(user.expirationDate);
-        //     console.log(expirationDate);
-        //     user.expirationDate = expirationDate.setMonth(expirationDate.getMonth()+3);
-        //     console.log(user.expirationDate);
-        // }
+        if (paidUser == true) {
+            console.log('user.expirationDate (before) = ', user.expirationDate);
+            let expirationDate = user.expirationDate ? new Date(user.expirationDate) : new Date();
+            console.log('expirationDate-----', expirationDate);
+            user.expirationDate = new Date(expirationDate.setMonth(expirationDate.getMonth() + 3));
+            console.log('user.expirationDate (after) = ', user.expirationDate);
+        } else {
+            user.expirationDate = null;
+        }
 
         this.userService.update(user).subscribe(response => {
             if (response.status === 200) {

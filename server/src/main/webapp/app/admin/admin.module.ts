@@ -18,6 +18,7 @@ import {
     JhiConfigurationComponent,
     JhiDocsComponent
 } from './';
+import { TransactionHistoryComponent } from './transaction-history/transaction-history.component';
 
 @NgModule({
     imports: [
@@ -37,7 +38,8 @@ import {
         JhiHealthModalComponent,
         JhiDocsComponent,
         JhiMetricsMonitoringComponent,
-        JhiMetricsMonitoringModalComponent
+        JhiMetricsMonitoringModalComponent,
+        TransactionHistoryComponent
     ],
     entryComponents: [UserMgmtDeleteDialogComponent, JhiHealthModalComponent, JhiMetricsMonitoringModalComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]

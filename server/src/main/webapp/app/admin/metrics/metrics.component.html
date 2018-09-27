@@ -1,9 +1,9 @@
 <div>
     <h2>
         <!-- <span>Application Metrics - Dashboard</span> -->
-        <button class="btn btn-primary float-right" (click)="refresh()">
+        <!-- <button class="btn btn-primary float-right" (click)="refresh()">
             <fa-icon [icon]="'sync'"></fa-icon> <span>Refresh</span>
-        </button>
+        </button> -->
     </h2>
 
     <!-- <h3>JVM Metrics</h3> -->
@@ -32,10 +32,26 @@
             </ngb-progressbar>
 
         </div>
+        <div class="col-md-6">
+            <h3>Configuration</h3>
+            <div class="form-group">
+                <label class="form-control-label">Số ngày chờ xóa tài khoản nếu người dùng không kích hoạt tài khoản là:</label>
+                <input class="form-control" type="text" type="number" value="6">
+                <label class="form-control-label">Gửi mail nhắc nhở thanh toán nếu cách ngày hết hạn là:</label>
+                <input class="form-control" type="text" type="number" value="6">
+                <label class="form-control-label">Gửi mail hỏi thăm khi người dùng không online trong số ngày là:</label>
+                <input class="form-control" type="text" type="number" value="30">
+                <div style="margin-top: 10px">
+                    <button type="submit" class="btn btn-primary">
+                        <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                    </button>
+                </div>
+            </div>
+        </div>
         <!-- <div class="col-md-4">
             
         </div> -->
-        <div class="col-md-6">
+        <!-- <div class="col-md-6">
             <h3>Memory</h3>
             <p><span>Total Memory</span> ({{metrics.gauges['jvm.memory.total.used'].value / 1048576 | number:'1.0-0'}}M / {{metrics.gauges['jvm.memory.total.max'].value / 1048576 | number:'1.0-0'}}M)</p>
             <ngb-progressbar type="success" [max]="metrics.gauges['jvm.memory.total.max'].value" [value]="metrics.gauges['jvm.memory.total.used'].value" [striped]="true" [animated]="false">
@@ -50,10 +66,10 @@
                 <span>{{metrics.gauges['jvm.memory.non-heap.used'].value * 100 / metrics.gauges['jvm.memory.non-heap.committed'].value  | number:'1.0-0'}}%</span>
             </ngb-progressbar>
 
-            <p></p>
+            <p></p> -->
 
-            <h3>Threads (Total: {{metrics.gauges['jvm.threads.count'].value}})</h3> <!--<a class="hand" (click)="refreshThreadDumpData()" data-toggle="modal" data-target="#threadDump"><fa-icon [icon]="'eye'"></fa-icon></a>-->
-            <p><span>Runnable</span> {{metrics.gauges['jvm.threads.runnable.count'].value}}</p>
+            <!--<h3>Threads (Total: {{metrics.gauges['jvm.threads.count'].value}})</h3>--> <!--<a class="hand" (click)="refreshThreadDumpData()" data-toggle="modal" data-target="#threadDump"><fa-icon [icon]="'eye'"></fa-icon></a>-->
+            <!--<p><span>Runnable</span> {{metrics.gauges['jvm.threads.runnable.count'].value}}</p>
             <ngb-progressbar [value]="metrics.gauges['jvm.threads.runnable.count'].value" [max]="metrics.gauges['jvm.threads.count'].value" [striped]="true" [animated]="false" type="success">
                 <span>{{metrics.gauges['jvm.threads.runnable.count'].value * 100 / metrics.gauges['jvm.threads.count'].value  | number:'1.0-0'}}%</span>
             </ngb-progressbar>
@@ -172,7 +188,7 @@
             </tr>
             </tbody>
         </table>
-    </div>
+    </div>-->
 
     <!-- <h3>Services statistics (time in millisecond)</h3>
     <div class="table-responsive" *ngIf="!updatingMetrics">

@@ -6,6 +6,7 @@ import { Principal, User, UserService } from 'app/core';
 import { UserMgmtComponent } from './user-management.component';
 import { UserMgmtDetailComponent } from './user-management-detail.component';
 import { UserMgmtUpdateComponent } from './user-management-update.component';
+import { TransactionHistoryComponent } from 'app/admin/transaction-history/transaction-history.component';
 
 @Injectable({ providedIn: 'root' })
 export class UserResolve implements CanActivate {
@@ -63,6 +64,17 @@ export const userMgmtRoute: Routes = [
         component: UserMgmtUpdateComponent,
         resolve: {
             user: UserMgmtResolve
+        }
+    },
+    {
+        path: 'transaction-history',
+        component: TransactionHistoryComponent,
+        resolve: {
+            pagingParams: JhiResolvePagingParams
+        },
+        data: {
+            pageTitle: 'Transaction History',
+            defaultSort: 'id,asc'
         }
     }
 ];

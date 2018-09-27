@@ -12,6 +12,9 @@ import org.mapstruct.*;
 public interface TransactionHistoryMapper extends EntityMapper<TransactionHistoryDTO, TransactionHistory> {
 
     @Mapping(source = "user.id", target = "userId")
+    @Mapping(source = "user.firstName", target = "userFirstName")
+    @Mapping(source = "user.lastName", target = "userLastName")
+    @Mapping(source = "user.email", target = "userEmail")
     TransactionHistoryDTO toDto(TransactionHistory transactionHistory);
 
     @Mapping(source = "userId", target = "user")

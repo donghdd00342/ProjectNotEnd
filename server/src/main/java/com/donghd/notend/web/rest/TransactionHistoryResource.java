@@ -52,4 +52,11 @@ public class TransactionHistoryResource {
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/transaction-histories");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
+
+    @GetMapping("/transaction-histories/admin-getall")
+    public ResponseEntity<List<TransactionHistoryDTO>> adminGetAllTransactionHistories(Pageable pageable) {
+        Page<TransactionHistoryDTO> page = transactionHistoryService.findAll(pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/transaction-histories/admin-getall");
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
 }
