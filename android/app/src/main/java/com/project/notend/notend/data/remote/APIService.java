@@ -56,7 +56,8 @@ public interface APIService {
     @POST("/api/friends")
     Call<Friend> askFriend(@Body Friend body, @Header("Authorization") String authHeader);
 
-    @POST("api/account")
+//    @POST("api/account")
+    @PUT("api/users")
     Call<Account> editAccount(@Body Account account, @Header("Authorization") String authHeader);
 
     @GET("api/account/upgrade")

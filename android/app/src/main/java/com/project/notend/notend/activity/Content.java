@@ -1,35 +1,47 @@
 package com.project.notend.notend.activity;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.view.ContextThemeWrapper;
 import android.support.v7.widget.PopupMenu;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.project.notend.notend.R;
 import com.project.notend.notend.adapter.SimpleFragmentPagerAdapter;
+import com.project.notend.notend.data.remote.APIService;
+import com.project.notend.notend.data.remote.ApiUtils;
 import com.project.notend.notend.data.storage_share.SharedPrefs;
+import com.project.notend.notend.entities.Account;
 
 import butterknife.ButterKnife;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import static com.project.notend.notend.data.config.config.CURRENT_TOKEN_ID;
 
 public class Content extends AppCompatActivity {
     TabLayout tabLayout;
     ViewPager viewPager;
-//    @BindView(R.id.menu)
-//    Button _menu;
+    private APIService mAPIService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_content);
         ButterKnife.bind(this);
+        mAPIService = ApiUtils.getApiService();
         tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         SimpleFragmentPagerAdapter adapter = new SimpleFragmentPagerAdapter(this, getSupportFragmentManager());
@@ -42,7 +54,7 @@ public class Content extends AppCompatActivity {
             //tab.setCustomView(adapter.getTabView(i));
             tab.setIcon(adapter.getTabIcon(i));
         }
-        Button _menu = (Button) findViewById(R.id.menu);
+        Button _menu =  findViewById(R.id.menu);
         _menu.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -59,7 +71,8 @@ public class Content extends AppCompatActivity {
 //    }
 
     public void showPopup(View v) {
-        PopupMenu popup = new PopupMenu(this, v, Gravity.CENTER);
+        Context wrapper = new ContextThemeWrapper(this, R.style.PopupMenu);
+        PopupMenu popup = new PopupMenu(wrapper, v, Gravity.BOTTOM);
         popup.getMenuInflater().inflate(R.menu.menu_yourself, popup.getMenu());
         popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             public boolean onMenuItemClick(MenuItem item) {
@@ -120,8 +133,28 @@ public class Content extends AppCompatActivity {
     }
 
     public void edit(){
-        Intent intent = new Intent(Content.this, EditProfile.class);
-        startActivity(intent);
+        String token = SharedPrefs.getInstance().get(CURRENT_TOKEN_ID,String.class);
+        mAPIService.getAccountInfo("Bearer "+token).enqueue(new Callback<Account>() {
+            @Override
+            public void onResponse(Call<Account> call, Response<Account> response) {
+                if (response.isSuccessful()){
+                    Toast.makeText(Content.this, String.valueOf(response.body().getId())
+                            , Toast.LENGTH_SHORT).show();
+                    if(response.body().getPaidUser()){
+                        Intent intent = new Intent(Content.this, EditProfile.class);
+                        startActivity(intent);
+                    }
+                    else{
+                        Toast.makeText(Content.this, "Only members can edit their profile"
+                                , Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Account> call, Throwable t) {}
+        });
+
     }
 
     public void changePassword(){

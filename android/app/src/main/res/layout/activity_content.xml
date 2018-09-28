@@ -5,12 +5,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+
     <Button
-        android:id="@+id/menu"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text= "-"
-        android:onClick="showPopup"/>
+    android:id="@+id/menu"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:onClick="showPopup"
+    android:text="____" />
 
     <android.support.design.widget.TabLayout
         style="@style/AppTabLayout"
@@ -24,6 +25,7 @@
         android:background="@color/primary"
         app:tabBackground="@drawable/tab_selected_background"
         />
+
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewpager"
