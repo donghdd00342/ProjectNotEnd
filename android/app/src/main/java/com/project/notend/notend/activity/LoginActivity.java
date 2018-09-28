@@ -51,6 +51,12 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        String token = SharedPrefs.getInstance().get(CURRENT_TOKEN_ID,String.class);
+        if(token.length() > 0){
+            Intent intent = new Intent(LoginActivity.this, Content.class);
+            startActivity(intent);
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
@@ -80,6 +86,8 @@ public class LoginActivity extends AppCompatActivity {
                 startActivityForResult(intent, REQUEST_SIGNUP);
             }
         });
+
+
     }
 
     public void login() {

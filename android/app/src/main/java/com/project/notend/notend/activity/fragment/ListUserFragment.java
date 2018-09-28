@@ -117,7 +117,7 @@ public class ListUserFragment extends Fragment {
     }
 
     private void initData() {
-        progressBar.setVisibility(View.VISIBLE);
+//        progressBar.setVisibility(View.VISIBLE);
         mAPIService.getAllDetailAccount("Bearer " + SharedPrefs.getInstance().get(CURRENT_TOKEN_ID, String.class).toString(),
                 page_number, item_count).enqueue(new Callback<List<Account>>() {
             @Override
@@ -131,7 +131,7 @@ public class ListUserFragment extends Fragment {
                     List<Account> list = response.body();
                     rvAdapter.addAccount(list);
                 }
-                progressBar.setVisibility(View.GONE);
+//                progressBar.setVisibility(View.GONE);
             }
 
             @Override
