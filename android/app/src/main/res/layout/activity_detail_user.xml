@@ -456,6 +456,6 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:id="@+id/btn_addFriend"
-            android:text="Kết bạn" />
+            android:text="Add Friend" />
     </RelativeLayout>
 </RelativeLayout>

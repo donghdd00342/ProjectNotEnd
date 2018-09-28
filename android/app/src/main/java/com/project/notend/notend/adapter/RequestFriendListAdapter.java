@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.project.notend.notend.R;
@@ -71,7 +72,9 @@ public class RequestFriendListAdapter extends RecyclerView.Adapter {
                 if (friend.getStatus()==11){
                     deleteRequest(friend.getId());
                     notifyItemRemoved(position);
-                };
+                }else {
+                    Toast.makeText(mContext, "U cannot delete it", Toast.LENGTH_LONG).show();
+                }
             }
         });
     }
