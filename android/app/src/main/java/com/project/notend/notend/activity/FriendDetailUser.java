@@ -8,9 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.project.notend.notend.R;
@@ -18,7 +16,6 @@ import com.project.notend.notend.data.remote.APIService;
 import com.project.notend.notend.data.remote.ApiUtils;
 import com.project.notend.notend.data.storage_share.SharedPrefs;
 import com.project.notend.notend.entities.Account;
-import com.project.notend.notend.entities.Friend;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,7 +23,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static com.project.notend.notend.data.config.config.CURRENT_ID;
 import static com.project.notend.notend.data.config.config.CURRENT_TOKEN_ID;
 import static com.project.notend.notend.data.remote.ApiUtils.SERVER_URL_ACCOUNT;
 

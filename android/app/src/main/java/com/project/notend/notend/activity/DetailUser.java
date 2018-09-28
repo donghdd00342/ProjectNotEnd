@@ -81,7 +81,7 @@ public class DetailUser extends AppCompatActivity {
                     final Account account = response.body();
                     String url = SERVER_URL_ACCOUNT + account.getImageUrl();
                     Glide.with(getBaseContext()).load(url).into(imgProfile);
-                    getSupportActionBar().setTitle(account.getLastName() + " " + account.getFirstName());
+                    getSupportActionBar().setTitle(account.getFirstName() + " " + account.getLastName());
                     tvMyName.setText(account.getLastName() + " " + account.getFirstName());
                     Log.e("paid",""+account.getPaidUser());
                     getAccountInfo();
