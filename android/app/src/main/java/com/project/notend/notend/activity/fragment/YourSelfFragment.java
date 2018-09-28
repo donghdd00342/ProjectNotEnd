@@ -73,6 +73,8 @@ public class YourSelfFragment extends Fragment {
     TextView tvName;
     @BindView(R.id.myHeight)
     TextView tvHeight;
+    @BindView(R.id.myGender)
+    TextView tvGender;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -120,6 +122,7 @@ public class YourSelfFragment extends Fragment {
     public void initView(View rootView){
         getAccountInfo();
         tvName = (TextView) rootView.findViewById(R.id.myName);
+        tvGender = (TextView) rootView.findViewById(R.id.myGender);
         tvAge = (TextView) rootView.findViewById(R.id.myAge);
         tvHeight = (TextView) rootView.findViewById(R.id.myHeight);
         tvAddress = (TextView) rootView.findViewById(R.id.myAddress);
@@ -149,6 +152,15 @@ public class YourSelfFragment extends Fragment {
 
     private void fillData(Account a) {
         tvName.setText(a.getFirstName() + " " + a.getLastName());
+        String gender;
+        if(a.getGender()==0){
+            gender = "Female";
+        }else if(a.getGender()==1){
+            gender = "Male";
+        }else{
+            gender = "Unknown";
+        }
+        tvGender.setText(gender);
         tvAge.setText(a.getDateOfBirth());
         tvHeight.setText(String.valueOf(a.getHeightCm()));
         tvAddress.setText(a.getCity());
