@@ -1,9 +1,12 @@
 package com.project.notend.notend.activity;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.view.ContextThemeWrapper;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -89,10 +92,11 @@ public class ResetPasswordActivity extends AppCompatActivity {
                                 @Override
                                 public void onResponse(Call<Void> call, Response<Void> response) {
                                     if (response.isSuccessful()) {
-                                        Toast.makeText(getBaseContext(), "Done !!!", Toast.LENGTH_SHORT).show();
-                                        finish();
-                                        Intent intent = new Intent(ResetPasswordActivity.this, Content.class);
-                                        startActivity(intent);
+//                                        Toast.makeText(getBaseContext(), "Done !!!", Toast.LENGTH_SHORT).show();
+//                                        finish();
+//                                        Intent intent = new Intent(ResetPasswordActivity.this, LoginActivity.class);
+//                                        startActivity(intent);
+                                        reset();
                                     } else {
                                         Toast.makeText(getBaseContext(), "Incorrect key !!!", Toast.LENGTH_SHORT).show();
                                         _reset.setEnabled(true);
@@ -111,6 +115,25 @@ public class ResetPasswordActivity extends AppCompatActivity {
                         progressDialog.dismiss();
                     }
                 }, 3000);
+    }
+
+    public void reset() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.AppTheme_Dark_Dialog));
+        builder.setMessage("Success !!!");
+        builder.setCancelable(false);
+        builder.setNegativeButton("Ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+                SharedPrefs.getInstance().clear();
+                Intent intent = new Intent(ResetPasswordActivity.this,
+                        LoginActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 
     @Override
