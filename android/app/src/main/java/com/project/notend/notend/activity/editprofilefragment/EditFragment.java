@@ -3,6 +3,7 @@ package com.project.notend.notend.activity.editprofilefragment;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -17,6 +18,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.project.notend.notend.R;
+import com.project.notend.notend.activity.Content;
+import com.project.notend.notend.activity.EditProfile;
 import com.project.notend.notend.activity.Register;
 import com.project.notend.notend.data.remote.APIService;
 import com.project.notend.notend.data.remote.ApiUtils;
@@ -34,6 +37,7 @@ import static com.project.notend.notend.data.config.config.CURRENT_TOKEN_ID;
 
 public class EditFragment extends Fragment {
     private Context context;
+    static int id;
 
 //    @BindView(R.id.btn_changepassview)
 //    Button _changePassButton;
@@ -172,6 +176,20 @@ public class EditFragment extends Fragment {
         }
         _confirm.setEnabled(false);
 
+        String token = SharedPrefs.getInstance().get(CURRENT_TOKEN_ID,String.class);
+        mAPIService.getAccountInfo("Bearer "+token).enqueue(new Callback<Account>() {
+            @Override
+            public void onResponse(Call<Account> call, Response<Account> response) {
+                if (response.isSuccessful()){
+                    id = response.body().getId();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Account> call, Throwable t) {}
+        });
+
+        final int user_id = id;
         final String firstName = _firstNameText.getText().toString();
         final String lastName = _lastNameText.getText().toString();
         final String middle = _middleName.getText().toString();

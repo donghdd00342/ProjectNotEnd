@@ -21,21 +21,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/avata_demo_1" />
-
-            <!--<Button-->
-                <!--android:id="@+id/btEditImage"-->
-                <!--android:layout_width="fill_parent"-->
-                <!--android:layout_height="50dp"-->
-                <!--android:layout_alignParentBottom="true"-->
-                <!--android:layout_marginBottom="16dp"-->
-                <!--android:background="@drawable/button_background"-->
-                <!--android:drawableLeft="@drawable/ic_photo_camera"-->
-                <!--android:drawablePadding="30dp"-->
-                <!--android:gravity="left|center_vertical"-->
-                <!--android:paddingLeft="100dp"-->
-                <!--android:text="changen Image"-->
-                <!--android:textColor="#fff" />-->
+                android:src="@drawable/img3" />
         </RelativeLayout>
 
         <LinearLayout
