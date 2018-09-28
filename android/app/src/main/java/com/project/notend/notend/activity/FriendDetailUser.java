@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.project.notend.notend.R;
@@ -120,7 +121,7 @@ public class FriendDetailUser extends AppCompatActivity{
                 if (response.isSuccessful()){
                     friendList = response.body();
                     for(int i=0;i<friendList.size();i++){
-                        if(friendList.get(i).getFriendId() == friendId){
+                        if(friendList.get(i).getFriendId() == friendId && friendList.get(i).getStatus()==12){
                             final int idListFriend = friendList.get(i).getId();
                             btn_delFriend.setOnClickListener(new View.OnClickListener() {
                                 @Override
@@ -128,6 +129,8 @@ public class FriendDetailUser extends AppCompatActivity{
                                     senđDelFriend(idListFriend);
                                 }
                             });
+                        }else {
+                            Log.e("delete friend","Fail!");
                         }
                     }
                 }

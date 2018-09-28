@@ -456,7 +456,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:id="@+id/btn_delFriend"
-            android:text="Xóa bạn" />
+            android:text="Delete Friend" />
     </RelativeLayout>
 
 </RelativeLayout>

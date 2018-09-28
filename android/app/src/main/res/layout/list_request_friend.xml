@@ -11,43 +11,43 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:backgroundTint="@color/white"
     android:gravity="center_vertical">
-    <de.hdodenhof.circleimageview.CircleImageView
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/reqAvatar"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        app:civ_border_width="1dp"
-        app:civ_border_color="#d4d3d3"
-        android:src="@drawable/im1"
+        android:layout_width="98dp"
+        android:layout_height="92dp"
+        android:layout_alignParentLeft="true"
         android:layout_marginTop="4dp"
-        android:layout_alignParentLeft="true"/>
+        android:src="@drawable/im1"
+        app:civ_border_color="#d4d3d3"
+        app:civ_border_width="1dp" />
+
     <TextView
         android:id="@+id/reqName"
-        android:layout_width="55dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="50dp"
+        android:layout_alignTop="@+id/reqAvatar"
+        android:layout_marginStart="124dp"
         android:text="Terry"
         android:textColor="@color/black"
-        android:textSize="16sp"
+        android:textSize="24sp"
         android:textStyle="bold" />
 
     <Button
         android:id="@+id/btn_AcceptReq"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginEnd="120dp"
-        android:text="Xác nhận" />
+        android:layout_alignBottom="@+id/reqAvatar"
+        android:layout_alignStart="@+id/reqName"
+        android:text="Confirm" />
 
     <Button
         android:id="@+id/btn_DeleteReq"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/reqAvatar"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginEnd="14dp"
-        android:text="Xóa" />
+        android:layout_marginEnd="35dp"
+        android:text="Delete" />
 </RelativeLayout>

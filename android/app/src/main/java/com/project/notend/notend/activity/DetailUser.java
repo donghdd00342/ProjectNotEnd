@@ -65,9 +65,8 @@ public class DetailUser extends AppCompatActivity {
         Bundle getBundle = this.getIntent().getExtras();
         final Account account = getBundle.getParcelable("data");
         initData(account.getLogin());
-
-
     }
+
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
@@ -94,8 +93,8 @@ public class DetailUser extends AppCompatActivity {
                         gender = "Unknown";
                     }
                     tvMyGender.setText(gender);
-                    getAccountInfo();
-//                    btn_addFriend.setVisibility(View.VISIBLE);
+//                    getAccountInfo();
+                    btn_addFriend.setVisibility(View.VISIBLE);
                     if (null == account.getFriendStatus() || account.getFriendStatus() == 10){
                         btn_addFriend.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -148,23 +147,24 @@ public class DetailUser extends AppCompatActivity {
                 });
     }
 
-    private void getAccountInfo(){
-        mAPIService.getAccountInfo("Bearer "+token).enqueue(new Callback<Account>() {
-            @Override
-            public void onResponse(Call<Account> call, Response<Account> response) {
-                if (response.isSuccessful()){
-                    Account a = response.body();
-                    if(a.getPaidUser()){
-                        btn_addFriend.setVisibility(View.VISIBLE);
-                    }else{
-                        btn_addFriend.setVisibility(View.GONE);
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Account> call, Throwable t) {}
-        });
-    }
-
+//    private void getAccountInfo(){
+//        mAPIService.getAccountInfo("Bearer "+token).enqueue(new Callback<Account>() {
+//            @Override
+//            public void onResponse(Call<Account> call, Response<Account> response) {
+//                if (response.isSuccessful()){
+//                    Account a = response.body();
+//                    if(a.getPaidUser()){
+//                        btn_addFriend.setVisibility(View.VISIBLE);
+//                    }else{
+////                        btn_addFriend.setVisibility(View.GONE);
+//                        btn_addFriend.setText("Paid user can add friend");
+//                        btn_addFriend.setEnabled(false);
+//                    }
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<Account> call, Throwable t) {}
+//        });
+//    }
 }

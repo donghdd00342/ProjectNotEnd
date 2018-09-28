@@ -3,7 +3,6 @@ package com.project.notend.notend.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,9 +15,7 @@ import com.bumptech.glide.Glide;
 import com.project.notend.notend.R;
 import com.project.notend.notend.activity.DetailUser;
 import com.project.notend.notend.entities.Account;
-import com.project.notend.notend.entities.User;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -32,10 +29,12 @@ public class ListUserAdapter extends RecyclerView.Adapter  {
 
     private Context mContext;
     private List<Account> listData;
+    private boolean paidUser;
 
-    public ListUserAdapter(Context context, List<Account> listData) {
+    public ListUserAdapter(Context context, List<Account> listData, boolean paidUser) {
         this.mContext = context;
         this.listData = listData;
+        this.paidUser = paidUser;
     }
 
     @NonNull
@@ -54,16 +53,25 @@ public class ListUserAdapter extends RecyclerView.Adapter  {
         newsHolder.tvDetail.setText(account.getEmail().toString());
         String url = SERVER_URL_ACCOUNT + account.getImageUrl();
         Glide.with(mContext).load(url).into(newsHolder.imAvatar);
-        newsHolder.setItemClickListener(new ItemClickListener() {
-            @Override
-            public void onClick(View view, int position, boolean isLongClick) {
-                Intent intent = new Intent(mContext, DetailUser.class);
-                Bundle bundle = new Bundle();
-                bundle.putParcelable("data", account);
-                intent.putExtras(bundle);
-                mContext.startActivity(intent);
-            }
-        });
+        if(paidUser){
+            newsHolder.setItemClickListener(new ItemClickListener() {
+                @Override
+                public void onClick(View view, int position, boolean isLongClick) {
+                    Intent intent = new Intent(mContext, DetailUser.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putParcelable("data", account);
+                    intent.putExtras(bundle);
+                    mContext.startActivity(intent);
+                }
+            });
+        }else {
+            newsHolder.setItemClickListener(new ItemClickListener() {
+                @Override
+                public void onClick(View view, int position, boolean isLongClick) {
+                    view.setClickable(false);
+                }
+            });
+        }
     }
 
     @Override
