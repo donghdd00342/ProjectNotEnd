@@ -66,8 +66,8 @@
     </style>
 
     <style name="PopupMenu">
-        <item name="android:textColor">@android:color/white</item>
-        <item name="android:itemBackground">@android:color/holo_red_light</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:itemBackground">@android:color/white</item>
     </style>
 
     <style name="MyText" parent="@android:style/TextAppearance">
