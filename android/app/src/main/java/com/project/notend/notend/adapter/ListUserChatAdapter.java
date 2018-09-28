@@ -48,7 +48,7 @@ public class ListUserChatAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         NewsHolder newsHolder =  (NewsHolder) holder;
         final Friend friend = listData.get(position);
-        newsHolder.tvName.setText(friend.getFriendLastName() + " " + friend.getFriendFirstName());
+        newsHolder.tvName.setText(friend.getFriendFirstName() + " " + friend.getFriendLastName());
         newsHolder.tvMessage.setText(friend.getFriendLogin());
         String url = SERVER_URL_ACCOUNT + friend.getFriendImageUrl();
         Glide.with(mContext).load(url).into(newsHolder.civAvatar);

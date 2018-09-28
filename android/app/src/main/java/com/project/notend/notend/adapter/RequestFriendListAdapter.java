@@ -61,17 +61,15 @@ public class RequestFriendListAdapter extends RecyclerView.Adapter {
                 friend.setStatus(12);
                 Log.e("conffriend",""+friend.getStatus());
                 acceptRequest(friend);
-                notifyItemRangeChanged(position, getItemCount());
                 notifyItemRemoved(position);
             }
         });
         newsHolder.btn_DeleteReq.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.e("delfriend",""+friend.getOwnerId());
+                Log.e("delfriend",""+friend.getId());
                 if (friend.getStatus()==11){
-                    deleteRequest(friend.getOwnerId());
-                    notifyItemRangeChanged(position, getItemCount());
+                    deleteRequest(friend.getId());
                     notifyItemRemoved(position);
                 };
             }

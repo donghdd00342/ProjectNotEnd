@@ -50,7 +50,6 @@ public class FriendsListAdapter extends RecyclerView.Adapter {
         newsHolder.tvDetail.setText(" ");
         String url = SERVER_URL_ACCOUNT + friend.getFriendImageUrl();
         Glide.with(mContext).load(url).into(newsHolder.imAvatar);
-        Log.e("paid_FriendListAdapter",""+paidUser);
         if(paidUser){
             newsHolder.setItemClickListener(new ItemClickListener() {
                 @Override

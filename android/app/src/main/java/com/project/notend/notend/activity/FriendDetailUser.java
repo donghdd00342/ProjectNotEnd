@@ -16,6 +16,10 @@ import com.project.notend.notend.data.remote.APIService;
 import com.project.notend.notend.data.remote.ApiUtils;
 import com.project.notend.notend.data.storage_share.SharedPrefs;
 import com.project.notend.notend.entities.Account;
+import com.project.notend.notend.entities.Friend;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -43,6 +47,8 @@ public class FriendDetailUser extends AppCompatActivity{
 //    TextView tvMyCountry;
     private APIService mAPIService;
     private static String token;
+
+    List<Friend> friendList = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -85,15 +91,7 @@ public class FriendDetailUser extends AppCompatActivity{
                     Glide.with(getBaseContext()).load(url).into(imgProfile);
                     getSupportActionBar().setTitle(account.getFirstName() + " " + account.getLastName());
                     tvMyName.setText(account.getFirstName() + " " + account.getLastName());
-                    btn_delFriend.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            Log.e("btn",""+btn_delFriend.isClickable());
-                            int friendId = account.getId();
-                            Log.e("btn",""+friendId);
-                            senđDelFriend(friendId);
-                        }
-                    });
+                    getFriendList(account.getId());
                 }
             }
 
@@ -104,14 +102,40 @@ public class FriendDetailUser extends AppCompatActivity{
         });
     }
 
-    private void senđDelFriend(Integer friendId){
-        Log.e("res",""+token);
-        mAPIService.deleteRequestFriend(friendId, "Bearer "+ token).enqueue(new Callback<Void>() {
+    private void getFriendList(final Integer friendId) {
+        mAPIService.getFriendList("Bearer "+token).enqueue(new Callback<List<Friend>>() {
+            @Override
+            public void onResponse(Call<List<Friend>> call, Response<List<Friend>> response) {
+                if (response.isSuccessful()){
+                    friendList = response.body();
+                    for(int i=0;i<friendList.size();i++){
+                        if(friendList.get(i).getFriendId() == friendId){
+                            final int idListFriend = friendList.get(i).getId();
+                            btn_delFriend.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    senđDelFriend(idListFriend);
+                                }
+                            });
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Friend>> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private void senđDelFriend(Integer id){
+        mAPIService.deleteRequestFriend(id, "Bearer "+ token).enqueue(new Callback<Void>() {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
-                        Log.e("res",""+response);
-                        if (response.isSuccessful()){
-
+                        Log.e("resDel_FriendDetailUser",""+response);
+                        if(response.isSuccessful()){
+                            setContentView(null);
                         }
                     }
 
