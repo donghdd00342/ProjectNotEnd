@@ -1,7 +1,6 @@
 package com.project.notend.notend.activity.fragment;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -20,7 +19,6 @@ import com.project.notend.notend.data.remote.APIService;
 import com.project.notend.notend.data.remote.ApiUtils;
 import com.project.notend.notend.data.storage_share.SharedPrefs;
 import com.project.notend.notend.entities.Account;
-import com.project.notend.notend.entities.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +31,8 @@ import static com.project.notend.notend.data.config.config.CURRENT_TOKEN_ID;
 
 public class ListUserFragment extends Fragment {
     private static final String TAG = "GetList";
+    private static String token;
+    public boolean paidUser;
     private View v;
     private List<Account> accountslist = new ArrayList<>();
     private RecyclerView rv;
@@ -52,7 +52,7 @@ public class ListUserFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mAPIService = ApiUtils.getApiService();
-
+        token = SharedPrefs.getInstance().get(CURRENT_TOKEN_ID,String.class);
     }
 
     @Nullable
@@ -64,14 +64,15 @@ public class ListUserFragment extends Fragment {
         rv.setHasFixedSize(true);
         layoutManager = new GridLayoutManager(getContext(), 2);
         rv.setLayoutManager(layoutManager);
+        getAccountInfo();
         progressBar.setVisibility(View.VISIBLE);
-        mAPIService.getAllDetailAccount("Bearer " + SharedPrefs.getInstance().get(CURRENT_TOKEN_ID, String.class).toString(),
+        mAPIService.getAllDetailAccount("Bearer " + token,
                 page_number, item_count).enqueue(new Callback<List<Account>>() {
             @Override
             public void onResponse(Call<List<Account>> call, Response<List<Account>> response) {
                 if (response.body() == null) return;
                 accountslist = response.body();
-                rvAdapter = new ListUserAdapter(getContext(), accountslist);
+                rvAdapter = new ListUserAdapter(getContext(), accountslist, paidUser);
                 rv.setAdapter(rvAdapter);
                 //Toast.makeText(getContext(), "page " + page_number + "is load", Toast.LENGTH_LONG).show();
                 progressBar.setVisibility(View.GONE);
@@ -146,6 +147,21 @@ public class ListUserFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
+    }
+
+    private void getAccountInfo(){
+        mAPIService.getAccountInfo("Bearer "+token).enqueue(new Callback<Account>() {
+            @Override
+            public void onResponse(Call<Account> call, Response<Account> response) {
+                if (response.isSuccessful()){
+                    Account a = response.body();
+                    paidUser = a.getPaidUser();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Account> call, Throwable t) {}
+        });
     }
 
 }

@@ -33,19 +33,21 @@ public class MessengerFragment extends Fragment {
     List<Friend> friendslist = new ArrayList<>();
     RecyclerView rv;
     private APIService mAPIService;
+    private static String token ;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mAPIService = ApiUtils.getApiService();
+        token = SharedPrefs.getInstance().get(CURRENT_TOKEN_ID,String.class);
     }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_messenger, container, false);
         rv = (RecyclerView) rootView.findViewById(R.id.rvListUserChat);
-        initData();
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-        rv.setLayoutManager(layoutManager);
+        getAccountInfo();
         return rootView;
     }
 
@@ -67,6 +69,26 @@ public class MessengerFragment extends Fragment {
                         Log.e(TAG, "onFailure: message"+t.getMessage() );
                     }
                 });
+    }
+
+    private void getAccountInfo(){
+        mAPIService.getAccountInfo("Bearer "+token).enqueue(new Callback<Account>() {
+            @Override
+            public void onResponse(Call<Account> call, Response<Account> response) {
+                if (response.isSuccessful()){
+                    Account a = response.body();
+                    boolean paidUser = a.getPaidUser();
+                    if(paidUser){
+                        initData();
+                        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+                        rv.setLayoutManager(layoutManager);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Account> call, Throwable t) {}
+        });
     }
 
     @Override

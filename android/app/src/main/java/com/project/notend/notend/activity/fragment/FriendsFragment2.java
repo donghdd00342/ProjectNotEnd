@@ -25,13 +25,14 @@ import retrofit2.Response;
 import static com.project.notend.notend.data.config.config.CURRENT_TOKEN_ID;
 public class FriendsFragment2 extends Fragment {
     private RecyclerView rv;
-    private static String token = SharedPrefs.getInstance().get(CURRENT_TOKEN_ID,String.class);
+    private static String token;
     List<Friend> requestFriendList = new ArrayList<>();
     private APIService mAPIService;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mAPIService = ApiUtils.getApiServiceAccount();
+        token = SharedPrefs.getInstance().get(CURRENT_TOKEN_ID,String.class);
     }
     @Nullable
     @Override

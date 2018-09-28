@@ -16,21 +16,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Button;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.project.notend.notend.activity.ChangePasswordActivity;
-import com.project.notend.notend.activity.Content;
-import com.project.notend.notend.activity.EditProfile;
 
 import butterknife.BindView;
 
-import com.project.notend.notend.MainActivity;
 import com.project.notend.notend.R;
-import com.project.notend.notend.activity.HistoryActivity;
-import com.project.notend.notend.activity.LoginActivity;
-import com.project.notend.notend.activity.PaypalActivity;
 import com.project.notend.notend.data.remote.APIService;
 import com.project.notend.notend.data.remote.ApiUtils;
 import com.project.notend.notend.entities.Account;
@@ -40,7 +31,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static com.project.notend.notend.data.config.config.CURRENT_ID;
 import static com.project.notend.notend.data.config.config.CURRENT_TOKEN_ID;
 import static com.project.notend.notend.data.remote.ApiUtils.SERVER_URL_ACCOUNT;
 
@@ -81,43 +71,17 @@ public class YourSelfFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mAPIService = ApiUtils.getApiServiceAccount();
+        token = SharedPrefs.getInstance().get(CURRENT_TOKEN_ID,String.class);
     }
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_yourself, container, false);
-        token = SharedPrefs.getInstance().get(CURRENT_TOKEN_ID,String.class);
         initView(rootView);
         context = rootView.getContext();
         ButterKnife.bind(this, rootView);
 
         return rootView;
-    }
-
-    public void showAlertDialog(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setMessage("You want to logout?");
-        builder.setCancelable(false);
-        builder.setPositiveButton("No", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-//                Toast.makeText(context, "Yes", Toast.LENGTH_SHORT).show();
-            }
-        });
-        builder.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.dismiss();
-                String token = SharedPrefs.getInstance().get(CURRENT_TOKEN_ID,String.class);
-                SharedPrefs.getInstance().clear();
-                Content content = (Content) getActivity();
-                content.finish();
-                Intent intent = new Intent(context, LoginActivity.class);
-                startActivity(intent);
-            }
-        });
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
     }
 
     public void initView(View rootView){
