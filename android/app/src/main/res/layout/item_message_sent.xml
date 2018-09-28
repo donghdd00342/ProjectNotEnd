@@ -32,3 +32,4 @@
         app:layout_constraintRight_toLeftOf="@+id/text_message_body" />
 
 </android.support.constraint.ConstraintLayout>
+

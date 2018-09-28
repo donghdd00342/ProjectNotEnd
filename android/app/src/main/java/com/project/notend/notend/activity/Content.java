@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.project.notend.notend.R;
@@ -55,7 +56,7 @@ public class Content extends AppCompatActivity {
             //tab.setCustomView(adapter.getTabView(i));
             tab.setIcon(adapter.getTabIcon(i));
         }
-        Button _menu =  findViewById(R.id.menu);
+        ImageView _menu =  findViewById(R.id.menu);
         _menu.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -139,8 +140,8 @@ public class Content extends AppCompatActivity {
             @Override
             public void onResponse(Call<Account> call, Response<Account> response) {
                 if (response.isSuccessful()){
-                    Toast.makeText(Content.this, String.valueOf(response.body().getId())
-                            , Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(Content.this, String.valueOf(response.body().getId())
+//                            , Toast.LENGTH_SHORT).show();
                     if(response.body().getPaidUser()){
                         Intent intent = new Intent(Content.this, EditProfile.class);
                         startActivity(intent);
