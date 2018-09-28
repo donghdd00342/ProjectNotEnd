@@ -34,6 +34,7 @@ public class FriendsFragment1 extends Fragment {
 
     private static String token;
     List<Friend> friendList = new ArrayList<>();
+    public boolean paidUser;
     private APIService mAPIService;
     private FriendsListAdapter rvAdapter;
 
@@ -41,6 +42,7 @@ public class FriendsFragment1 extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mAPIService = ApiUtils.getApiServiceAccount();
+        token = SharedPrefs.getInstance().get(CURRENT_TOKEN_ID,String.class);
     }
 
     @Nullable
@@ -53,6 +55,9 @@ public class FriendsFragment1 extends Fragment {
         rv.setHasFixedSize(true);
         setHasOptionsMenu(true);
         getFriendList();
+        getAccountInfo();
+        rvAdapter = new FriendsListAdapter(getContext(),friendList,paidUser);
+        rv.setAdapter(rvAdapter);
         return view;
     }
 
@@ -62,14 +67,12 @@ public class FriendsFragment1 extends Fragment {
     }
 
     private void getFriendList() {
-        token = SharedPrefs.getInstance().get(CURRENT_TOKEN_ID,String.class);
         mAPIService.getFriendList("Bearer "+token).enqueue(new Callback<List<Friend>>() {
             @Override
             public void onResponse(Call<List<Friend>> call, Response<List<Friend>> response) {
                 if (response.isSuccessful()){
                     friendList = response.body();
-                    rvAdapter = new FriendsListAdapter(getContext(),friendList);
-                    rv.setAdapter(rvAdapter);
+
                 }
             }
 
@@ -77,6 +80,21 @@ public class FriendsFragment1 extends Fragment {
             public void onFailure(Call<List<Friend>> call, Throwable t) {
 
             }
+        });
+    }
+
+    private void getAccountInfo(){
+        mAPIService.getAccountInfo("Bearer "+token).enqueue(new Callback<Account>() {
+            @Override
+            public void onResponse(Call<Account> call, Response<Account> response) {
+                if (response.isSuccessful()){
+                    Account a = response.body();
+                    paidUser = a.getPaidUser();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Account> call, Throwable t) {}
         });
     }
 
