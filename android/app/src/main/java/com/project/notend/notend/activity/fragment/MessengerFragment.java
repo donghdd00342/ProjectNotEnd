@@ -30,7 +30,6 @@ import static com.project.notend.notend.data.config.config.CURRENT_TOKEN_ID;
 
 public class MessengerFragment extends Fragment {
     private static final String TAG = "GetList";
-    View v;
     List<Friend> friendslist = new ArrayList<>();
     RecyclerView rv;
     private APIService mAPIService;
