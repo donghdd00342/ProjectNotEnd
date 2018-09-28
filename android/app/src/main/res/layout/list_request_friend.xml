@@ -32,19 +32,22 @@
         android:textColor="@color/black"
         android:textSize="16sp"
         android:textStyle="bold" />
+
     <Button
         android:id="@+id/btn_AcceptReq"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
-        android:layout_marginEnd="103dp"
+        android:layout_marginEnd="120dp"
         android:text="Xác nhận" />
+
     <Button
         android:id="@+id/btn_DeleteReq"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
+        android:layout_marginEnd="14dp"
         android:text="Xóa" />
 </RelativeLayout>

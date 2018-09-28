@@ -48,11 +48,16 @@ import com.project.notend.notend.data.storage_share.SharedPrefs;
 public class YourSelfFragment extends Fragment {
     private static String token ;
     private APIService mAPIService;
-    private TextView tvAge;
-    private TextView tvEdu;
-    private TextView tvSalary;
-    private TextView tvHaveChildren;
-    private TextView tvDesireChildren;
+    @BindView(R.id.myAge)
+    TextView tvAge;
+    @BindView(R.id.myReligion)
+    TextView tvReligion;
+    @BindView(R.id.myLang)
+    TextView tvLang;
+    @BindView(R.id.myHobbies)
+    TextView tvHobbies;
+    @BindView(R.id.myFamily)
+    TextView tvFamily;
     Context context;
     @BindView(R.id.imgProfile)
     ImageView imgProfile;
@@ -161,15 +166,15 @@ public class YourSelfFragment extends Fragment {
     public void initView(View rootView){
         getAccountInfo();
         tvName = (TextView) rootView.findViewById(R.id.myName);
-//        tvAge = (TextView) rootView.findViewById(R.id.myAge);
+        tvAge = (TextView) rootView.findViewById(R.id.myAge);
         tvHeight = (TextView) rootView.findViewById(R.id.myHeight);
         tvAddress = (TextView) rootView.findViewById(R.id.myAddress);
         tvCountry = (TextView) rootView.findViewById(R.id.myCountry);
-//        tvEdu = (TextView) rootView.findViewById(R.id.myEdu);
+        tvReligion = (TextView) rootView.findViewById(R.id.myReligion);
         tvJob = (TextView) rootView.findViewById(R.id.myJob);
-//        tvSalary = (TextView) rootView.findViewById(R.id.mySalary);
-//        tvHaveChildren = (TextView) rootView.findViewById(R.id.myHaveChildren);
-//        tvDesireChildren = (TextView) rootView.findViewById(R.id.myDesireChildren);
+        tvLang = (TextView) rootView.findViewById(R.id.myLang);
+        tvHobbies = (TextView) rootView.findViewById(R.id.myHobbies);
+        tvFamily = (TextView) rootView.findViewById(R.id.myFamily);
         tvStatusLife = (TextView) rootView.findViewById(R.id.myStatusLife);
     }
 
@@ -196,15 +201,15 @@ public class YourSelfFragment extends Fragment {
 
     private void fillData(Account a) {
         tvName.setText(a.getFirstName() + " " + a.getLastName());
-//        tvAge.setText();
+        tvAge.setText(a.getDateOfBirth());
         tvHeight.setText(String.valueOf(a.getHeightCm()));
         tvAddress.setText(a.getCity());
         tvCountry.setText(a.getCountryLiving());
-//        tvEdu.setText();
+        tvReligion.setText(a.getReligion());
         tvJob.setText(a.getWorkingAt());
-//        tvSalary.setText();
-//        tvHaveChildren.setText();
-//        tvDesireChildren.setText();
+        tvLang.setText(a.getMotherTongue());
+        tvHobbies.setText(a.getHobbies());
+        tvFamily.setText(a.getFamilyDetails());
         tvStatusLife.setText(String.valueOf(a.getMarriedStatus()));
         String url = SERVER_URL_ACCOUNT + a.getImageUrl();
         Glide.with(getContext()).load(url).into(imgProfile);

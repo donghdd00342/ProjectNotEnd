@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,6 +54,7 @@ public class FriendsFragment2 extends Fragment {
         mAPIService.getRequestFriend("Bearer "+token).enqueue(new Callback<List<Friend>>() {
             @Override
             public void onResponse(Call<List<Friend>> call, Response<List<Friend>> response) {
+                Log.e("resReq",""+response);
                 if (response.isSuccessful()){
                     requestFriendList = response.body();
                     RequestFriendListAdapter rvAdapter = new RequestFriendListAdapter(getContext(),requestFriendList);
