@@ -143,13 +143,6 @@ public class YourSelfFragment extends Fragment {
                 if (response.isSuccessful()){
                     Account a = response.body();
                     fillData(a);
-//                    Toast.makeText(getContext(),a.getFirstName(),Toast.LENGTH_LONG).show();
-                    if(!a.getPaidUser()){
-                        _edit.setEnabled(false);
-                        _edit.getBackground().setColorFilter(0xFF777777, PorterDuff.Mode.MULTIPLY);
-                    } else{
-                        _paypal.setText("Extend your payment");
-                    }
                 }
             }
 
