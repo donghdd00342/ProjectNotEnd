@@ -21,7 +21,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/img3" />
+                android:src="@drawable/avata_demo_1" />
 
             <!--<Button-->
                 <!--android:id="@+id/btEditImage"-->

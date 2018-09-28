@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -188,6 +189,7 @@ public class YourSelfFragment extends Fragment {
 //                    Toast.makeText(getContext(),a.getFirstName(),Toast.LENGTH_LONG).show();
                     if(!a.getPaidUser()){
                         _edit.setEnabled(false);
+                        _edit.getBackground().setColorFilter(0xFF777777, PorterDuff.Mode.MULTIPLY);
                     } else{
                         _paypal.setText("Extend your payment");
                     }
@@ -211,8 +213,13 @@ public class YourSelfFragment extends Fragment {
         tvHobbies.setText(a.getHobbies());
         tvFamily.setText(a.getFamilyDetails());
         tvStatusLife.setText(String.valueOf(a.getMarriedStatus()));
-        String url = SERVER_URL_ACCOUNT + a.getImageUrl();
-        Glide.with(getContext()).load(url).into(imgProfile);
+        if (a.getImageUrl().length()>1){
+            String url = SERVER_URL_ACCOUNT + a.getImageUrl();
+            Glide.with(getContext()).load(url).into(imgProfile);
+        }else {
+            imgProfile.setImageResource(R.drawable.avata_demo_1);
+        }
+
     }
 
     @Override
