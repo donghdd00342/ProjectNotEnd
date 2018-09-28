@@ -93,13 +93,13 @@ public class Register extends AppCompatActivity {
         final int gender;
         switch (_radioSexGroup.getCheckedRadioButtonId()) {
             case R.id.rbFemale:
-                gender = 2;
+                gender = 0;
                 break;
             case R.id.rbMale:
                 gender = 1;
                 break;
             default:
-                gender = 3;
+                gender = 2;
                 break;
         }
         // TODO: Implement your own signup logic here.

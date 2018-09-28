@@ -49,7 +49,7 @@
                 android:orientation="horizontal"
                 >
                 <RadioButton
-                    android:id="@+id/rbUnknow"
+                    android:id="@+id/rbUnknown"
                     android:checked="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

@@ -36,6 +36,8 @@ public class DetailUser extends AppCompatActivity {
     ImageView imgProfile;
     @BindView(R.id.myName)
     TextView tvMyName;
+    @BindView(R.id.myGender)
+    TextView tvMyGender;
 //    @BindView(R.id.myAge)
 //    TextView tvMyAge;
 //    @BindView(R.id.myHeight)
@@ -83,6 +85,15 @@ public class DetailUser extends AppCompatActivity {
                     Glide.with(getBaseContext()).load(url).into(imgProfile);
                     getSupportActionBar().setTitle(account.getFirstName() + " " + account.getLastName());
                     tvMyName.setText(account.getLastName() + " " + account.getFirstName());
+                    String gender;
+                    if(account.getGender()==0){
+                        gender = "Female";
+                    }else if(account.getGender()==1){
+                        gender = "Male";
+                    }else{
+                        gender = "Unknown";
+                    }
+                    tvMyGender.setText(gender);
                     getAccountInfo();
 //                    btn_addFriend.setVisibility(View.VISIBLE);
                     if (null == account.getFriendStatus() || account.getFriendStatus() == 10){
