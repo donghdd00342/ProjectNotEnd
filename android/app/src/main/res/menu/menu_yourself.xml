@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.project.notend.notend.activity.Content">
+
+    <item  android:id="@+id/paypal"
+        android:title="Become premium"/>
+    <item  android:id="@+id/changepass"
+        android:title="Change password"/>
+    <item  android:id="@+id/edit"
+        android:title="Edit profile"/>
+    <item  android:id="@+id/history"
+        android:title="Payment history"/>
+    <item  android:id="@+id/logout"
+        android:title="Log out"
+        app:showAsAction="withText"/>
+</menu>

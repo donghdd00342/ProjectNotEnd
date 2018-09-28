@@ -81,6 +81,7 @@ public interface APIService {
     @POST("api/account/reset-password/init")
     Call<Void> getKey(@Body String email);
 
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST("api/account/reset-password/finish")
     Call<Void> resetPassword(@Body String body);
 

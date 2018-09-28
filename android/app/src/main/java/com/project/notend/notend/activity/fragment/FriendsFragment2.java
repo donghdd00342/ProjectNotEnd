@@ -54,7 +54,6 @@ public class FriendsFragment2 extends Fragment {
         mAPIService.getRequestFriend("Bearer "+token).enqueue(new Callback<List<Friend>>() {
             @Override
             public void onResponse(Call<List<Friend>> call, Response<List<Friend>> response) {
-                Log.e("resReq",""+response);
                 if (response.isSuccessful()){
                     requestFriendList = response.body();
                     RequestFriendListAdapter rvAdapter = new RequestFriendListAdapter(getContext(),requestFriendList);

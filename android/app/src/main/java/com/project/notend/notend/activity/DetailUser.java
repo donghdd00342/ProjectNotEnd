@@ -83,7 +83,6 @@ public class DetailUser extends AppCompatActivity {
                     Glide.with(getBaseContext()).load(url).into(imgProfile);
                     getSupportActionBar().setTitle(account.getFirstName() + " " + account.getLastName());
                     tvMyName.setText(account.getLastName() + " " + account.getFirstName());
-                    Log.e("paid",""+account.getPaidUser());
                     getAccountInfo();
 //                    btn_addFriend.setVisibility(View.VISIBLE);
                     if (null == account.getFriendStatus() || account.getFriendStatus() == 10){

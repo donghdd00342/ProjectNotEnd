@@ -408,52 +408,6 @@
                         android:textColor="#8470ff" />
                 </TableRow>
             </TableLayout>
-
-            <android.support.v7.widget.AppCompatButton
-                android:id="@+id/btn_changepassview"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="24dp"
-                android:padding="12dp"
-                android:text="Change password" />
-
-            <android.support.v7.widget.AppCompatButton
-                android:id="@+id/btn_Edit"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:padding="12dp"
-                android:text="Edit Profile" />
-
-            <android.support.v7.widget.AppCompatButton
-                android:id="@+id/btn_paypal"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:padding="12dp"
-                android:text="Become Premium" />
-
-            <android.support.v7.widget.AppCompatButton
-                android:id="@+id/btn_history"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:padding="12dp"
-                android:text="Transaction Histories" />
-
-            <android.support.v7.widget.AppCompatButton
-                android:id="@+id/btn_logout"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:padding="12dp"
-                android:text="Logout" />
-
         </LinearLayout>
     </RelativeLayout>
 </ScrollView>

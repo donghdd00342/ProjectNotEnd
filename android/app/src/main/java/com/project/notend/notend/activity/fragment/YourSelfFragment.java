@@ -74,14 +74,6 @@ public class YourSelfFragment extends Fragment {
     TextView tvName;
     @BindView(R.id.myHeight)
     TextView tvHeight;
-    @BindView(R.id.btn_Edit)
-    Button _edit;
-    @BindView(R.id.btn_paypal)
-    Button _paypal;
-    @BindView(R.id.btn_logout)
-    Button _logout;
-    @BindView(R.id.btn_history)
-    Button _history;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -96,44 +88,6 @@ public class YourSelfFragment extends Fragment {
         initView(rootView);
         context = rootView.getContext();
         ButterKnife.bind(this, rootView);
-        Button _changePassButton = (Button) rootView.findViewById(R.id.btn_changepassview);
-        Button btEdit = (Button) rootView.findViewById(R.id.btn_Edit);
-        _changePassButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                // Start the Signup activity
-                Intent i = new Intent(context, ChangePasswordActivity.class);
-                startActivity(i);
-            }
-        });
-        btEdit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, EditProfile.class);
-                startActivity(intent);
-            }
-        });
-        _paypal.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, PaypalActivity.class);
-                startActivity(intent);
-            }
-        });
-        _history.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, HistoryActivity.class);
-                startActivity(intent);
-            }
-        });
-        _logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showAlertDialog();
-            }
-        });
 
         return rootView;
     }
