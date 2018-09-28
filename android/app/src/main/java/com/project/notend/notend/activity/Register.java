@@ -204,7 +204,7 @@ public class Register extends AppCompatActivity {
                 Log.e(TAG, "Unable to submit post to API.");
                 Log.e(TAG, "onFailure: message" + t.getMessage());
                 t.printStackTrace();
-                onSignupFailed();
+//                onSignupFailed();
                 progressDialog1.dismiss();
             }
         });
