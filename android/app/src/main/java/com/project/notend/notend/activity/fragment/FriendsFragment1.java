@@ -41,6 +41,10 @@ public class FriendsFragment1 extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if(rvAdapter!=null){
+            rvAdapter.notifyDataSetChanged();
+            rv.invalidate();
+        }
         mAPIService = ApiUtils.getApiServiceAccount();
         token = SharedPrefs.getInstance().get(CURRENT_TOKEN_ID,String.class);
     }
@@ -72,7 +76,6 @@ public class FriendsFragment1 extends Fragment {
             public void onResponse(Call<List<Friend>> call, Response<List<Friend>> response) {
                 if (response.isSuccessful()){
                     friendList = response.body();
-
                 }
             }
 

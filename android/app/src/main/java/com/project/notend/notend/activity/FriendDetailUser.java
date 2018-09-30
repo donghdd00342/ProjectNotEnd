@@ -129,8 +129,6 @@ public class FriendDetailUser extends AppCompatActivity{
                                     senđDelFriend(idListFriend);
                                 }
                             });
-                        }else {
-                            Log.e("delete friend","Fail!");
                         }
                     }
                 }

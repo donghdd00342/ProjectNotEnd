@@ -40,6 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/reqAvatar"
         android:layout_alignStart="@+id/reqName"
+        android:layout_marginEnd="30dp"
         android:text="Confirm" />
 
     <Button
@@ -48,6 +49,6 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/reqAvatar"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="35dp"
+        android:layout_marginEnd="30dp"
         android:text="Delete" />
 </RelativeLayout>
