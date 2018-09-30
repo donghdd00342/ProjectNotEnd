@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,14 +56,17 @@ public class RequestFriendListAdapter extends RecyclerView.Adapter {
         newsHolder.reqName.setText(friend.getOwnerLastName() + " " + friend.getOwnerFirstName());
         String url = SERVER_URL_ACCOUNT + friend.getOwnerImageUrl();
         Glide.with(mContext).load(url).into(newsHolder.reqAvatar);
-
+        Log.e("status_requestfriend",""+friend.getStatus());
         newsHolder.btn_AcceptReq.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                friend.setStatus(12);
-                Log.e("conffriend",""+friend.getStatus());
-                acceptRequest(friend);
-                notifyItemRemoved(position);
+                if (friend.getStatus()==11){
+                    friend.setStatus(12);
+                    acceptRequest(friend, position);
+                    listRequestFriend.remove(position);
+                    notifyItemRemoved(position);
+                    notifyItemRangeChanged(position,listRequestFriend.size());
+                }
             }
         });
         newsHolder.btn_DeleteReq.setOnClickListener(new View.OnClickListener() {
@@ -70,10 +74,10 @@ public class RequestFriendListAdapter extends RecyclerView.Adapter {
             public void onClick(View view) {
                 Log.e("delfriend",""+friend.getId());
                 if (friend.getStatus()==11){
-                    deleteRequest(friend.getId());
+                    deleteRequest(friend.getId(), position);
+                    listRequestFriend.remove(position);
                     notifyItemRemoved(position);
-                }else {
-                    Toast.makeText(mContext, "U cannot delete it", Toast.LENGTH_LONG).show();
+                    notifyItemRangeChanged(position,listRequestFriend.size());
                 }
             }
         });
@@ -89,8 +93,6 @@ public class RequestFriendListAdapter extends RecyclerView.Adapter {
         TextView reqName;
         @BindView(R.id.reqAvatar)
         CircleImageView reqAvatar;
-//        @BindView(R.id.reqHolder)
-//        RelativeLayout reqHolder;
         @BindView(R.id.btn_AcceptReq)
         Button btn_AcceptReq;
         @BindView(R.id.btn_DeleteReq)
