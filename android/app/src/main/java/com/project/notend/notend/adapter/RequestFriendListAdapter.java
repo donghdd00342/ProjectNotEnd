@@ -103,7 +103,7 @@ public class RequestFriendListAdapter extends RecyclerView.Adapter {
         }
     }
 
-    private void acceptRequest(Friend paramObject, final Integer position) {
+    private void acceptRequest(Friend paramObject) {
         mAPIService = ApiUtils.getApiService();
         mAPIService.acceptRequestFriend(paramObject, "Bearer " + SharedPrefs.getInstance().get(CURRENT_TOKEN_ID, String.class).toString()).enqueue(new Callback<Friend>() {
             @Override
@@ -117,7 +117,7 @@ public class RequestFriendListAdapter extends RecyclerView.Adapter {
         });
     }
 
-    private void deleteRequest(Integer friendId, final Integer position) {
+    private void deleteRequest(Integer friendId) {
         mAPIService = ApiUtils.getApiService();
         mAPIService.deleteRequestFriend(friendId, "Bearer " + SharedPrefs.getInstance().get(CURRENT_TOKEN_ID, String.class).toString()).enqueue(new Callback<Void>() {
             @Override
