@@ -41,11 +41,11 @@ public class ListUserFragment extends Fragment {
     private ListUserAdapter rvAdapter;
     private APIService mAPIService;
     private int page_number = 1;
-    private int item_count = 4;
+    private int item_count = 6;
     //pagination
     private boolean isLoading = true;
     private int pastVisibleItems, visibleItemCount, totallItemCount, previous_total = 0;
-    private int view_threshold = 4;
+    private int view_threshold = 6;
 
 
     @Override
@@ -124,7 +124,7 @@ public class ListUserFragment extends Fragment {
             @Override
             public void onResponse(Call<List<Account>> call, Response<List<Account>> response) {
                 if (response.body() == null || response.body().size() == 0) {
-                    page_number--;
+                    //page_number--;
                     progressBar.setVisibility(View.GONE);
                     Toast.makeText(getContext(), "no more user availabe...", Toast.LENGTH_SHORT).show();
                     return;

@@ -188,9 +188,9 @@ public class Register extends AppCompatActivity {
     }
 
     public void createAccount(Account account) {
-        mAPIService.createAccount(account).enqueue(new Callback<Account>() {
+        mAPIService.createAccount(account).enqueue(new Callback<Void>() {
             @Override
-            public void onResponse(Call<Account> call, Response<Account> response) {
+            public void onResponse(Call<Void> call, Response<Void> response) {
                 //Toast.makeText(Register.this,response.body().toString(),Toast.LENGTH_SHORT).show();
                 // Log.i(TAG, "post submitted to API." + response.body().toString());
                 Log.d(TAG, "onResponse: " + response.isSuccessful());
@@ -200,7 +200,7 @@ public class Register extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<Account> call, Throwable t) {
+            public void onFailure(Call<Void> call, Throwable t) {
                 Log.e(TAG, "Unable to submit post to API.");
                 Log.e(TAG, "onFailure: message" + t.getMessage());
                 t.printStackTrace();

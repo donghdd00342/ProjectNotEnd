@@ -88,7 +88,7 @@ public class EditActivity extends AppCompatActivity {
                         // onSignupFailed();
                         //dialogSuccess(EditActivity.this);
                         progressDialog.dismiss();
-                        createAccount(new Account(email,fistName,lastName,loginName,password));
+//                        createAccount(new Account(email,fistName,lastName,loginName,password));
 
                     }
                 }, 3000);
@@ -163,25 +163,25 @@ public class EditActivity extends AppCompatActivity {
         theButton.setOnClickListener(new CustomListener(dialog, activity));
     }
 
-    public void createAccount(Account account) {
-        mAPIService.createAccount(account).enqueue(new Callback<Account>() {
-            @Override
-            public void onResponse(Call<Account> call, Response<Account> response) {
-                //Toast.makeText(EditActivity.this,response.body().toString(),Toast.LENGTH_SHORT).show();
-                // Log.i(TAG, "post submitted to API." + response.body().toString());
-                Log.d(TAG, "onResponse: "+response.isSuccessful());
-                Log.d(TAG, "onResponse:, responebody--- "+response.body());
-                onSignupSuccess();
-            }
-            @Override
-            public void onFailure(Call<Account> call, Throwable t) {
-                Log.e(TAG, "Unable to submit post to API.");
-                Log.e(TAG, "onFailure: message"+t.getMessage() );
-                t.printStackTrace();
-                Toast.makeText(EditActivity.this, "something went wrong", Toast.LENGTH_SHORT).show();
-                onSignupFailed();
-                //dialogSuccess(EditActivity.this);
-            }
-        });
-    }
+//    public void createAccount(Account account) {
+//        mAPIService.createAccount(account).enqueue(new Callback<Account>() {
+//            @Override
+//            public void onResponse(Call<Account> call, Response<Account> response) {
+//                //Toast.makeText(EditActivity.this,response.body().toString(),Toast.LENGTH_SHORT).show();
+//                // Log.i(TAG, "post submitted to API." + response.body().toString());
+//                Log.d(TAG, "onResponse: "+response.isSuccessful());
+//                Log.d(TAG, "onResponse:, responebody--- "+response.body());
+//                onSignupSuccess();
+//            }
+//            @Override
+//            public void onFailure(Call<Account> call, Throwable t) {
+//                Log.e(TAG, "Unable to submit post to API.");
+//                Log.e(TAG, "onFailure: message"+t.getMessage() );
+//                t.printStackTrace();
+//                Toast.makeText(EditActivity.this, "something went wrong", Toast.LENGTH_SHORT).show();
+//                onSignupFailed();
+//                //dialogSuccess(EditActivity.this);
+//            }
+//        });
+//    }
 }
