@@ -56,8 +56,6 @@ public class FriendsFragment1 extends Fragment {
         setHasOptionsMenu(true);
         getFriendList();
         getAccountInfo();
-        rvAdapter = new FriendsListAdapter(getContext(),friendList,paidUser);
-        rv.setAdapter(rvAdapter);
         return view;
     }
 
@@ -72,7 +70,8 @@ public class FriendsFragment1 extends Fragment {
             public void onResponse(Call<List<Friend>> call, Response<List<Friend>> response) {
                 if (response.isSuccessful()){
                     friendList = response.body();
-
+                    rvAdapter = new FriendsListAdapter(getContext(),friendList,paidUser);
+                    rv.setAdapter(rvAdapter);
                 }
             }
 

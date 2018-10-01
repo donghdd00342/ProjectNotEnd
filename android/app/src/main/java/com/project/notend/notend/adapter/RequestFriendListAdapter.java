@@ -55,14 +55,15 @@ public class RequestFriendListAdapter extends RecyclerView.Adapter {
         newsHolder.reqName.setText(friend.getOwnerLastName() + " " + friend.getOwnerFirstName());
         String url = SERVER_URL_ACCOUNT + friend.getOwnerImageUrl();
         Glide.with(mContext).load(url).into(newsHolder.reqAvatar);
-
         newsHolder.btn_AcceptReq.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 friend.setStatus(12);
                 Log.e("conffriend",""+friend.getStatus());
                 acceptRequest(friend);
+                listRequestFriend.remove(position);
                 notifyItemRemoved(position);
+                notifyItemRangeChanged(position, listRequestFriend.size());
             }
         });
         newsHolder.btn_DeleteReq.setOnClickListener(new View.OnClickListener() {
@@ -72,11 +73,14 @@ public class RequestFriendListAdapter extends RecyclerView.Adapter {
                 if (friend.getStatus()==11){
                     deleteRequest(friend.getId());
                     notifyItemRemoved(position);
+                    listRequestFriend.remove(position);
+                    notifyItemRangeChanged(position, listRequestFriend.size());
                 }else {
                     Toast.makeText(mContext, "U cannot delete it", Toast.LENGTH_LONG).show();
                 }
             }
         });
+
     }
 
     @Override
