@@ -102,6 +102,7 @@ public class FriendResource {
     }
 
     private FriendDTO swapUser(FriendDTO friendDTO) {
+        friendDTO.setId(null);
         Long temp = friendDTO.getOwnerId();
         friendDTO.setOwnerId(friendDTO.getFriendId());
         friendDTO.setFriendId(temp);

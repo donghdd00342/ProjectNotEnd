@@ -16,7 +16,7 @@ export class PageRibbonComponent implements OnInit {
     ngOnInit() {
         this.profileService.getProfileInfo().then(profileInfo => {
             this.profileInfo = profileInfo;
-            this.ribbonEnv = profileInfo.ribbonEnv;
+            // this.ribbonEnv = profileInfo.ribbonEnv;
         });
     }
 }
