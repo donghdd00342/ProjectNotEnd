@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,13 +25,14 @@ import retrofit2.Response;
 import static com.project.notend.notend.data.config.config.CURRENT_TOKEN_ID;
 public class FriendsFragment2 extends Fragment {
     private RecyclerView rv;
-    private static String token = SharedPrefs.getInstance().get(CURRENT_TOKEN_ID,String.class);
+    private static String token;
     List<Friend> requestFriendList = new ArrayList<>();
     private APIService mAPIService;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mAPIService = ApiUtils.getApiServiceAccount();
+        token = SharedPrefs.getInstance().get(CURRENT_TOKEN_ID,String.class);
     }
     @Nullable
     @Override

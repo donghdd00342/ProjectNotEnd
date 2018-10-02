@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -33,9 +32,9 @@ import static com.project.notend.notend.data.config.config.CURRENT_TOKEN_ID;
 public class FriendsFragment1 extends Fragment {
     private RecyclerView rv;
 
-    private static String token = SharedPrefs.getInstance().get(CURRENT_TOKEN_ID,String.class);
+    private static String token;
     List<Friend> friendList = new ArrayList<>();
-    List<Account> acclist = new ArrayList<>();
+    public boolean paidUser;
     private APIService mAPIService;
     private FriendsListAdapter rvAdapter;
 
@@ -43,6 +42,7 @@ public class FriendsFragment1 extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mAPIService = ApiUtils.getApiServiceAccount();
+        token = SharedPrefs.getInstance().get(CURRENT_TOKEN_ID,String.class);
     }
 
     @Nullable
@@ -55,7 +55,7 @@ public class FriendsFragment1 extends Fragment {
         rv.setHasFixedSize(true);
         setHasOptionsMenu(true);
         getFriendList();
-        //Log.e("acc",""+acclist);
+        getAccountInfo();
         return view;
     }
 
@@ -65,12 +65,12 @@ public class FriendsFragment1 extends Fragment {
     }
 
     private void getFriendList() {
-        mAPIService.getFriendList("Bearer "+SharedPrefs.getInstance().get(CURRENT_TOKEN_ID,String.class)).enqueue(new Callback<List<Friend>>() {
+        mAPIService.getFriendList("Bearer "+token).enqueue(new Callback<List<Friend>>() {
             @Override
             public void onResponse(Call<List<Friend>> call, Response<List<Friend>> response) {
                 if (response.isSuccessful()){
                     friendList = response.body();
-                    rvAdapter = new FriendsListAdapter(getContext(),friendList);
+                    rvAdapter = new FriendsListAdapter(getContext(),friendList,paidUser);
                     rv.setAdapter(rvAdapter);
                 }
             }
@@ -82,6 +82,21 @@ public class FriendsFragment1 extends Fragment {
         });
     }
 
+    private void getAccountInfo(){
+        mAPIService.getAccountInfo("Bearer "+token).enqueue(new Callback<Account>() {
+            @Override
+            public void onResponse(Call<Account> call, Response<Account> response) {
+                if (response.isSuccessful()){
+                    Account a = response.body();
+                    paidUser = a.getPaidUser();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Account> call, Throwable t) {}
+        });
+    }
+
 //    @Override
 //    public void setUserVisibleHint(boolean isVisibleToUser) {
 //        super.setUserVisibleHint(isVisibleToUser);
@@ -89,6 +104,4 @@ public class FriendsFragment1 extends Fragment {
 //            getFriendList();
 //        }
 //    }
-
-
 }

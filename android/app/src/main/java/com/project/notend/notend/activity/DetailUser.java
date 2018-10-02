@@ -3,6 +3,7 @@ package com.project.notend.notend.activity;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -33,19 +34,23 @@ import static com.project.notend.notend.data.remote.ApiUtils.SERVER_URL_ACCOUNT;
 public class DetailUser extends AppCompatActivity {
     @BindView(R.id.imgProfile)
     ImageView imgProfile;
-    @BindView(R.id.tvMyName)
+    @BindView(R.id.myName)
     TextView tvMyName;
-    @BindView(R.id.tvMyAge)
-    TextView tvMyAge;
-    @BindView(R.id.tvMyHeight)
-    TextView tvMyheigh;
-    @BindView(R.id.tvMyAddress)
-    TextView tvMyAddress;
-    @BindView(R.id.tvMyCountry)
-    TextView tvMyCountry;
-    private APIService mAPIService;
+    @BindView(R.id.myGender)
+    TextView tvMyGender;
+//    @BindView(R.id.myAge)
+//    TextView tvMyAge;
+//    @BindView(R.id.myHeight)
+//    TextView tvMyheight;
+//    @BindView(R.id.myAddress)
+//    TextView tvMyAddress;
+//    @BindView(R.id.myCountry)
+//    TextView tvMyCountry;
     @BindView(R.id.btn_addFriend)
     Button btn_addFriend;
+
+    private APIService mAPIService;
+    private static String token ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,12 +61,12 @@ public class DetailUser extends AppCompatActivity {
         actionBar.setDisplayShowHomeEnabled(true);
         ButterKnife.bind(this);
         mAPIService = ApiUtils.getApiService();
+        token = SharedPrefs.getInstance().get(CURRENT_TOKEN_ID, String.class).toString();
         Bundle getBundle = this.getIntent().getExtras();
         final Account account = getBundle.getParcelable("data");
         initData(account.getLogin());
-
-
     }
+
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
@@ -69,8 +74,7 @@ public class DetailUser extends AppCompatActivity {
     }
 
     private void initData(String login){
-        mAPIService.getDetailUser(login, "Bearer "+ SharedPrefs.getInstance()
-                .get(CURRENT_TOKEN_ID, String.class).toString())
+        mAPIService.getDetailUser(login, "Bearer "+ token)
                 .enqueue(new Callback<Account>() {
             @Override
             public void onResponse(Call<Account> call, Response<Account> response) {
@@ -78,8 +82,18 @@ public class DetailUser extends AppCompatActivity {
                     final Account account = response.body();
                     String url = SERVER_URL_ACCOUNT + account.getImageUrl();
                     Glide.with(getBaseContext()).load(url).into(imgProfile);
-                    getSupportActionBar().setTitle(account.getLastName() + " " + account.getFirstName());
+                    getSupportActionBar().setTitle(account.getFirstName() + " " + account.getLastName());
                     tvMyName.setText(account.getLastName() + " " + account.getFirstName());
+                    String gender;
+                    if(account.getGender()==0){
+                        gender = "Female";
+                    }else if(account.getGender()==1){
+                        gender = "Male";
+                    }else{
+                        gender = "Unknown";
+                    }
+                    tvMyGender.setText(gender);
+//                    getAccountInfo();
                     btn_addFriend.setVisibility(View.VISIBLE);
                     if (null == account.getFriendStatus() || account.getFriendStatus() == 10){
                         btn_addFriend.setOnClickListener(new View.OnClickListener() {
@@ -116,10 +130,10 @@ public class DetailUser extends AppCompatActivity {
 
     private void sendAddFriend(Friend paramObject){
         mAPIService.askFriend(paramObject,
-                "Bearer "+ SharedPrefs.getInstance().get(CURRENT_TOKEN_ID, String.class).toString())
-                .enqueue(new Callback<Void>() {
+                "Bearer "+ token)
+                .enqueue(new Callback<Friend>() {
                     @Override
-                    public void onResponse(Call<Void> call, Response<Void> response) {
+                    public void onResponse(Call<Friend> call, Response<Friend> response) {
                         if (response.isSuccessful()){
                             btn_addFriend.setEnabled(false);
                             btn_addFriend.setText("Đã gửi");
@@ -127,10 +141,30 @@ public class DetailUser extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onFailure(Call<Void> call, Throwable t) {
+                    public void onFailure(Call<Friend> call, Throwable t) {
                         Toast.makeText(getBaseContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
     }
 
+//    private void getAccountInfo(){
+//        mAPIService.getAccountInfo("Bearer "+token).enqueue(new Callback<Account>() {
+//            @Override
+//            public void onResponse(Call<Account> call, Response<Account> response) {
+//                if (response.isSuccessful()){
+//                    Account a = response.body();
+//                    if(a.getPaidUser()){
+//                        btn_addFriend.setVisibility(View.VISIBLE);
+//                    }else{
+////                        btn_addFriend.setVisibility(View.GONE);
+//                        btn_addFriend.setText("Paid user can add friend");
+//                        btn_addFriend.setEnabled(false);
+//                    }
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<Account> call, Throwable t) {}
+//        });
+//    }
 }

@@ -85,10 +85,7 @@ public class GetkeyPasswordActivity extends AppCompatActivity {
 //                                    Log.d(TAG, "onResponse: " + response.isSuccessful());
 //                                    Log.d(TAG, "onResponse:, responebody--- " + response.code());
                                 if (response.isSuccessful()) {
-                                    dialogSuccess(GetkeyPasswordActivity.this);
-                                    Intent intent = new Intent(GetkeyPasswordActivity.this,
-                                            ResetPasswordActivity.class);
-                                    startActivity(intent);
+                                    reset();
                                 } else {
                                     Toast.makeText(getBaseContext(), "Incorrect email address", Toast.LENGTH_SHORT).show();
                                     getkey.setEnabled(true);
@@ -105,15 +102,23 @@ public class GetkeyPasswordActivity extends AppCompatActivity {
                 }, 3000);
     }
 
-    public void dialogSuccess(final Activity activity) {
-        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.AppTheme_Dark_Dialog));
-        dialogBuilder.setMessage("A key has been sent to your email address!!!");
-        dialogBuilder.setNegativeButton("ok", null);
-        AlertDialog dialog = dialogBuilder.create();
-        dialog.show();
-        Button theButton = dialog.getButton(DialogInterface.BUTTON_NEGATIVE);
-        theButton.setText("ok");
-        theButton.setOnClickListener(new CustomListener(dialog, activity));
+    public void reset() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.AppTheme_Dark_Dialog));
+        builder.setMessage("A key has been sent to your email address!!!");
+        builder.setCancelable(false);
+        builder.setNegativeButton("Ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+                SharedPrefs.getInstance().clear();
+                Intent intent = new Intent(GetkeyPasswordActivity.this,
+                        ResetPasswordActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 
     @Override

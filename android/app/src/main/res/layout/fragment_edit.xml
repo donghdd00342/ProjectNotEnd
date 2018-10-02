@@ -2,7 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primary"
+    android:background="@color/white"
     android:fitsSystemWindows="true">
     <LinearLayout
         android:orientation="vertical"
@@ -12,7 +12,7 @@
         android:paddingLeft="24dp"
         android:paddingRight="24dp">
 
-        <ImageView android:src="@drawable/logo"
+        <ImageView android:src="@drawable/ic_logo"
             android:layout_width="wrap_content"
             android:layout_height="150dp"
             android:layout_marginBottom="20dp"
@@ -27,7 +27,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
-                android:hint="Login Name" />
+                android:hint="Login Name"
+                android:textColor="@color/black"/>
         </android.support.design.widget.TextInputLayout>
 
         <!--  Email Label -->
@@ -40,7 +41,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
-                android:hint="Email" />
+                android:hint="Email"
+                android:textColor="@color/black"/>
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -52,7 +54,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
-                android:hint="First Name" />
+                android:hint="First Name"
+                android:textColor="@color/black"/>
         </android.support.design.widget.TextInputLayout>
         <!-- Last Name Label -->
         <android.support.design.widget.TextInputLayout
@@ -64,7 +67,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textCapWords"
-                android:hint="Last name" />
+                android:hint="Last name"
+                android:textColor="@color/black"/>
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -76,7 +80,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
-                android:hint="Middle Name" />
+                android:hint="Middle Name"
+                android:textColor="@color/black"/>
         </android.support.design.widget.TextInputLayout>
 
         <RadioGroup

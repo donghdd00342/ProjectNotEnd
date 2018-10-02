@@ -5,23 +5,46 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <android.support.design.widget.TabLayout
-        style="@style/AppTabLayout"
-        app:tabTextAppearance="@style/AppTabTextAppearance"
-        android:id="@+id/sliding_tabs"
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:weightSum="22"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:tabMode="fixed"
-        app:tabGravity="fill"
-        app:tabIndicatorColor="@color/black"
-        android:background="@color/primary"
-        app:tabBackground="@drawable/tab_selected_background"
-        />
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="horizontal"
+        >
+        <android.support.design.widget.TabLayout
+            style="@style/AppTabLayout"
+            android:layout_marginTop="4dp"
+            app:tabTextAppearance="@style/AppTabTextAppearance"
+            android:id="@+id/sliding_tabs"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:tabMode="fixed"
+            app:tabGravity="fill"
+            app:tabIndicatorColor="#ffeeeeee"
+            android:background="@color/primary"
+            app:tabBackground="@drawable/tab_selected_background"
+            android:layout_weight="20"
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewpager"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/darker_gray" />
+            />
+
+        <ImageView
+            android:id="@+id/menu"
+            android:layout_width="0dp"
+            android:padding="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="2"
+            android:src="@drawable/ic_more_vert_black_24dp"/>
+    </LinearLayout>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffeeeeee" />
+
 
 </LinearLayout>
+

@@ -28,8 +28,9 @@ import retrofit2.http.Query;
 
 public interface APIService {
 
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST("api/register")
-    Call<Account> createAccount(@Body Account account);
+    Call<Void> createAccount(@Body Account account);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST("api/authenticate")
@@ -54,9 +55,10 @@ public interface APIService {
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST("/api/friends")
-    Call<Void> askFriend(@Body Friend body, @Header("Authorization") String authHeader);
+    Call<Friend> askFriend(@Body Friend body, @Header("Authorization") String authHeader);
 
-    @POST("api/account")
+//    @POST("api/account")
+    @PUT("api/users")
     Call<Account> editAccount(@Body Account account, @Header("Authorization") String authHeader);
 
     @GET("api/account/upgrade")
@@ -81,6 +83,7 @@ public interface APIService {
     @POST("api/account/reset-password/init")
     Call<Void> getKey(@Body String email);
 
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST("api/account/reset-password/finish")
     Call<Void> resetPassword(@Body String body);
 
@@ -91,8 +94,8 @@ public interface APIService {
     Call<List<Friend>> getRequestFriend(@Header("Authorization") String authHeader);
 
     @PUT("api/friends")
-    Call<List<Friend>> acceptRequestFriend(@Body Friend body, @Header("Authorization") String authHeader);
+    Call<Friend> acceptRequestFriend(@Body Friend body, @Header("Authorization") String authHeader);
 
     @DELETE("api/friends/{id}")
-    Call<List<Friend>> deleteRequestFriend(@Path("friendId") Integer friendId, @Header("Authorization") String authHeader);
+    Call<Void> deleteRequestFriend(@Path("id") Integer friendId, @Header("Authorization") String authHeader);
 }

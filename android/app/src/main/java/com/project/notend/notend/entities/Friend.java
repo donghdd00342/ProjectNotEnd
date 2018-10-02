@@ -7,6 +7,53 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Friend implements Parcelable {
+
+    @SerializedName("ownerFirstName")
+    @Expose
+    private String ownerFirstName;
+    @SerializedName("ownerLastName")
+    @Expose
+    private String ownerLastName;
+    @SerializedName("ownerImageUrl")
+    @Expose
+    private String ownerImageUrl;
+    @SerializedName("ownerLogin")
+    @Expose
+    private String ownerLogin;
+
+
+    public String getOwnerFirstName() {
+        return ownerFirstName;
+    }
+
+    public void setOwnerFirstName(String ownerFirstName) {
+        this.ownerFirstName = ownerFirstName;
+    }
+
+    public String getOwnerLastName() {
+        return ownerLastName;
+    }
+
+    public void setOwnerLastName(String ownerLastName) {
+        this.ownerLastName = ownerLastName;
+    }
+
+    public String getOwnerImageUrl() {
+        return ownerImageUrl;
+    }
+
+    public void setOwnerImageUrl(String ownerImageUrl) {
+        this.ownerImageUrl = ownerImageUrl;
+    }
+
+    public String getOwnerLogin() {
+        return ownerLogin;
+    }
+
+    public void setOwnerLogin(String ownerLogin) {
+        this.ownerLogin = ownerLogin;
+    }
+
     @SerializedName("friendFirstName")
     @Expose
     private String friendFirstName;

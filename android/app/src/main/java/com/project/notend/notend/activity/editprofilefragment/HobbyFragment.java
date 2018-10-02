@@ -28,16 +28,6 @@ public class HobbyFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_yourself, container, false);
         context = rootView.getContext();
-        Button _changePassButton = (Button) rootView.findViewById(R.id.btn_changepassview);
-        _changePassButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                // Start the Signup activity
-                Intent i = new Intent(context, ChangePasswordActivity.class);
-                startActivity(i);
-            }
-        });
 
         return rootView;
     }
