@@ -325,7 +325,8 @@ public class UserService {
 
     public void deleteUser(String login) {
         userRepository.findOneByLogin(login).ifPresent(user -> {
-            userRepository.delete(user);
+            user.setActivated(false);
+            userRepository.save(user);
             this.clearUserCaches(user);
             log.debug("Deleted User: {}", user);
         });

@@ -102,6 +102,7 @@ public class FriendResource {
     }
 
     private FriendDTO swapUser(FriendDTO friendDTO) {
+        friendDTO.setId(null);
         Long temp = friendDTO.getOwnerId();
         friendDTO.setOwnerId(friendDTO.getFriendId());
         friendDTO.setFriendId(temp);
@@ -155,12 +156,10 @@ public class FriendResource {
             FriendDTO friendDb = friendOpt.get();
             Optional<FriendDTO> friendDbMatch = friendService.findByIdsMacth(friendDb.getOwnerId(), friendDb.getFriendId());
 
-            if (!friendDbMatch.isPresent()) {
-                throw new SomethingWentWrongException("Ids not match", ENTITY_NAME, "Ids not match");
-            }
-
             friendService.delete(id);
-            friendService.delete(friendDbMatch.get().getId());
+            if (friendDbMatch.isPresent()) {
+                friendService.delete(friendDbMatch.get().getId());
+            }
 
             return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
         } else {
