@@ -12,5 +12,6 @@
     <include file="config/liquibase/changelog/20180902181148_added_entity_constraints_TransactionHistory.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180902181149_added_entity_constraints_Message.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180902181150_added_entity_constraints_Friend.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181003155515_added_entity_ConfigInfo.xml" relativeToChangelogFile="false"/>
     <!-- Constraints changelogs here -->
 </databaseChangeLog>
