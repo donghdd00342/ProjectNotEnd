@@ -15,7 +15,7 @@ import java.util.List;
 public class FriendsFragmentPagerAdapter extends FragmentPagerAdapter {
     private Context mContext;
     private static int count;
-    private String tabTitles[] = new String[] { "Friend","Ask-Friend"};
+    private String tabTitles[] = new String[] { "Friend","Request"};
     private List<Fragment> fragmentList;
     public FriendsFragmentPagerAdapter( FragmentManager fm) {
         super(fm);

@@ -103,7 +103,7 @@ public class GetkeyPasswordActivity extends AppCompatActivity {
     }
 
     public void reset() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.AppTheme_Dark_Dialog));
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("A key has been sent to your email address!!!");
         builder.setCancelable(false);
         builder.setNegativeButton("Ok", new DialogInterface.OnClickListener() {
