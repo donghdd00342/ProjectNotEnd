@@ -69,4 +69,13 @@ public class ConfigInfoResource {
         Optional<ConfigInfoDTO> configInfoDTO = configInfoService.findOne(1L);
         return ResponseUtil.wrapOrNotFound(configInfoDTO);
     }
+
+    @GetMapping("/config-infos/testing")
+    @Timed
+    @Secured(AuthoritiesConstants.ADMIN)
+    public ResponseEntity<Void> testNow() {
+        log.debug("REST request to test sending email now.");
+        configInfoService.testNow();
+        return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, "done")).build();
+    }
 }

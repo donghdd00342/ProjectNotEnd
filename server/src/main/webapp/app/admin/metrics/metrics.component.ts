@@ -10,10 +10,14 @@ import { JhiMetricsService } from './metrics.service';
 })
 export class JhiMetricsMonitoringComponent implements OnInit {
     statistics: any = {};
+    configs: any = {};
     metrics: any = {};
     cachesStats: any = {};
     servicesStats: any = {};
     updatingMetrics = true;
+    flagTesting = false;
+    flagMsgSuccess = false;
+    flagMsgError = false;
     JCACHE_KEY: string;
 
     constructor(private modalService: NgbModal, private metricsService: JhiMetricsService) {
@@ -28,6 +32,9 @@ export class JhiMetricsMonitoringComponent implements OnInit {
         this.updatingMetrics = true;
         this.metricsService.userStatistics().subscribe(statistics => {
             this.statistics = statistics;
+        });
+        this.metricsService.getConfigs().subscribe(configs => {
+            this.configs = configs;
         });
         this.metricsService.getMetrics().subscribe(metrics => {
             this.metrics = metrics;
@@ -77,5 +84,36 @@ export class JhiMetricsMonitoringComponent implements OnInit {
             return 0;
         }
         return input;
+    }
+
+    testNow() {
+        this.metricsService.testNow().subscribe(
+            () => {
+                this.flagTesting = true;
+                this.flagMsgError = false;
+                this.flagMsgSuccess = false;
+            },
+            () => {
+                this.flagMsgSuccess = false;
+                this.flagTesting = false;
+                this.flagMsgError = true;
+            }
+        );
+    }
+
+    saveConfigs() {
+        this.metricsService.update(this.configs).subscribe(
+            () => {
+                this.flagMsgSuccess = true;
+                this.flagMsgError = false;
+
+                this.flagTesting = false;
+            },
+            () => {
+                this.flagMsgSuccess = false;
+                this.flagTesting = false;
+                this.flagMsgError = true;
+            }
+        );
     }
 }

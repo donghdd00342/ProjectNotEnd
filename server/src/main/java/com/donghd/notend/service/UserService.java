@@ -51,8 +51,10 @@ public class UserService {
     private final MessageRepository messageRepository;
 
     private final CacheManager cacheManager;
+    private final MailService mailService;
 
     public UserService(
+            MailService mailService,
             MessageRepository messageRepository,
             TransactionHistoryRepository transactionHistoryRepository,
             FriendRepository friendRepository,
@@ -61,6 +63,7 @@ public class UserService {
             AuthorityRepository authorityRepository, 
             CacheManager cacheManager
         ) {
+        this.mailService = mailService;
         this.messageRepository = messageRepository;
         this.transactionHistoryRepository = transactionHistoryRepository;
         this.friendRepository = friendRepository;
@@ -389,7 +392,12 @@ public class UserService {
      */
     @Scheduled(cron = "0 0 1 * * ?")
     public void removeNotActivatedUsers() {
-        List<User> users = userRepository.findAllByActivatedIsFalseAndCreatedDateBefore(Instant.now().minus(3, ChronoUnit.DAYS));
+        removeNotActivatedUsers(6L);
+    }
+
+    public void removeNotActivatedUsers(long day) {
+        log.debug("================ Deleting not activated user ================{}", Instant.now().minus(day, ChronoUnit.DAYS));
+        List<User> users = userRepository.findAllByActivatedIsFalseAndCreatedDateBefore(Instant.now().minus(day, ChronoUnit.DAYS));
         for (User user : users) {
             log.debug("Deleting not activated user {}", user.getLogin());
             userRepository.delete(user);
@@ -407,6 +415,24 @@ public class UserService {
             log.debug("Paid User is Expiration {}", user.getLogin());
             user.setPaidUser(false);
             userRepository.save(user);
+        }
+    }
+
+    public void remindUpgrade(long day) {
+        log.debug("================ Sending email to remind User Paying ================{}", Instant.now().plus(day, ChronoUnit.DAYS));
+        List<User> users = userRepository.findAllByPaidUserIsTrueAndExpirationDateBefore(Instant.now().plus(day, ChronoUnit.DAYS));
+        for (User user : users) {
+            log.debug("Sending email to remind User Paying", user.getLogin());
+            mailService.remindUserPaying(user);
+        }
+    }
+
+    public void sendingComeBack(long day) {
+        log.debug("================ Sending email to User Come Back ================{}", Instant.now().minus(day, ChronoUnit.DAYS));
+        List<User> users = userRepository.findAllByCreatedDateBefore(Instant.now().minus(day, ChronoUnit.DAYS));
+        for (User user : users) {
+            log.debug("Sending email to User Come Back", user.getLogin());
+            mailService.sendingComeBack(user);
         }
     }
     

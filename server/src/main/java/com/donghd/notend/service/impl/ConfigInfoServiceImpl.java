@@ -1,6 +1,7 @@
 package com.donghd.notend.service.impl;
 
 import com.donghd.notend.service.ConfigInfoService;
+import com.donghd.notend.service.UserService;
 import com.donghd.notend.domain.ConfigInfo;
 import com.donghd.notend.repository.ConfigInfoRepository;
 import com.donghd.notend.service.dto.ConfigInfoDTO;
@@ -28,9 +29,12 @@ public class ConfigInfoServiceImpl implements ConfigInfoService {
 
     private final ConfigInfoMapper configInfoMapper;
 
-    public ConfigInfoServiceImpl(ConfigInfoRepository configInfoRepository, ConfigInfoMapper configInfoMapper) {
+    private final UserService userService;
+
+    public ConfigInfoServiceImpl(UserService userService, ConfigInfoRepository configInfoRepository, ConfigInfoMapper configInfoMapper) {
         this.configInfoRepository = configInfoRepository;
         this.configInfoMapper = configInfoMapper;
+        this.userService = userService;
     }
 
     /**
@@ -85,5 +89,15 @@ public class ConfigInfoServiceImpl implements ConfigInfoService {
     public void delete(Long id) {
         log.debug("Request to delete ConfigInfo : {}", id);
         configInfoRepository.deleteById(id);
+    }
+
+    @Override
+    public void testNow() {
+        // RemoveAccNotActive
+        userService.removeNotActivatedUsers(findOne(1L).get().getRemoveAccNotActive());
+        // remind upgrade
+        userService.remindUpgrade(findOne(1L).get().getRemindUpgrade());
+        // send come back
+        userService.sendingComeBack(findOne(1L).get().getSendComeBack());
     }
 }

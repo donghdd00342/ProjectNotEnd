@@ -123,4 +123,14 @@ public class MailService {
         log.debug("Sending send Alert TransactionHistory email to ADMIN - '{}'", "admin@not-end.com");
         sendAlertTransactionFromTemplate(transactionHistory, "mail/transactionHistoryEmail", "email.transaction.title");
     }
+
+    // reminder
+    @Async
+    public void remindUserPaying(User user) {
+        sendEmailFromTemplate(user, "mail/remindUserPaying", "email.remindUserPaying.title");
+    }
+    @Async
+    public void sendingComeBack(User user) {
+        sendEmailFromTemplate(user, "mail/sendingComeBack", "email.sendingComeBack.title");
+    }
 }

@@ -19,4 +19,17 @@ export class JhiMetricsService {
     userStatistics(): Observable<any> {
         return this.http.get(SERVER_API_URL + 'api/users/statistics');
     }
+
+    // config
+    getConfigs(): Observable<any> {
+        return this.http.get(SERVER_API_URL + 'api/config-infos');
+    }
+
+    testNow(): Observable<any> {
+        return this.http.get(SERVER_API_URL + 'api/config-infos/testing');
+    }
+
+    update(configs): Observable<any> {
+        return this.http.put(SERVER_API_URL + 'api/config-infos', configs);
+    }
 }
