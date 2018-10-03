@@ -8,31 +8,28 @@
 
     <!-- <h3>JVM Metrics</h3> -->
     <div class="row" *ngIf="!updatingMetrics">
-        <div class="col-md-6">
+        
+        <div class="col-md-4">
             <h3>User Statistic</h3>
 
             <p><span>Số tài khoản đã Actived</span> ({{statistics.activedUser | number:'1.0-0'}} / {{statistics.totalUser | number:'1.0-0'}})</p>
             <ngb-progressbar type="success" [max]="statistics.totalUser" [value]="statistics.activedUser" [striped]="true" [animated]="true">
                 <span>{{statistics.activedUser * 100 / statistics.totalUser  | number:'1.0-0'}}%</span>
             </ngb-progressbar>
-
             <p><span>Số tài khoản trả phí (Paid)</span> ({{statistics.paidUser | number:'1.0-0'}} / {{statistics.activedUser | number:'1.0-0'}})</p>
             <ngb-progressbar type="warning" [max]="statistics.activedUser" [value]="statistics.paidUser" [striped]="true" [animated]="true">
                 <span>{{statistics.paidUser * 100 / statistics.activedUser  | number:'1.0-0'}}%</span>
             </ngb-progressbar>
-
-            <p><span>Số Yêu cầu kết bạn đang chờ xử lý</span> ({{statistics.pendingFriends | number:'1.0-0'}} / {{statistics.totalFriends | number:'1.0-0'}})</p>
-            <ngb-progressbar type="info" [max]="statistics.totalFriends" [value]="statistics.pendingFriends" [striped]="true" [animated]="true">
-                <span>{{statistics.pendingFriends * 100 / statistics.totalFriends  | number:'1.0-0'}}%</span>
-            </ngb-progressbar>
-
-            <p><span>Số Tin nhắn chưa đọc</span> ({{statistics.unreadMessages | number:'1.0-0'}} / {{statistics.totalMessages | number:'1.0-0'}})</p>
-            <ngb-progressbar type="danger" [max]="statistics.totalMessages" [value]="statistics.unreadMessages" [striped]="true" [animated]="true">
-                <span>{{statistics.unreadMessages * 100 / statistics.totalMessages  | number:'1.0-0'}}%</span>
-            </ngb-progressbar>
-
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
+            <h3>Other Statistic</h3>
+
+            <p><span>Tổng thu nhập trong tháng này: </span> <b>$500.000</b></p>
+            <p><span>Tổng thu nhập từ khi bắt đầu: </span> <b>$6.000.000</b></p>
+            <p><span>Số Yêu cầu kết bạn đang chờ xử lý</span> ({{statistics.pendingFriends | number:'1.0-0'}} / {{statistics.totalFriends | number:'1.0-0'}})</p>
+            <p><span>Số Tin nhắn chưa đọc</span> ({{statistics.unreadMessages | number:'1.0-0'}} / {{statistics.totalMessages | number:'1.0-0'}})</p>
+        </div>
+        <div class="col-md-4">
             <h3>Configuration</h3>
             <p *ngIf="flagTesting" class="alert alert-success">Done! please check the mailtrap!</p>
             <p *ngIf="flagMsgSuccess" class="alert alert-success">Success!</p>
@@ -54,5 +51,6 @@
                 </div>
             </div>
         </div>
+        
     </div>
 </div>
