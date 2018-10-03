@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorTransparent">#ffeeeeee</color>
-    <color name="colorCustom">#e835e8</color>
+    <color name="colorCustom">#ff3578</color>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#ff8eee</color>
+    <color name="colorAccent">#FF4081</color>
     <color name="primary">#FFFFFF</color>
     <color name="primary_dark">#E12929</color>
     <color name="primary_darker">#CC1D1D</color>

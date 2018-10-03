@@ -75,10 +75,10 @@ public class ChatActivity extends AppCompatActivity {
         String fistNameFriend = intent.getExtras().getString("fistNameFriend");
         String lastNameFriend = intent.getExtras().getString("lastNameFriend");
         String imageUrlFriend = intent.getExtras().getString("imageUrlFriend");
-        messageList.add(new ChatMessage(1, 1, "Xin chào!", "1-1-2012", 2,imageUrlFriend,fistNameFriend,lastNameFriend));
-        messageList.add(new ChatMessage(1, 1, "mình là " + fistNameFriend, "1-1-2012", 2,imageUrlFriend,fistNameFriend,lastNameFriend));
-        messageList.add(new ChatMessage(2, 1, "rất vui khi được làm quen với bạn", "1-1-2012", 1,imageUrlFriend,fistNameFriend,lastNameFriend));
-        messageList.add(new ChatMessage(1, 1, " : )) - end", "1-1-2012", 2,imageUrlFriend,fistNameFriend,lastNameFriend));
+//        messageList.add(new ChatMessage(1, 1, "Xin chào!", "1-1-2012", 2,imageUrlFriend,fistNameFriend,lastNameFriend));
+//        messageList.add(new ChatMessage(1, 1, "mình là " + fistNameFriend, "1-1-2012", 2,imageUrlFriend,fistNameFriend,lastNameFriend));
+//        messageList.add(new ChatMessage(2, 1, "rất vui khi được làm quen với bạn", "1-1-2012", 1,imageUrlFriend,fistNameFriend,lastNameFriend));
+//        messageList.add(new ChatMessage(1, 1, " : )) - end", "1-1-2012", 2,imageUrlFriend,fistNameFriend,lastNameFriend));
         //set ActionBar
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);

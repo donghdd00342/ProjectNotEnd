@@ -28,8 +28,9 @@ import retrofit2.http.Query;
 
 public interface APIService {
 
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST("api/register")
-    Call<Account> createAccount(@Body Account account);
+    Call<Void> createAccount(@Body Account account);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST("api/authenticate")

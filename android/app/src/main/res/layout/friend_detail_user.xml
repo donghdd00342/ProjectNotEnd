@@ -30,7 +30,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="300dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/img3" />
+                    android:src="@drawable/avata_demo_1" />
 
                 <!--<Button-->
                 <!--android:id="@+id/btEditImage"-->
@@ -94,7 +94,7 @@
                             android:background="#fff"
                             android:gravity="left"
                             android:padding="5dip"
-                            android:text="Quang"
+                            android:text="--"
                             android:textColor="#8470ff" />
                     </TableRow>
                     //row2
@@ -120,7 +120,7 @@
                             android:background="#fff"
                             android:gravity="left"
                             android:padding="5dip"
-                            android:text=" "
+                            android:text="--"
                             android:textColor="#8470ff" />
                     </TableRow>
 
@@ -145,7 +145,7 @@
                             android:background="#fff"
                             android:gravity="left"
                             android:padding="5dip"
-                            android:text="20"
+                            android:text="--"
                             android:textColor="#8470ff" />
                     </TableRow>
                     //row3
@@ -171,7 +171,7 @@
                             android:background="#fff"
                             android:gravity="left"
                             android:padding="5dip"
-                            android:text="170"
+                            android:text="--"
                             android:textColor="#8470ff" />
                     </TableRow>
                     //row4
@@ -292,7 +292,7 @@
                             android:background="#fff"
                             android:gravity="left"
                             android:padding="5dip"
-                            android:text=" "
+                            android:text="--"
                             android:textColor="#8470ff" />
                     </TableRow>
 
@@ -317,7 +317,7 @@
                             android:background="#fff"
                             android:gravity="left"
                             android:padding="5dip"
-                            android:text=" "
+                            android:text="--"
                             android:textColor="#8470ff" />
                     </TableRow>
 
@@ -342,7 +342,7 @@
                             android:background="#fff"
                             android:gravity="left"
                             android:padding="5dip"
-                            android:text=" "
+                            android:text="--"
                             android:textColor="#8470ff" />
                     </TableRow>
 
@@ -387,7 +387,7 @@
                             android:background="#fff"
                             android:gravity="left"
                             android:padding="5dip"
-                            android:text=" "
+                            android:text="--"
                             android:textColor="#8470ff" />
                     </TableRow>
 
@@ -412,7 +412,7 @@
                             android:background="#fff"
                             android:gravity="left"
                             android:padding="5dip"
-                            android:text=" "
+                            android:text="--"
                             android:textColor="#8470ff" />
                     </TableRow>
 
@@ -438,7 +438,7 @@
                             android:background="#fff"
                             android:gravity="left"
                             android:padding="5dip"
-                            android:text=" "
+                            android:text="--"
                             android:textColor="#8470ff" />
                     </TableRow>
                 </TableLayout>
