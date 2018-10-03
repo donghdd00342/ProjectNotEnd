@@ -7,8 +7,8 @@
         android:title="Become premium"/>
     <item  android:id="@+id/changepass"
         android:title="Change password"/>
-    <item  android:id="@+id/edit"
-        android:title="Edit profile"/>
+    <!--<item  android:id="@+id/edit"-->
+        <!--android:title="Edit profile"/>-->
     <item  android:id="@+id/history"
         android:title="Payment history"/>
     <item  android:id="@+id/logout"

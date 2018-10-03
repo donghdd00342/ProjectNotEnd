@@ -20,8 +20,7 @@
                 android:id="@+id/imgProfile"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/avata_demo_1" />
+                android:scaleType="centerCrop" />
         </RelativeLayout>
 
         <LinearLayout
@@ -31,24 +30,69 @@
             android:layout_marginTop="0dp"
             android:orientation="vertical">
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:background="@color/button_pressed"
-                android:clickable="true"
-                android:elevation="4dp"
-                android:padding="5dp"
-                android:text="Inform Basic"
-                android:textColor="@color/black"
-                android:textSize="25sp" />
-
             <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/table1"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:shrinkColumns="*"
                 android:stretchColumns="*">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="@color/button_pressed"
+                    android:clickable="true"
+                    android:elevation="4dp"
+                    android:padding="5dp"
+                    android:text="General"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <TableRow
+                    android:id="@+id/tableRow0"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#fff"
+                    android:padding="5dip">
+
+                    <TextView
+                        android:layout_weight="1"
+                        android:background="#fff"
+                        android:gravity="left"
+                        android:padding="5dip"
+                        android:text="User Name"
+                        android:textColor="#000000" />
+
+                    <EditText
+                        android:id="@+id/edLogin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPersonName"
+                        android:textColor="@color/black" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/tableRow11"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#fff"
+                    android:padding="5dip">
+
+                    <TextView
+                        android:layout_weight="1"
+                        android:background="#fff"
+                        android:gravity="left"
+                        android:padding="5dip"
+                        android:text="Email"
+                        android:textColor="#000000" />
+
+                    <EditText
+                        android:id="@+id/edEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPersonName"
+                        android:textColor="@color/black" />
+                </TableRow>
 
                 <TableRow
                     android:id="@+id/tableRow1"
@@ -65,14 +109,20 @@
                         android:text="Name"
                         android:textColor="#000000" />
 
-                    <TextView
+                    <!--<TextView-->
+                    <!--android:id="@+id/myName"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:background="#fff"-->
+                    <!--android:gravity="left"-->
+                    <!--android:padding="5dip"-->
+                    <!--android:text="Quang"-->
+                    <!--android:textColor="#8470ff" />-->
+                    <EditText
                         android:id="@+id/myName"
-                        android:layout_weight="1"
-                        android:background="#fff"
-                        android:gravity="left"
-                        android:padding="5dip"
-                        android:text="--"
-                        android:textColor="#8470ff" />
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPersonName"
+                        android:textColor="@color/black" />
                 </TableRow>
                 //row2
 
@@ -91,14 +141,39 @@
                         android:text="Gender"
                         android:textColor="#000000" />
 
-                    <TextView
-                        android:id="@+id/myGender"
-                        android:layout_weight="1"
-                        android:background="#fff"
-                        android:gravity="left"
-                        android:padding="5dip"
-                        android:text="--"
-                        android:textColor="#8470ff" />
+                    <!--<TextView-->
+                    <!--android:id="@+id/myGender"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:background="#fff"-->
+                    <!--android:gravity="left"-->
+                    <!--android:padding="5dip"-->
+                    <!--android:text=" "-->
+                    <!--android:textColor="#8470ff" />-->
+
+                    <RadioGroup
+                        android:id="@+id/radioGender"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginTop="8dp"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/radioButton_male"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="false"
+                            android:text="Male"
+                            android:textColor="@color/black" />
+
+                        <RadioButton
+                            android:id="@+id/radioButton_female"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="false"
+                            android:text="Female"
+                            android:textColor="@color/black" />
+                    </RadioGroup>
                 </TableRow>
 
                 <TableRow
@@ -116,14 +191,21 @@
                         android:text="Birthday"
                         android:textColor="#000000" />
 
-                    <TextView
+                    <!--<TextView-->
+                    <!--android:id="@+id/myAge"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:background="#fff"-->
+                    <!--android:gravity="left"-->
+                    <!--android:padding="5dip"-->
+                    <!--android:text="20"-->
+                    <!--android:textColor="#8470ff" />-->
+
+                    <EditText
                         android:id="@+id/myAge"
-                        android:layout_weight="1"
-                        android:background="#fff"
-                        android:gravity="left"
-                        android:padding="5dip"
-                        android:text="--"
-                        android:textColor="#8470ff" />
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPersonName"
+                        android:textColor="@color/black" />
                 </TableRow>
                 //row3
 
@@ -142,14 +224,20 @@
                         android:text="Height"
                         android:textColor="#000000" />
 
-                    <TextView
+                    <!--<TextView-->
+                    <!--android:id="@+id/myHeight"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:background="#fff"-->
+                    <!--android:gravity="left"-->
+                    <!--android:padding="5dip"-->
+                    <!--android:text="170"-->
+                    <!--android:textColor="#8470ff" />-->
+                    <EditText
                         android:id="@+id/myHeight"
-                        android:layout_weight="1"
-                        android:background="#fff"
-                        android:gravity="left"
-                        android:padding="5dip"
-                        android:text="--"
-                        android:textColor="#8470ff" />
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPersonName"
+                        android:textColor="@color/black" />
                 </TableRow>
                 //row4
 
@@ -168,14 +256,20 @@
                         android:text="Address"
                         android:textColor="#000000" />
 
-                    <TextView
+                    <!--<TextView-->
+                    <!--android:id="@+id/myAddress"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:background="#fff"-->
+                    <!--android:gravity="left"-->
+                    <!--android:padding="5dip"-->
+                    <!--android:text="Hà Nội"-->
+                    <!--android:textColor="#8470ff" />-->
+                    <EditText
                         android:id="@+id/myAddress"
-                        android:layout_weight="1"
-                        android:background="#fff"
-                        android:gravity="left"
-                        android:padding="5dip"
-                        android:text="--"
-                        android:textColor="#8470ff" />
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPersonName"
+                        android:textColor="@color/black" />
                 </TableRow>
 
                 <TableRow
@@ -193,60 +287,33 @@
                         android:text="Country"
                         android:textColor="#000000" />
 
-                    <TextView
-                        android:id="@+id/myCountry"
-                        android:layout_weight="1"
-                        android:background="#fff"
-                        android:gravity="left"
-                        android:padding="5dip"
-                        android:text="Việt Nam"
-                        android:textColor="#8470ff" />
-                </TableRow>
-            </TableLayout>
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:background="@color/button_pressed"
-                android:clickable="true"
-                android:elevation="4dp"
-                android:padding="5dp"
-                android:text="Job and Religiion"
-                android:textColor="@color/black"
-                android:textSize="25sp" />
-
-            <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/table2"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:shrinkColumns="*"
-                android:stretchColumns="*">
-
-                <!--<TableRow-->
-                    <!--android:id="@+id/tableRow21"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
+                    <!--<TextView-->
+                    <!--android:id="@+id/myCountry"-->
+                    <!--android:layout_weight="1"-->
                     <!--android:background="#fff"-->
-                    <!--android:padding="5dip">-->
+                    <!--android:gravity="left"-->
+                    <!--android:padding="5dip"-->
+                    <!--android:text="Việt Nam"-->
+                    <!--android:textColor="#8470ff" />-->
+                    <EditText
+                        android:id="@+id/myCountry"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPersonName"
+                        android:textColor="@color/black" />
+                </TableRow>
 
-                    <!--<TextView-->
-                        <!--android:layout_weight="1"-->
-                        <!--android:background="#fff"-->
-                        <!--android:gravity="left"-->
-                        <!--android:padding="5dip"-->
-                        <!--android:text="Education"-->
-                        <!--android:textColor="#000000" />-->
-
-                    <!--<TextView-->
-                        <!--android:id="@+id/myEdu"-->
-                        <!--android:layout_weight="1"-->
-                        <!--android:background="#fff"-->
-                        <!--android:gravity="left"-->
-                        <!--android:padding="5dip"-->
-                        <!--android:text="Ðại học"-->
-                        <!--android:textColor="#8470ff" />-->
-                <!--</TableRow>-->
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="@color/button_pressed"
+                    android:clickable="true"
+                    android:elevation="4dp"
+                    android:padding="5dp"
+                    android:text="Job and Religiion"
+                    android:textColor="@color/black"
+                    android:textSize="25sp" />
 
                 <TableRow
                     android:id="@+id/tableRow22"
@@ -258,19 +325,25 @@
                     <TextView
                         android:layout_weight="1"
                         android:background="#fff"
-                        android:gravity="left"
                         android:padding="5dip"
                         android:text="Working At"
                         android:textColor="#000000" />
 
-                    <TextView
+                    <!--<TextView-->
+                    <!--android:id="@+id/myJob"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:background="#fff"-->
+                    <!--android:gravity="left"-->
+                    <!--android:padding="5dip"-->
+                    <!--android:text=" "-->
+                    <!--android:textColor="#8470ff" />-->
+
+                    <EditText
                         android:id="@+id/myJob"
-                        android:layout_weight="1"
-                        android:background="#fff"
-                        android:gravity="left"
-                        android:padding="5dip"
-                        android:text="-- "
-                        android:textColor="#8470ff" />
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPersonName"
+                        android:textColor="@color/black" />
                 </TableRow>
 
                 <TableRow
@@ -288,14 +361,21 @@
                         android:text="Religion"
                         android:textColor="#000000" />
 
-                    <TextView
+                    <!--<TextView-->
+                    <!--android:id="@+id/myReligion"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:background="#fff"-->
+                    <!--android:gravity="left"-->
+                    <!--android:padding="5dip"-->
+                    <!--android:text=" "-->
+                    <!--android:textColor="#8470ff" />-->
+
+                    <EditText
                         android:id="@+id/myReligion"
-                        android:layout_weight="1"
-                        android:background="#fff"
-                        android:gravity="left"
-                        android:padding="5dip"
-                        android:text="-- "
-                        android:textColor="#8470ff" />
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPersonName"
+                        android:textColor="@color/black" />
                 </TableRow>
 
                 <TableRow
@@ -306,41 +386,42 @@
                     android:padding="5dip">
 
                     <TextView
+                        android:layout_width="97dp"
                         android:layout_weight="1"
                         android:background="#fff"
                         android:gravity="left"
                         android:padding="5dip"
-                        android:text="Mother Tongue"
+                        android:text="Language"
                         android:textColor="#000000" />
 
-                    <TextView
+                    <!--<TextView-->
+                    <!--android:id="@+id/myLang"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:background="#fff"-->
+                    <!--android:gravity="left"-->
+                    <!--android:padding="5dip"-->
+                    <!--android:text=" "-->
+                    <!--android:textColor="#8470ff" />-->
+
+                    <EditText
                         android:id="@+id/myLang"
-                        android:layout_weight="1"
-                        android:background="#fff"
-                        android:gravity="left"
-                        android:padding="5dip"
-                        android:text="--"
-                        android:textColor="#8470ff" />
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPersonName"
+                        android:textColor="@color/black" />
                 </TableRow>
 
-            </TableLayout>
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:background="@color/button_pressed"
-                android:clickable="true"
-                android:elevation="4dp"
-                android:padding="5dp"
-                android:text="Family"
-                android:textColor="@color/black"
-                android:textSize="25sp" />
-            <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/table3"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:shrinkColumns="*"
-                android:stretchColumns="*">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="@color/button_pressed"
+                    android:clickable="true"
+                    android:elevation="4dp"
+                    android:padding="5dp"
+                    android:text="Family"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
 
                 <TableRow
                     android:id="@+id/tableRow31"
@@ -358,14 +439,21 @@
                         android:text="Hobbies"
                         android:textColor="#000000" />
 
-                    <TextView
+                    <!--<TextView-->
+                    <!--android:id="@+id/myHobbies"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:background="#fff"-->
+                    <!--android:gravity="left"-->
+                    <!--android:padding="5dip"-->
+                    <!--android:text=" "-->
+                    <!--android:textColor="#8470ff" />-->
+
+                    <EditText
                         android:id="@+id/myHobbies"
-                        android:layout_weight="1"
-                        android:background="#fff"
-                        android:gravity="left"
-                        android:padding="5dip"
-                        android:text="--"
-                        android:textColor="#8470ff" />
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPersonName"
+                        android:textColor="@color/black" />
                 </TableRow>
 
                 <TableRow
@@ -383,14 +471,21 @@
                         android:text="Family Status"
                         android:textColor="#000000" />
 
-                    <TextView
+                    <!--<TextView-->
+                    <!--android:id="@+id/myFamily"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:background="#fff"-->
+                    <!--android:gravity="left"-->
+                    <!--android:padding="5dip"-->
+                    <!--android:text=" "-->
+                    <!--android:textColor="#8470ff" />-->
+
+                    <EditText
                         android:id="@+id/myFamily"
-                        android:layout_weight="1"
-                        android:background="#fff"
-                        android:gravity="left"
-                        android:padding="5dip"
-                        android:text="--"
-                        android:textColor="#8470ff" />
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPersonName"
+                        android:textColor="@color/black" />
                 </TableRow>
 
                 <TableRow
@@ -406,19 +501,63 @@
                         android:background="#fff"
                         android:gravity="left"
                         android:padding="5dip"
-                        android:text="Status of life"
+                        android:text="Married"
                         android:textColor="#000000" />
 
-                    <TextView
-                        android:id="@+id/myStatusLife"
-                        android:layout_weight="1"
-                        android:background="#fff"
-                        android:gravity="left"
-                        android:padding="5dip"
-                        android:text="--"
-                        android:textColor="#8470ff" />
+                    <!--<TextView-->
+                    <!--android:id="@+id/myStatusLife"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:background="#fff"-->
+                    <!--android:gravity="left"-->
+                    <!--android:padding="5dip"-->
+                    <!--android:text=" "-->
+                    <!--android:textColor="#8470ff" />-->
+
+                    <!--<EditText-->
+                    <!--android:id="@+id/myStatusLife"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:inputType="textPersonName"-->
+                    <!--android:textColor="@color/black" />-->
+
+                    <RadioGroup
+                        android:id="@+id/radioStatus"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginTop="8dp"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/radioButton_yes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="false"
+                            android:text="Yes"
+                            android:textColor="@color/black" />
+
+                        <RadioButton
+                            android:id="@+id/radioButton_no"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="false"
+                            android:text="No"
+                            android:textColor="@color/black" />
+                    </RadioGroup>
                 </TableRow>
             </TableLayout>
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btn_Edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="24dp"
+                android:layout_marginTop="24dp"
+                android:padding="12dp"
+                android:text="Save" />
+
         </LinearLayout>
+
     </RelativeLayout>
 </ScrollView>

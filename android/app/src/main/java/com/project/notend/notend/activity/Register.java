@@ -176,8 +176,7 @@ public class Register extends AppCompatActivity {
     }
 
     public void dialogSuccess(final Activity activity) {
-        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(new ContextThemeWrapper(this,
-                R.style.AppTheme_Dark_Dialog));
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         dialogBuilder.setMessage("Creat Account Success");
         dialogBuilder.setNegativeButton("ok", null);
         AlertDialog dialog = dialogBuilder.create();

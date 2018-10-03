@@ -118,7 +118,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
     }
 
     public void reset() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.AppTheme_Dark_Dialog));
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("Success !!!");
         builder.setCancelable(false);
         builder.setNegativeButton("Ok", new DialogInterface.OnClickListener() {
