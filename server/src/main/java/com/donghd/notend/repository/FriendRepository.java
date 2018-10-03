@@ -29,7 +29,7 @@ public interface FriendRepository extends JpaRepository<Friend, Long> {
     @Query("select friend from Friend friend where friend.friend.login = ?#{principal.username}")
     List<Friend> findByFriendIsCurrentUser();
 
-    @Query("select friend from Friend friend where friend.friend.login = ?#{principal.username}")
+    @Query("select friend from Friend friend where friend.friend.login = ?#{principal.username} and friend.status = 11")
     Page<Friend> findAllByFriendIsCurrentUser(Pageable pageable);
 
     Optional<Friend> findByFriend_Id(Long friendId);
