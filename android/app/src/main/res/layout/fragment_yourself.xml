@@ -30,23 +30,23 @@
             android:layout_marginTop="0dp"
             android:orientation="vertical">
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:background="@color/button_pressed"
-                android:clickable="true"
-                android:elevation="4dp"
-                android:padding="5dp"
-                android:text="General"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
-
             <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/table1"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:stretchColumns="*">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="@color/button_pressed"
+                    android:clickable="true"
+                    android:elevation="4dp"
+                    android:padding="5dp"
+                    android:text="General"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
 
                 <TableRow
                     android:id="@+id/tableRow0"
@@ -110,13 +110,13 @@
                         android:textColor="#000000" />
 
                     <!--<TextView-->
-                        <!--android:id="@+id/myName"-->
-                        <!--android:layout_weight="1"-->
-                        <!--android:background="#fff"-->
-                        <!--android:gravity="left"-->
-                        <!--android:padding="5dip"-->
-                        <!--android:text="Quang"-->
-                        <!--android:textColor="#8470ff" />-->
+                    <!--android:id="@+id/myName"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:background="#fff"-->
+                    <!--android:gravity="left"-->
+                    <!--android:padding="5dip"-->
+                    <!--android:text="Quang"-->
+                    <!--android:textColor="#8470ff" />-->
                     <EditText
                         android:id="@+id/myName"
                         android:layout_width="match_parent"
@@ -142,29 +142,29 @@
                         android:textColor="#000000" />
 
                     <!--<TextView-->
-                        <!--android:id="@+id/myGender"-->
-                        <!--android:layout_weight="1"-->
-                        <!--android:background="#fff"-->
-                        <!--android:gravity="left"-->
-                        <!--android:padding="5dip"-->
-                        <!--android:text=" "-->
-                        <!--android:textColor="#8470ff" />-->
+                    <!--android:id="@+id/myGender"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:background="#fff"-->
+                    <!--android:gravity="left"-->
+                    <!--android:padding="5dip"-->
+                    <!--android:text=" "-->
+                    <!--android:textColor="#8470ff" />-->
 
                     <RadioGroup
+                        android:id="@+id/radioGender"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
-                        android:id="@+id/radioGender"
+                        android:layout_marginTop="8dp"
                         android:orientation="horizontal">
 
                         <RadioButton
+                            android:id="@+id/radioButton_male"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:checked="false"
                             android:text="Male"
-                            android:textColor="@color/black"
-                            android:id="@+id/radioButton_male"
-                            android:checked="false" />
+                            android:textColor="@color/black" />
 
                         <RadioButton
                             android:id="@+id/radioButton_female"
@@ -172,7 +172,7 @@
                             android:layout_height="wrap_content"
                             android:checked="false"
                             android:text="Female"
-                            android:textColor="@color/black"/>
+                            android:textColor="@color/black" />
                     </RadioGroup>
                 </TableRow>
 
@@ -192,13 +192,13 @@
                         android:textColor="#000000" />
 
                     <!--<TextView-->
-                        <!--android:id="@+id/myAge"-->
-                        <!--android:layout_weight="1"-->
-                        <!--android:background="#fff"-->
-                        <!--android:gravity="left"-->
-                        <!--android:padding="5dip"-->
-                        <!--android:text="20"-->
-                        <!--android:textColor="#8470ff" />-->
+                    <!--android:id="@+id/myAge"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:background="#fff"-->
+                    <!--android:gravity="left"-->
+                    <!--android:padding="5dip"-->
+                    <!--android:text="20"-->
+                    <!--android:textColor="#8470ff" />-->
 
                     <EditText
                         android:id="@+id/myAge"
@@ -225,13 +225,13 @@
                         android:textColor="#000000" />
 
                     <!--<TextView-->
-                        <!--android:id="@+id/myHeight"-->
-                        <!--android:layout_weight="1"-->
-                        <!--android:background="#fff"-->
-                        <!--android:gravity="left"-->
-                        <!--android:padding="5dip"-->
-                        <!--android:text="170"-->
-                        <!--android:textColor="#8470ff" />-->
+                    <!--android:id="@+id/myHeight"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:background="#fff"-->
+                    <!--android:gravity="left"-->
+                    <!--android:padding="5dip"-->
+                    <!--android:text="170"-->
+                    <!--android:textColor="#8470ff" />-->
                     <EditText
                         android:id="@+id/myHeight"
                         android:layout_width="match_parent"
@@ -257,13 +257,13 @@
                         android:textColor="#000000" />
 
                     <!--<TextView-->
-                        <!--android:id="@+id/myAddress"-->
-                        <!--android:layout_weight="1"-->
-                        <!--android:background="#fff"-->
-                        <!--android:gravity="left"-->
-                        <!--android:padding="5dip"-->
-                        <!--android:text="Hà Nội"-->
-                        <!--android:textColor="#8470ff" />-->
+                    <!--android:id="@+id/myAddress"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:background="#fff"-->
+                    <!--android:gravity="left"-->
+                    <!--android:padding="5dip"-->
+                    <!--android:text="Hà Nội"-->
+                    <!--android:textColor="#8470ff" />-->
                     <EditText
                         android:id="@+id/myAddress"
                         android:layout_width="match_parent"
@@ -288,13 +288,13 @@
                         android:textColor="#000000" />
 
                     <!--<TextView-->
-                        <!--android:id="@+id/myCountry"-->
-                        <!--android:layout_weight="1"-->
-                        <!--android:background="#fff"-->
-                        <!--android:gravity="left"-->
-                        <!--android:padding="5dip"-->
-                        <!--android:text="Việt Nam"-->
-                        <!--android:textColor="#8470ff" />-->
+                    <!--android:id="@+id/myCountry"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:background="#fff"-->
+                    <!--android:gravity="left"-->
+                    <!--android:padding="5dip"-->
+                    <!--android:text="Việt Nam"-->
+                    <!--android:textColor="#8470ff" />-->
                     <EditText
                         android:id="@+id/myCountry"
                         android:layout_width="match_parent"
@@ -302,27 +302,18 @@
                         android:inputType="textPersonName"
                         android:textColor="@color/black" />
                 </TableRow>
-            </TableLayout>
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:background="@color/button_pressed"
-                android:clickable="true"
-                android:elevation="4dp"
-                android:padding="5dp"
-                android:text="Job and Religiion"
-                android:textColor="@color/black"
-                android:textSize="25sp" />
-
-            <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/table2"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:shrinkColumns="*"
-                android:stretchColumns="*">
-
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="@color/button_pressed"
+                    android:clickable="true"
+                    android:elevation="4dp"
+                    android:padding="5dp"
+                    android:text="Job and Religiion"
+                    android:textColor="@color/black"
+                    android:textSize="25sp" />
 
                 <TableRow
                     android:id="@+id/tableRow22"
@@ -419,26 +410,18 @@
                         android:inputType="textPersonName"
                         android:textColor="@color/black" />
                 </TableRow>
-            </TableLayout>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:background="@color/button_pressed"
-                android:clickable="true"
-                android:elevation="4dp"
-                android:padding="5dp"
-                android:text="Family"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
-
-            <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/table3"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:shrinkColumns="*"
-                android:stretchColumns="*">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="@color/button_pressed"
+                    android:clickable="true"
+                    android:elevation="4dp"
+                    android:padding="5dp"
+                    android:text="Family"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
 
                 <TableRow
                     android:id="@+id/tableRow31"
@@ -457,13 +440,13 @@
                         android:textColor="#000000" />
 
                     <!--<TextView-->
-                        <!--android:id="@+id/myHobbies"-->
-                        <!--android:layout_weight="1"-->
-                        <!--android:background="#fff"-->
-                        <!--android:gravity="left"-->
-                        <!--android:padding="5dip"-->
-                        <!--android:text=" "-->
-                        <!--android:textColor="#8470ff" />-->
+                    <!--android:id="@+id/myHobbies"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:background="#fff"-->
+                    <!--android:gravity="left"-->
+                    <!--android:padding="5dip"-->
+                    <!--android:text=" "-->
+                    <!--android:textColor="#8470ff" />-->
 
                     <EditText
                         android:id="@+id/myHobbies"
@@ -489,13 +472,13 @@
                         android:textColor="#000000" />
 
                     <!--<TextView-->
-                        <!--android:id="@+id/myFamily"-->
-                        <!--android:layout_weight="1"-->
-                        <!--android:background="#fff"-->
-                        <!--android:gravity="left"-->
-                        <!--android:padding="5dip"-->
-                        <!--android:text=" "-->
-                        <!--android:textColor="#8470ff" />-->
+                    <!--android:id="@+id/myFamily"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:background="#fff"-->
+                    <!--android:gravity="left"-->
+                    <!--android:padding="5dip"-->
+                    <!--android:text=" "-->
+                    <!--android:textColor="#8470ff" />-->
 
                     <EditText
                         android:id="@+id/myFamily"
@@ -522,36 +505,36 @@
                         android:textColor="#000000" />
 
                     <!--<TextView-->
-                        <!--android:id="@+id/myStatusLife"-->
-                        <!--android:layout_weight="1"-->
-                        <!--android:background="#fff"-->
-                        <!--android:gravity="left"-->
-                        <!--android:padding="5dip"-->
-                        <!--android:text=" "-->
-                        <!--android:textColor="#8470ff" />-->
+                    <!--android:id="@+id/myStatusLife"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:background="#fff"-->
+                    <!--android:gravity="left"-->
+                    <!--android:padding="5dip"-->
+                    <!--android:text=" "-->
+                    <!--android:textColor="#8470ff" />-->
 
                     <!--<EditText-->
-                        <!--android:id="@+id/myStatusLife"-->
-                        <!--android:layout_width="match_parent"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:inputType="textPersonName"-->
-                        <!--android:textColor="@color/black" />-->
+                    <!--android:id="@+id/myStatusLife"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:inputType="textPersonName"-->
+                    <!--android:textColor="@color/black" />-->
 
                     <RadioGroup
+                        android:id="@+id/radioStatus"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
-                        android:id="@+id/radioStatus"
+                        android:layout_marginTop="8dp"
                         android:orientation="horizontal">
 
                         <RadioButton
+                            android:id="@+id/radioButton_yes"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:checked="false"
                             android:text="Yes"
-                            android:textColor="@color/black"
-                            android:id="@+id/radioButton_yes"
-                            android:checked="false" />
+                            android:textColor="@color/black" />
 
                         <RadioButton
                             android:id="@+id/radioButton_no"
@@ -559,7 +542,7 @@
                             android:layout_height="wrap_content"
                             android:checked="false"
                             android:text="No"
-                            android:textColor="@color/black"/>
+                            android:textColor="@color/black" />
                     </RadioGroup>
                 </TableRow>
             </TableLayout>
@@ -568,9 +551,9 @@
                 android:id="@+id/btn_Edit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginBottom="24dp"
                 android:layout_marginTop="24dp"
-                android:layout_gravity="center"
                 android:padding="12dp"
                 android:text="Save" />
 
