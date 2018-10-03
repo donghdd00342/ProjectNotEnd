@@ -285,28 +285,28 @@ public class UserService {
             .map(Optional::get)
             .map(user -> {
                 this.clearUserCaches(user);
-                user.setLogin(userDTO.getLogin());
-                user.setFirstName(userDTO.getFirstName());
-                user.setLastName(userDTO.getLastName());
-                user.setEmail(userDTO.getEmail());
-                user.setImageUrl(userDTO.getImageUrl());
+                if (userDTO.getLogin() != null) user.setLogin(userDTO.getLogin());
+                if (userDTO.getFirstName() != null) user.setFirstName(userDTO.getFirstName());
+                if (userDTO.getLastName() != null) user.setLastName(userDTO.getLastName());
+                if (userDTO.getEmail() != null) user.setEmail(userDTO.getEmail());
+                if (userDTO.getImageUrl() != null) user.setImageUrl(userDTO.getImageUrl());
                 user.setActivated(userDTO.isActivated());
-                user.setLangKey(userDTO.getLangKey());
+                if (userDTO.getLangKey() != null) user.setLangKey(userDTO.getLangKey());
 
-                user.setExpirationDate(userDTO.getExpirationDate());
-                user.setContactNumber(userDTO.getContactNumber());
-                user.setCountryLiving(userDTO.getCountryLiving());
-                user.setDateOfBirth(userDTO.getDateOfBirth());
-                user.setFamilyDetails(userDTO.getFamilyDetails());
-                user.setGender(userDTO.getGender());
-                user.setHeightCm(userDTO.getHeightCm());
-                user.setHobbies(userDTO.getHobbies());
-                user.setMarriedStatus(userDTO.getMarriedStatus());
-                user.setMiddleName(userDTO.getMiddleName());
-                user.setMotherTongue(userDTO.getMotherTongue());
-                user.setQualification(userDTO.getQualification());
-                user.setReligion(userDTO.getReligion());
-                user.setWorkingAt(userDTO.getWorkingAt());
+                if (userDTO.getExpirationDate() != null) user.setExpirationDate(userDTO.getExpirationDate());
+                if (userDTO.getContactNumber() != null) user.setContactNumber(userDTO.getContactNumber());
+                if (userDTO.getCountryLiving() != null) user.setCountryLiving(userDTO.getCountryLiving());
+                if (userDTO.getDateOfBirth() != null) user.setDateOfBirth(userDTO.getDateOfBirth());
+                if (userDTO.getFamilyDetails() != null) user.setFamilyDetails(userDTO.getFamilyDetails());
+                if (userDTO.getGender() != null) user.setGender(userDTO.getGender());
+                if (userDTO.getHeightCm() != null) user.setHeightCm(userDTO.getHeightCm());
+                if (userDTO.getHobbies() != null) user.setHobbies(userDTO.getHobbies());
+                if (userDTO.getMarriedStatus() != null) user.setMarriedStatus(userDTO.getMarriedStatus());
+                if (userDTO.getMiddleName() != null) user.setMiddleName(userDTO.getMiddleName());
+                if (userDTO.getMotherTongue() != null) user.setMotherTongue(userDTO.getMotherTongue());
+                if (userDTO.getQualification() != null) user.setQualification(userDTO.getQualification());
+                if (userDTO.getReligion() != null) user.setReligion(userDTO.getReligion());
+                if (userDTO.getWorkingAt() != null) user.setWorkingAt(userDTO.getWorkingAt());
                 user.setPaidUser(userDTO.getPaidUser());
 
                 Set<Authority> managedAuthorities = user.getAuthorities();
