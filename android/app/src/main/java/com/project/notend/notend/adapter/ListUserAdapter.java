@@ -73,7 +73,7 @@ public class ListUserAdapter extends RecyclerView.Adapter  {
                 @Override
                 public void onClick(View view, int position, boolean isLongClick) {
                     showAlert().show();
-                    view.setClickable(false);
+                    //view.setClickable(false);
                 }
             });
         }
