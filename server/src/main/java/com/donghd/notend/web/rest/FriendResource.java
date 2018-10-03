@@ -94,7 +94,7 @@ public class FriendResource {
             friendService.save(swapUser(friendDTO));
 
             return ResponseEntity.ok()
-                .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, friendDTO.getId().toString()))
+                .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, "success"))
                 .body(result);
         } else {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
