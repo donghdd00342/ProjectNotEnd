@@ -86,27 +86,27 @@ public class ListUserFragment extends Fragment {
         });
 
         rv.addOnScrollListener(new RecyclerView.OnScrollListener() {
-                                   @Override
-                                   public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                                       super.onScrolled(recyclerView, dx, dy);
-                                       visibleItemCount = layoutManager.getChildCount();
-                                       totallItemCount = layoutManager.getItemCount();
-                                       pastVisibleItems = layoutManager.findFirstCompletelyVisibleItemPosition();
-                                       if (dy > 0) {
-                                           if (isLoading) {
-                                               if (totallItemCount > previous_total) {
-                                                   isLoading = false;
-                                                   previous_total = totallItemCount;
-                                               }
-                                           }
-                                           if (!isLoading && (totallItemCount - visibleItemCount) <= (pastVisibleItems + view_threshold)) {
-                                               page_number++;
-                                               initData();
-                                               isLoading = true;
-                                           }
-                                       }
-                                   }
-                               }
+               @Override
+               public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                   super.onScrolled(recyclerView, dx, dy);
+                   visibleItemCount = layoutManager.getChildCount();
+                   totallItemCount = layoutManager.getItemCount();
+                   pastVisibleItems = layoutManager.findFirstCompletelyVisibleItemPosition();
+                   if (dy > 0) {
+                       if (isLoading) {
+                           if (totallItemCount > previous_total) {
+                               isLoading = false;
+                               previous_total = totallItemCount;
+                           }
+                       }
+                       if (!isLoading && (totallItemCount - visibleItemCount) <= (pastVisibleItems + view_threshold)) {
+                           page_number++;
+                           initData();
+                           isLoading = true;
+                       }
+                   }
+               }
+           }
         );
 
         return v;

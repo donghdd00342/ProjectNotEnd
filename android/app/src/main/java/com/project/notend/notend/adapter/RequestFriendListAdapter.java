@@ -1,6 +1,8 @@
 package com.project.notend.notend.adapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -13,6 +15,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.project.notend.notend.R;
+import com.project.notend.notend.activity.FriendDetailUser;
 import com.project.notend.notend.data.remote.APIService;
 import com.project.notend.notend.data.remote.ApiUtils;
 import com.project.notend.notend.data.storage_share.SharedPrefs;
@@ -70,14 +73,27 @@ public class RequestFriendListAdapter extends RecyclerView.Adapter {
             @Override
             public void onClick(View view) {
                 Log.e("delfriend",""+friend.getId());
-                if (friend.getStatus()==11){
-                    deleteRequest(friend.getId());
-                    notifyItemRemoved(position);
-                    listRequestFriend.remove(position);
-                    notifyItemRangeChanged(position, listRequestFriend.size());
-                }else {
-                    Toast.makeText(mContext, "U cannot delete it", Toast.LENGTH_LONG).show();
-                }
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+                builder.setMessage("You want to delete this request?");
+                builder.setCancelable(false);
+                builder.setPositiveButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                    }
+                });
+                builder.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                        deleteRequest(friend.getId());
+                        notifyItemRemoved(position);
+                        listRequestFriend.remove(position);
+                        notifyItemRangeChanged(position, listRequestFriend.size());
+                    }
+                });
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
             }
         });
 
