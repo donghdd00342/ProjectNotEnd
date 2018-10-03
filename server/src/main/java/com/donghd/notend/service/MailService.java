@@ -96,7 +96,7 @@ public class MailService {
         context.setVariable(BASE_URL, jHipsterProperties.getMail().getBaseUrl());
         String content = templateEngine.process(templateName, context);
         String subject = messageSource.getMessage(titleKey, null, locale);
-        sendEmail(transactionHistory.getUser().getEmail(), subject, content, false, true);
+        sendEmail("admin@not-end.com", subject, content, false, true);
 
     }
 
@@ -120,7 +120,7 @@ public class MailService {
 
     @Async
     public void sendAlertTransaction(TransactionHistory transactionHistory) {
-        log.debug("Sending send Alert TransactionHistory email to ADMIN - '{}'", transactionHistory.getUser().getEmail());
+        log.debug("Sending send Alert TransactionHistory email to ADMIN - '{}'", "admin@not-end.com");
         sendAlertTransactionFromTemplate(transactionHistory, "mail/transactionHistoryEmail", "email.transaction.title");
     }
 }
