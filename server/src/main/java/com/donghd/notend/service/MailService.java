@@ -1,5 +1,7 @@
 package com.donghd.notend.service;
 
+import com.donghd.notend.config.Constants;
+import com.donghd.notend.domain.TransactionHistory;
 import com.donghd.notend.domain.User;
 
 import io.github.jhipster.config.JHipsterProperties;
@@ -29,6 +31,7 @@ public class MailService {
     private final Logger log = LoggerFactory.getLogger(MailService.class);
 
     private static final String USER = "user";
+    private static final String TRANS = "trans";
 
     private static final String BASE_URL = "baseUrl";
 
@@ -86,6 +89,18 @@ public class MailService {
     }
 
     @Async
+    public void sendAlertTransactionFromTemplate(TransactionHistory transactionHistory, String templateName, String titleKey) {
+        Locale locale = Locale.forLanguageTag(Constants.DEFAULT_LANGUAGE);
+        Context context = new Context(locale);
+        context.setVariable(TRANS, transactionHistory);
+        context.setVariable(BASE_URL, jHipsterProperties.getMail().getBaseUrl());
+        String content = templateEngine.process(templateName, context);
+        String subject = messageSource.getMessage(titleKey, null, locale);
+        sendEmail(transactionHistory.getUser().getEmail(), subject, content, false, true);
+
+    }
+
+    @Async
     public void sendActivationEmail(User user) {
         log.debug("Sending activation email to '{}'", user.getEmail());
         sendEmailFromTemplate(user, "mail/activationEmail", "email.activation.title");
@@ -101,5 +116,11 @@ public class MailService {
     public void sendPasswordResetMail(User user) {
         log.debug("Sending password reset email to '{}'", user.getEmail());
         sendEmailFromTemplate(user, "mail/passwordResetEmail", "email.reset.title");
+    }
+
+    @Async
+    public void sendAlertTransaction(TransactionHistory transactionHistory) {
+        log.debug("Sending send Alert TransactionHistory email to ADMIN - '{}'", transactionHistory.getUser().getEmail());
+        sendAlertTransactionFromTemplate(transactionHistory, "mail/transactionHistoryEmail", "email.transaction.title");
     }
 }

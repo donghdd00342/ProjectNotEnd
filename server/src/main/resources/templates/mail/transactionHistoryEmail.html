@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title th:text="#{email.activation.title}">NotEnd activation</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="shortcut icon" th:href="@{|${baseUrl}/favicon.ico|}" />
+    </head>
+    <body>
+        <p th:text="#{email.activation.greeting(${trans.user.email})}">
+            Dear
+        </p>
+        <p th:text="#{email.transacsiton.infomation}">
+            Transacsiton Infomation:
+        </p>
+        <p th:text="#{email.transacsiton.amount(${trans.amout})}">
+            Amount:
+        </p>
+        <p th:text="#{email.transacsiton.payDate(${trans.payDate})}">
+            Pay Date:
+        </p>
+        <p>
+            <span th:text="#{email.activation.text2}">Regards, </span>
+            <br/>
+            <em th:text="#{email.signature}">NotEnd team.</em>
+        </p>
+    </body>
+</html>

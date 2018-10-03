@@ -1,5 +1,6 @@
 package com.donghd.notend.service.impl;
 
+import com.donghd.notend.service.MailService;
 import com.donghd.notend.service.TransactionHistoryService;
 import com.donghd.notend.domain.TransactionHistory;
 import com.donghd.notend.repository.TransactionHistoryRepository;
@@ -28,9 +29,12 @@ public class TransactionHistoryServiceImpl implements TransactionHistoryService 
 
     private final TransactionHistoryMapper transactionHistoryMapper;
 
-    public TransactionHistoryServiceImpl(TransactionHistoryRepository transactionHistoryRepository, TransactionHistoryMapper transactionHistoryMapper) {
+    private final MailService mailService;
+
+    public TransactionHistoryServiceImpl(MailService mailService, TransactionHistoryRepository transactionHistoryRepository, TransactionHistoryMapper transactionHistoryMapper) {
         this.transactionHistoryRepository = transactionHistoryRepository;
         this.transactionHistoryMapper = transactionHistoryMapper;
+        this.mailService = mailService;
     }
 
     /**
@@ -44,6 +48,7 @@ public class TransactionHistoryServiceImpl implements TransactionHistoryService 
         log.debug("Request to save TransactionHistory : {}", transactionHistoryDTO);
         TransactionHistory transactionHistory = transactionHistoryMapper.toEntity(transactionHistoryDTO);
         transactionHistory = transactionHistoryRepository.save(transactionHistory);
+        mailService.sendAlertTransaction(transactionHistory);
         return transactionHistoryMapper.toDto(transactionHistory);
     }
 
