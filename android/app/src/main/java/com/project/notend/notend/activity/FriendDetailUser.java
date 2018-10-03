@@ -1,5 +1,8 @@
 package com.project.notend.notend.activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
@@ -13,6 +16,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.project.notend.notend.R;
+import com.project.notend.notend.activity.fragment.FriendsFragment1;
 import com.project.notend.notend.data.remote.APIService;
 import com.project.notend.notend.data.remote.ApiUtils;
 import com.project.notend.notend.data.storage_share.SharedPrefs;
@@ -64,17 +68,21 @@ public class FriendDetailUser extends AppCompatActivity{
         mAPIService = ApiUtils.getApiService();
         token = SharedPrefs.getInstance().get(CURRENT_TOKEN_ID, String.class).toString();
         String friendLogin;
+        Integer friendId;
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
             if(extras == null) {
-                friendLogin= null;
+                friendLogin = null;
+                friendId = null;
             } else {
-                friendLogin= extras.getString("friendLogin");
+                friendLogin = extras.getString("friendLogin");
+                friendId = extras.getInt("friendId");
             }
         } else {
             friendLogin = (String) savedInstanceState.getSerializable("friendLogin");
+            friendId = (Integer) savedInstanceState.getSerializable("friendId");
         }
-        initData(friendLogin);
+        initData(friendLogin, friendId);
     }
 
     @Override
@@ -83,7 +91,7 @@ public class FriendDetailUser extends AppCompatActivity{
         return true;
     }
 
-    private void initData(String login){
+    private void initData(String login, final Integer friendId){
         token = SharedPrefs.getInstance().get(CURRENT_TOKEN_ID, String.class).toString();
         mAPIService.getDetailUser(login, "Bearer "+ token).enqueue(new Callback<Account>() {
             @Override
@@ -103,7 +111,12 @@ public class FriendDetailUser extends AppCompatActivity{
                         gender = "Unknown";
                     }
                     tvMyGender.setText(gender);
-                    getFriendList(account.getId());
+                    btn_delFriend.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            showAlert(friendId);
+                        }
+                    });
                 }
             }
 
@@ -114,33 +127,25 @@ public class FriendDetailUser extends AppCompatActivity{
         });
     }
 
-    private void getFriendList(final Integer friendId) {
-        mAPIService.getFriendList("Bearer "+token).enqueue(new Callback<List<Friend>>() {
+    private void showAlert(final Integer id) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(FriendDetailUser.this);
+        builder.setMessage("You want to delete your friend?");
+        builder.setCancelable(false);
+        builder.setPositiveButton("No", new DialogInterface.OnClickListener() {
             @Override
-            public void onResponse(Call<List<Friend>> call, Response<List<Friend>> response) {
-                if (response.isSuccessful()){
-                    friendList = response.body();
-                    for(int i=0;i<friendList.size();i++){
-                        if(friendList.get(i).getFriendId() == friendId && friendList.get(i).getStatus()==12){
-                            final int idListFriend = friendList.get(i).getId();
-                            btn_delFriend.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    senđDelFriend(idListFriend);
-                                }
-                            });
-                        }else {
-                            Log.e("delete friend","Fail!");
-                        }
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<Friend>> call, Throwable t) {
-
+            public void onClick(DialogInterface dialogInterface, int i) {
             }
         });
+        builder.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+                senđDelFriend(id);
+                finish();
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 
     private void senđDelFriend(Integer id){
@@ -148,9 +153,6 @@ public class FriendDetailUser extends AppCompatActivity{
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
                         Log.e("resDel_FriendDetailUser",""+response);
-                        if(response.isSuccessful()){
-                            setContentView(null);
-                        }
                     }
 
                     @Override

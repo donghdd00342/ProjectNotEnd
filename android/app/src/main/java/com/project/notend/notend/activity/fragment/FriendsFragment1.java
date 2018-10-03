@@ -64,6 +64,12 @@ public class FriendsFragment1 extends Fragment {
         super.onViewCreated(view, savedInstanceState);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        getFriendList();
+    }
+
     private void getFriendList() {
         mAPIService.getFriendList("Bearer "+token).enqueue(new Callback<List<Friend>>() {
             @Override

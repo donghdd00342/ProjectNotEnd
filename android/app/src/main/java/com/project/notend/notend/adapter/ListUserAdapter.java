@@ -1,6 +1,9 @@
 package com.project.notend.notend.adapter;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,6 +17,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.project.notend.notend.R;
 import com.project.notend.notend.activity.DetailUser;
+import com.project.notend.notend.activity.FriendDetailUser;
 import com.project.notend.notend.entities.Account;
 
 import java.util.List;
@@ -68,6 +72,7 @@ public class ListUserAdapter extends RecyclerView.Adapter  {
             newsHolder.setItemClickListener(new ItemClickListener() {
                 @Override
                 public void onClick(View view, int position, boolean isLongClick) {
+                    showAlert().show();
                     view.setClickable(false);
                 }
             });
@@ -79,7 +84,18 @@ public class ListUserAdapter extends RecyclerView.Adapter  {
         return listData.size();
     }
 
-
+    private Dialog showAlert() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+        builder.setMessage("You need to become Paid User");
+        builder.setCancelable(false);
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        return builder.create();
+    }
 
     public class NewsHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
