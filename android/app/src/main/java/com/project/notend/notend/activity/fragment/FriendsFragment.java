@@ -26,8 +26,6 @@ public class FriendsFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
     }
     @Nullable
     @Override
@@ -35,6 +33,7 @@ public class FriendsFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_friends, container, false);
         tabLayout = (TabLayout) rootView.findViewById(R.id.sliding_tabs);
         viewPager = (ViewPager) rootView.findViewById(R.id.viewpager);
+        viewPager.setOffscreenPageLimit(1);
         FriendsFragmentPagerAdapter adapter = new FriendsFragmentPagerAdapter(getChildFragmentManager());
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
