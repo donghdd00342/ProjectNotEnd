@@ -59,7 +59,7 @@ public interface APIService {
 
 //    @POST("api/account")
     @PUT("api/users")
-    Call<Account> editAccount(@Body Account account, @Header("Authorization") String authHeader);
+    Call<Void> editAccount(@Body Account account, @Header("Authorization") String authHeader);
 
     @GET("api/account/upgrade")
     Call<Void> upgradeAccount(@Header("Authorization") String authHeader);

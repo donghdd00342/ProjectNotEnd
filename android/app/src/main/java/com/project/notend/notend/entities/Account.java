@@ -548,29 +548,27 @@ public class Account implements Parcelable {
         parcel.writeString(workingAt);
     }
 
-    public Account(String aboutSelf, String city, String contactNumber, String countryLiving,
-                   String dateOfBirth, String email, String familyDetails, String firstName,
-                   Integer gender, Integer heightCm, String lastName, String login,
-                   Integer marriedStatus, String middleName, String motherTongue, String qualification,
-                   String religion, String workingAt) {
-        this.aboutSelf = aboutSelf;
-        this.city = city;
-        this.contactNumber = contactNumber;
+    public Account(String countryLiving, String dateOfBirth, String email, String familyDetails,
+                   String firstName, Integer heightCm, Integer id, String login, String motherTongue,
+                   String religion, String workingAt, String city, Integer gender, Integer status,
+                   String lastName) {
         this.countryLiving = countryLiving;
         this.dateOfBirth = dateOfBirth;
         this.email = email;
         this.familyDetails = familyDetails;
         this.firstName = firstName;
-        this.gender = gender;
         this.heightCm = heightCm;
-        this.lastName = lastName;
+        this.id = id;
         this.login = login;
-        this.marriedStatus = marriedStatus;
-        this.middleName = middleName;
         this.motherTongue = motherTongue;
-        this.qualification = qualification;
         this.religion = religion;
         this.workingAt = workingAt;
+        this.city = city;
+        this.gender = gender;
+        this.marriedStatus = status;
+        this.lastName = lastName;
+        this.activated = true;
+
     }
 }
 

@@ -88,9 +88,6 @@ public class Content extends AppCompatActivity {
                     case R.id.history:
                         history();
                         return true;
-//                    case R.id.edit:
-//                        edit();
-//                        return true;
                     case R.id.changepass:
                         changePassword();
                         return true;
