@@ -1,6 +1,9 @@
 package com.project.notend.notend.adapter;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -8,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -56,6 +60,7 @@ public class FriendsListAdapter extends RecyclerView.Adapter {
                 public void onClick(View view, int position, boolean isLongClick) {
                     Intent intent = new Intent(mContext, FriendDetailUser.class);
                     intent.putExtra("friendLogin",friend.getFriendLogin());
+                    intent.putExtra("friendId",friend.getId());
                     mContext.startActivity(intent);
                 }
             });
@@ -63,6 +68,7 @@ public class FriendsListAdapter extends RecyclerView.Adapter {
             newsHolder.setItemClickListener(new ItemClickListener() {
                 @Override
                 public void onClick(View view, int position, boolean isLongClick) {
+                    showAlert().show();
                     view.setClickable(false);
                 }
             });
@@ -72,6 +78,19 @@ public class FriendsListAdapter extends RecyclerView.Adapter {
     @Override
     public int getItemCount() {
         return listFriend.size();
+    }
+
+    private Dialog showAlert() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+        builder.setMessage("You need to become Paid User");
+        builder.setCancelable(false);
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        return builder.create();
     }
 
     public class NewsHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

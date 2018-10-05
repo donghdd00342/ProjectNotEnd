@@ -177,7 +177,7 @@ public class Register extends AppCompatActivity {
 
     public void dialogSuccess(final Activity activity) {
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
-        dialogBuilder.setMessage("Creat Account Success");
+        dialogBuilder.setMessage("Please activate your account in Email");
         dialogBuilder.setNegativeButton("ok", null);
         AlertDialog dialog = dialogBuilder.create();
         dialog.show();
