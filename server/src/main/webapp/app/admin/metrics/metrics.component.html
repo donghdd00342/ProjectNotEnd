@@ -24,8 +24,8 @@
         <div class="col-md-4">
             <h3>Other Statistic</h3>
 
-            <p><span>Tổng thu nhập trong tháng này: </span> <b>$500.000</b></p>
-            <p><span>Tổng thu nhập từ khi bắt đầu: </span> <b>$6.000.000</b></p>
+            <p><span>Tổng thu nhập trong tháng này: </span> <b>${{statistics.totalIncomeThisMonth | number:'1.0-0'}}</b></p>
+            <p><span>Tổng thu nhập từ khi bắt đầu: </span> <b>${{statistics.totalIncome | number:'1.0-0'}}</b></p>
             <p><span>Số Yêu cầu kết bạn đang chờ xử lý</span> ({{statistics.pendingFriends | number:'1.0-0'}} / {{statistics.totalFriends | number:'1.0-0'}})</p>
             <p><span>Số Tin nhắn chưa đọc</span> ({{statistics.unreadMessages | number:'1.0-0'}} / {{statistics.totalMessages | number:'1.0-0'}})</p>
         </div>

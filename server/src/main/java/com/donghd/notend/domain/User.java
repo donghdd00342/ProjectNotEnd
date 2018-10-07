@@ -438,6 +438,28 @@ public class User extends AbstractAuditingEntity implements Serializable {
             ", activated='" + activated + '\'' +
             ", langKey='" + langKey + '\'' +
             ", activationKey='" + activationKey + '\'' +
+            ", password='" + password + '\'' +
+            ", middleName='" + middleName + '\'' +
+            ", middleName='" + dateOfBirth + '\'' +
+            ", gender='" + gender + '\'' +
+            ", marriedStatus='" + marriedStatus + '\'' +
+            ", heightCm='" + heightCm + '\'' +
+            ", countryLiving='" + countryLiving + '\'' +
+            ", city='" + city + '\'' +
+            ", contactNumber='" + contactNumber + '\'' +
+            ", motherTongue='" + motherTongue + '\'' +
+            ", religion='" + religion + '\'' +
+            ", aboutSelf='" + aboutSelf + '\'' +
+            ", familyDetails='" + familyDetails + '\'' +
+            ", qualification='" + qualification + '\'' +
+            ", workingAt='" + workingAt + '\'' +
+            ", hobbies='" + hobbies + '\'' +
+            ", paymentPeriod='" + paymentPeriod + '\'' +
+            ", expirationDate='" + expirationDate + '\'' +
+            ", paidUser='" + paidUser + '\'' +
+            ", resetKey='" + resetKey + '\'' +
+            ", resetDate='" + resetDate + '\'' +
+            ", authorities='" + authorities + '\'' +
             "}";
     }
 }

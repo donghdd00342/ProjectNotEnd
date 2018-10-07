@@ -26,6 +26,7 @@ import com.donghd.notend.web.rest.vm.UserStatistics;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
@@ -88,6 +89,11 @@ public class UserService {
 
         userStatistics.setTotalTrangsactions(transactionHistoryRepository.count());
 
+        BigDecimal s1 = transactionHistoryRepository.sumAmount();
+        userStatistics.setTotalIncome(s1 != null? s1.longValue() : 0L);
+        BigDecimal s2 = transactionHistoryRepository.sumAmountThisMonth();
+        userStatistics.setTotalIncomeThisMonth(s2 != null? s2.longValue() : 0L);
+        
         return userStatistics;
     }
 

@@ -16,6 +16,25 @@ public class UserStatistics {
 
     private Long totalTrangsactions;// Tổng số giao dịch thành công
 
+    private Long totalIncome;
+    private Long totalIncomeThisMonth;
+
+    public Long getTotalIncome() {
+    	return this.totalIncome;
+    }
+
+    public void setTotalIncome(Long totalIncome) {
+    	this.totalIncome = totalIncome;
+    }
+
+    public Long getTotalIncomeThisMonth() {
+    	return this.totalIncomeThisMonth;
+    }
+
+    public void setTotalIncomeThisMonth(Long totalIncomeThisMonth) {
+    	this.totalIncomeThisMonth = totalIncomeThisMonth;
+    }
+
     public Long getTotalTrangsactions() {
     	return this.totalTrangsactions;
     }
