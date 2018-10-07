@@ -1,6 +1,7 @@
 package com.project.notend.notend.activity.fragment;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
@@ -26,6 +27,9 @@ import com.bumptech.glide.Glide;
 import butterknife.BindView;
 
 import com.project.notend.notend.R;
+import com.project.notend.notend.activity.GetkeyPasswordActivity;
+import com.project.notend.notend.activity.LoginActivity;
+import com.project.notend.notend.activity.ResetPasswordActivity;
 import com.project.notend.notend.data.remote.APIService;
 import com.project.notend.notend.data.remote.ApiUtils;
 import com.project.notend.notend.entities.Account;
@@ -41,8 +45,11 @@ import static com.project.notend.notend.data.remote.ApiUtils.SERVER_URL_ACCOUNT;
 import com.project.notend.notend.data.storage_share.SharedPrefs;
 
 public class YourSelfFragment extends Fragment {
+
+    private static final String TAG = "EditActivity";
     private static int id;
     private static String token ;
+    private static ProgressDialog progressDialog;
     private APIService mAPIService;
     @BindView(R.id.myAge)
     EditText tvAge;
@@ -65,6 +72,8 @@ public class YourSelfFragment extends Fragment {
     EditText tvJob;
     @BindView(R.id.myName)
     EditText tvName;
+    @BindView(R.id.myNameLast)
+    EditText tvNameLast;
     @BindView(R.id.myHeight)
     EditText tvHeight;
     @BindView(R.id.edLogin)
@@ -84,9 +93,11 @@ public class YourSelfFragment extends Fragment {
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
+//        SharedPrefs.getInstance().clear();
         super.onCreate(savedInstanceState);
         mAPIService = ApiUtils.getApiServiceAccount();
         token = SharedPrefs.getInstance().get(CURRENT_TOKEN_ID,String.class);
+
     }
     @Nullable
     @Override
@@ -95,8 +106,35 @@ public class YourSelfFragment extends Fragment {
         initView(rootView);
         context = rootView.getContext();
         ButterKnife.bind(this, rootView);
+        btn_edit.setOnClickListener(new View.OnClickListener() {
 
+            @Override
+            public void onClick(View v) {
+                edit();
+            }
+        });
         return rootView;
+
+    }
+
+    public boolean validate() {
+        boolean valid = true;
+        String name = etLogin.getText().toString();
+        String email = etEmail.getText().toString();
+
+        if (name.isEmpty() || name.length() < 3) {
+            etLogin.setError("at least 3 characters");
+            valid = false;
+        } else {
+            etLogin.setError(null);
+        }
+        if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            etEmail.setError("at least 3 characters");
+            valid = false;
+        } else {
+            etEmail.setError(null);
+        }
+        return valid;
     }
 
     public void initView(View rootView){
@@ -131,7 +169,8 @@ public class YourSelfFragment extends Fragment {
     }
 
     private void fillData(Account a) {
-        tvName.setText(a.getFirstName() + " " + a.getLastName());
+        tvName.setText(a.getFirstName());
+        tvNameLast.setText(a.getLastName());
         etEmail.setText(a.getEmail());
         etLogin.setText(a.getLogin());
         tvAge.setText(a.getDateOfBirth());
@@ -182,7 +221,13 @@ public class YourSelfFragment extends Fragment {
     }
 
     public void edit(){
-        btn_edit.setEnabled(false);
+
+
+        progressDialog = new ProgressDialog(context, R.style.AppTheme_Dark_Dialog);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setMessage("Please wait...");
+        progressDialog.show();
+
 
         String token = SharedPrefs.getInstance().get(CURRENT_TOKEN_ID,String.class);
         mAPIService.getAccountInfo("Bearer "+token).enqueue(new Callback<Account>() {
@@ -200,6 +245,7 @@ public class YourSelfFragment extends Fragment {
 
         final int user_id = id;
         final String firstName = tvName.getText().toString();
+        final String lastName = tvNameLast.getText().toString();
         final String country1 = tvCountry.getText().toString();
         final String dob1 = tvAge.getText().toString();
         final String family1 = tvFamily.getText().toString();
@@ -208,7 +254,7 @@ public class YourSelfFragment extends Fragment {
         final String tongue1 = tvLang.getText().toString();
         final String religion1 = tvReligion.getText().toString();
         final String working = tvJob.getText().toString();
-        final String address1 = tvAddress.getText().toString();
+        final String city1 = tvAddress.getText().toString();
         final String email1 = etEmail.getText().toString();
         int tgender = 0;
         if (male.isChecked()){
@@ -225,11 +271,37 @@ public class YourSelfFragment extends Fragment {
         new android.os.Handler().postDelayed(
                 new Runnable() {
                     public void run() {
-//                        callApi(new Account(self1, city1, contact1, country1, dob1, mail, family1,
-//                                firstName, gender, height1, lastName, login1, status, middle, tongue1, qualify,
-//                                religion1, working));
+                        callApiEdit(new Account(country1, dob1, email1, family1, firstName, height1,
+                                user_id, login1, tongue1, religion1, working, city1, gender, status, lastName));
                     }
                 }, 3000);
 
+    }
+
+    public void callApiEdit(final Account account){
+        String token = SharedPrefs.getInstance().get(CURRENT_TOKEN_ID,String.class);
+//        Toast.makeText(context, token, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(context, account.toString(), Toast.LENGTH_SHORT).show();
+        mAPIService.editAccount(account, "Bearer "+token).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                Log.d(TAG, "onResponse: " + account.toString());
+                Log.d(TAG, "onResponse: " + response.isSuccessful());
+                Log.d(TAG, "onResponse:, responebody--- " + response.code());
+                if(response.code() == 200){
+                    progressDialog.dismiss();
+                    Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(context, "Something went wrong :(", Toast.LENGTH_SHORT).show();
+                    progressDialog.dismiss();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                progressDialog.dismiss();
+                Log.d(TAG, "Failed");
+            }
+        });
     }
 }

@@ -54,17 +54,6 @@
                 android:layout_marginTop="0dp"
                 android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:background="@color/button_pressed"
-                    android:clickable="true"
-                    android:elevation="4dp"
-                    android:padding="5dp"
-                    android:text="Inform Basic"
-                    android:textColor="@color/black"
-                    android:textSize="25sp" />
 
                 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
                     android:id="@+id/table1"
@@ -72,6 +61,18 @@
                     android:layout_height="wrap_content"
                     android:shrinkColumns="*"
                     android:stretchColumns="*">
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:background="@color/button_pressed"
+                        android:clickable="true"
+                        android:elevation="4dp"
+                        android:padding="5dp"
+                        android:text="Inform Basic"
+                        android:textColor="@color/black"
+                        android:textSize="25sp" />
 
                     <TableRow
                         android:id="@+id/tableRow1"
@@ -120,7 +121,7 @@
                             android:background="#fff"
                             android:gravity="left"
                             android:padding="5dip"
-                            android:text= "--"
+                            android:text="--"
                             android:textColor="#8470ff" />
                     </TableRow>
                     //row3
@@ -225,26 +226,18 @@
                             android:text="Việt Nam"
                             android:textColor="#8470ff" />
                     </TableRow>
-                </TableLayout>
 
-                <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:background="@color/button_pressed"
-                    android:clickable="true"
-                    android:elevation="4dp"
-                    android:padding="5dp"
-                    android:text="Job and Religiion"
-                    android:textColor="@color/black"
-                    android:textSize="25sp" />
-
-                <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:id="@+id/table2"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:shrinkColumns="*"
-                    android:stretchColumns="*">
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:background="@color/button_pressed"
+                        android:clickable="true"
+                        android:elevation="4dp"
+                        android:padding="5dp"
+                        android:text="Job and Religiion"
+                        android:textColor="@color/black"
+                        android:textSize="25sp" />
 
                     <!--<TableRow-->
                     <!--android:id="@+id/tableRow21"-->
@@ -346,24 +339,17 @@
                             android:textColor="#8470ff" />
                     </TableRow>
 
-                </TableLayout>
-                <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:background="@color/button_pressed"
-                    android:clickable="true"
-                    android:elevation="4dp"
-                    android:padding="5dp"
-                    android:text="Family"
-                    android:textColor="@color/black"
-                    android:textSize="25sp" />
-                <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:id="@+id/table3"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:shrinkColumns="*"
-                    android:stretchColumns="*">
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:background="@color/button_pressed"
+                        android:clickable="true"
+                        android:elevation="4dp"
+                        android:padding="5dp"
+                        android:text="Family"
+                        android:textColor="@color/black"
+                        android:textSize="25sp" />
 
                     <TableRow
                         android:id="@+id/tableRow31"
@@ -442,6 +428,7 @@
                             android:textColor="#8470ff" />
                     </TableRow>
                 </TableLayout>
+
             </LinearLayout>
         </RelativeLayout>
     </ScrollView>
@@ -452,10 +439,11 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:gravity="center">
+
         <Button
+            android:id="@+id/btn_addFriend"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/btn_addFriend"
             android:text="Add Friend" />
     </RelativeLayout>
 </RelativeLayout>

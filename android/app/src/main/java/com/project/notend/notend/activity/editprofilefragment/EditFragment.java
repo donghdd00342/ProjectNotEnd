@@ -221,9 +221,9 @@ public class EditFragment extends Fragment {
         new android.os.Handler().postDelayed(
                 new Runnable() {
                     public void run() {
-                        callApi(new Account(self1, city1, contact1, country1, dob1, mail, family1,
-                                firstName, gender, height1, lastName, login1, status, middle, tongue1, qualify,
-                                religion1, working));
+//                        callApi(new Account(self1, city1, contact1, country1, dob1, mail, family1,
+//                                firstName, gender, height1, lastName, login1, status, middle, tongue1, qualify,
+//                                religion1, working));
                     }
                 }, 3000);
 
@@ -236,28 +236,6 @@ public class EditFragment extends Fragment {
     public void callApi(Account account){
         String token = SharedPrefs.getInstance().get(CURRENT_TOKEN_ID,String.class);
         String header = "Bearer " + token;
-        mAPIService.editAccount(account, header).enqueue(new Callback<Account>() {
-            @Override
-            public void onResponse(Call<Account> call, Response<Account> response) {
-                //Toast.makeText(Register.this,response.body().toString(),Toast.LENGTH_SHORT).show();
-                // Log.i(TAG, "post submitted to API." + response.body().toString());
-                boolean code = response.isSuccessful();
-                Log.d(TAG, "onResponse: "+ code);
-                Log.d(TAG, "onResponse:, responebody--- "+response.body());
-                if(code){
-                    Toast.makeText(context, "Done", Toast.LENGTH_SHORT).show();
-                } else{
-                    Toast.makeText(context, "Something went wrong", Toast.LENGTH_SHORT).show();
-                    _confirm.setEnabled(true);
-                }
-            }
-            @Override
-            public void onFailure(Call<Account> call, Throwable t) {
-                Log.e(TAG, "Unable to submit post to API.");
-                Log.e(TAG, "onFailure: message"+t.getMessage() );
-                t.printStackTrace();
-                Toast.makeText(context, "something went wrong", Toast.LENGTH_SHORT).show();
-            }
-        });
+
     }
 }
