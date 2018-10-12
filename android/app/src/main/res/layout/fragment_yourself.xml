@@ -72,6 +72,33 @@
                 </TableRow>
 
                 <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#fff"
+                    android:padding="5dip">
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_weight="1"
+                        android:gravity="left"
+                        android:padding="5dip"
+                        android:text="Birthday" />
+
+                    <!--<TextView-->
+                        <!--android:id="@+id/txtdate"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:textSize="17dp" />-->
+
+                    <Button
+                        android:id="@+id/txtdate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/button_text" />
+
+                </TableRow>
+
+                <TableRow
                     android:id="@+id/tableRow11"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -207,40 +234,6 @@
                 </TableRow>
 
                 <TableRow
-                    android:id="@+id/tableRow2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="#fff"
-                    android:padding="5dip">
-
-                    <TextView
-                        android:layout_weight="1"
-                        android:background="#fff"
-                        android:gravity="left"
-                        android:padding="5dip"
-                        android:text="Birthday"
-                        android:textColor="#000000" />
-
-                    <!--<TextView-->
-                    <!--android:id="@+id/myAge"-->
-                    <!--android:layout_weight="1"-->
-                    <!--android:background="#fff"-->
-                    <!--android:gravity="left"-->
-                    <!--android:padding="5dip"-->
-                    <!--android:text="20"-->
-                    <!--android:textColor="#8470ff" />-->
-
-                    <EditText
-                        android:id="@+id/myAge"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="textPersonName"
-                        android:textColor="@color/black"
-                        android:hint="dd/mm/yyyy"/>
-                </TableRow>
-                //row3
-
-                <TableRow
                     android:id="@+id/tableRow3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -267,7 +260,7 @@
                         android:id="@+id/myHeight"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textPersonName"
+                        android:inputType="number"
                         android:textColor="@color/black"
                         android:hint="cm"/>
                 </TableRow>
@@ -287,17 +280,8 @@
                         android:padding="5dip"
                         android:text="City"
                         android:textColor="#000000" />
-
-                    <!--<TextView-->
-                    <!--android:id="@+id/myAddress"-->
-                    <!--android:layout_weight="1"-->
-                    <!--android:background="#fff"-->
-                    <!--android:gravity="left"-->
-                    <!--android:padding="5dip"-->
-                    <!--android:text="Hà Nội"-->
-                    <!--android:textColor="#8470ff" />-->
                     <EditText
-                        android:id="@+id/myAddress"
+                        android:id="@+id/tvCity"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textPersonName"

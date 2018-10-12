@@ -551,7 +551,7 @@ public class Account implements Parcelable {
     public Account(String countryLiving, String dateOfBirth, String email, String familyDetails,
                    String firstName, Integer heightCm, Integer id, String login, String motherTongue,
                    String religion, String workingAt, String city, Integer gender, Integer status,
-                   String lastName) {
+                   String lastName, boolean paid, List<String> authorize, String avatar, String hobbies) {
         this.countryLiving = countryLiving;
         this.dateOfBirth = dateOfBirth;
         this.email = email;
@@ -568,7 +568,10 @@ public class Account implements Parcelable {
         this.marriedStatus = status;
         this.lastName = lastName;
         this.activated = true;
-
+        this.paidUser = paid;
+        this.authorities = authorize;
+        this.imageUrl = avatar;
+        this.hobbies = hobbies;
     }
 }
 
