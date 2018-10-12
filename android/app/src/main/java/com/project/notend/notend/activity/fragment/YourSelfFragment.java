@@ -100,7 +100,7 @@ public class YourSelfFragment extends Fragment {
     @BindView(R.id.radioButton_no)
     RadioButton no;
     @BindView(R.id.txtdate)
-    TextView txtDate;
+    Button txtDate;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -152,6 +152,9 @@ public class YourSelfFragment extends Fragment {
         //các lệnh dưới này xử lý ngày giờ trong DatePickerDialog
         //sẽ giống với trên TextView khi mở nó lên
         String s = txtDate.getText()+"";
+        if(s.equalsIgnoreCase("choose")){
+            s = "1/1/2000";
+        }
         String strArrtmp[]=s.split("/");
         int ngay=Integer.parseInt(strArrtmp[0]);
         int thang=Integer.parseInt(strArrtmp[1])-1;
@@ -186,6 +189,9 @@ public class YourSelfFragment extends Fragment {
             valid = false;
         } else {
             tvHeight.setError(null);
+        }
+        if (valid == false) {
+            Toast.makeText(context, "Please finish your form !!!", Toast.LENGTH_SHORT).show();
         }
         return valid;
     }
@@ -227,7 +233,12 @@ public class YourSelfFragment extends Fragment {
         tvNameLast.setText(a.getLastName());
         etEmail.setText(a.getEmail());
         etLogin.setText(a.getLogin());
-        txtDate.setText(a.getDateOfBirth());
+        String s = a.getDateOfBirth();
+        if(s.length() < 1){
+            txtDate.setText("Choose");
+        } else {
+            txtDate.setText(a.getDateOfBirth());
+        }
         if (a.getHeightCm() == null){
             tvHeight.setText("");
         } else {
@@ -255,13 +266,15 @@ public class YourSelfFragment extends Fragment {
             female.setChecked(false);
         }
 
-//        if (a.getMarriedStatus() == 0){
-//            no.setChecked(true);
-//            yes.setChecked(false);
-//        } else {
-//            yes.setChecked(true);
-//            no.setChecked(false);
-//        }
+        if (a.getMarriedStatus() == null){
+            return;
+        } else if (a.getMarriedStatus() == 0){
+            no.setChecked(true);
+            yes.setChecked(false);
+        } else {
+            yes.setChecked(true);
+            no.setChecked(false);
+        }
 
     }
 
@@ -340,8 +353,6 @@ public class YourSelfFragment extends Fragment {
 
     public void callApiEdit(final Account account){
         String token = SharedPrefs.getInstance().get(CURRENT_TOKEN_ID,String.class);
-//        Toast.makeText(context, token, Toast.LENGTH_SHORT).show();
-//        Toast.makeText(context, account.toString(), Toast.LENGTH_SHORT).show();
         mAPIService.editAccount(account, "Bearer "+token).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
@@ -350,11 +361,9 @@ public class YourSelfFragment extends Fragment {
                 Log.d(TAG, "onResponse:, responebody--- " + response.code());
                 if(response.code() == 200){
                     progressDialog.dismiss();
-//                    Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show();
-                    Toast.makeText(context, acc.getEmail(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show();
                 } else {
-//                    Toast.makeText(context, "Something went wrong :(", Toast.LENGTH_SHORT).show();
-                    Toast.makeText(context, acc.getEmail(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Something went wrong :(", Toast.LENGTH_SHORT).show();
                     progressDialog.dismiss();
                 }
             }

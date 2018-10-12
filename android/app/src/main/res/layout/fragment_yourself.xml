@@ -79,16 +79,22 @@
 
                     <TextView
                         android:id="@+id/textView4"
-                        android:layout_width="5dp"
-                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="left"
                         android:padding="5dip"
-                        android:text="Dob" />
+                        android:text="Birthday" />
 
-                    <TextView
+                    <!--<TextView-->
+                        <!--android:id="@+id/txtdate"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:textSize="17dp" />-->
+
+                    <Button
                         android:id="@+id/txtdate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="17dp" />
+                        android:text="@string/button_text" />
 
                 </TableRow>
 
